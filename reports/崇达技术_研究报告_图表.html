@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>崇达技术(002815.SZ) 深度研究报告</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+    :root{--navy:#003366;--navy-light:#1a4d80;--navy-dark:#001f3f;--gold:#c4973b;--red:#c0392b;--green-cicc:#27763d;--blue-accent:#2980b9;--cyan:#16a085;--gray-400:#a0a0b8;--gray-300:#c8c8d8;--gray-200:#e8e8f0;--gray-100:#f4f4f8;--gray-50:#f9f9fc;--bg:#f7f8fc;--card:#fff;--text:#2c2c3a;--text-secondary:#5a5a7a;--text-light:#8888a8;--border:#e0e0ec;--border-light:#ececf4}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:"Noto Sans SC",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:14.5px;-webkit-font-smoothing:antialiased}
+    .page{max-width:980px;margin:0 auto;padding:0}
+    .brand-bar{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);padding:12px 40px;display:flex;justify-content:space-between;align-items:center}
+    .brand-bar .brand-name{font-family:"Noto Serif SC",serif;font-size:15px;font-weight:600;color:var(--gold);letter-spacing:4px}
+    .brand-bar .brand-date{font-size:12px;color:rgba(255,255,255,.6);letter-spacing:1px}
+    .report-header{background:var(--card);padding:48px 48px 40px;border-bottom:3px solid var(--navy);position:relative}
+    .report-header::after{content:'';position:absolute;bottom:-6px;left:0;right:0;height:3px;background:var(--gold)}
+    .report-meta-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+    .report-type{font-size:13px;font-weight:600;color:var(--navy);letter-spacing:3px;padding:5px 16px;border:1.5px solid var(--navy);display:inline-block}
+    .report-rating{text-align:right}
+    .report-rating .rating-label{font-size:11px;color:var(--text-light);letter-spacing:1px;margin-bottom:4px}
+    .report-rating .rating-value{font-family:"Noto Serif SC",serif;font-size:28px;font-weight:700;color:var(--green-cicc)}
+    .report-header h1{font-family:"Noto Serif SC",serif;font-size:30px;font-weight:700;color:var(--navy-dark);margin-bottom:8px;line-height:1.4}
+    .report-header .subtitle{font-size:17px;color:var(--text-secondary);font-weight:400;margin-bottom:24px}
+    .tags{display:flex;gap:10px;flex-wrap:wrap}
+    .tag{padding:5px 16px;font-size:12px;font-weight:500;letter-spacing:.5px}
+    .tag-a{background:var(--navy);color:#fff}
+    .tag-b{background:var(--gold);color:#fff}
+    .tag-c{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+    .content-area{background:var(--card);padding:0 48px 48px}
+    .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:0 -48px;padding:28px 48px;background:var(--gray-50);border-bottom:1px solid var(--border-light)}
+    .kpi{text-align:center;padding:12px 8px;position:relative}
+    .kpi:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--border)}
+    .kpi-val{font-family:"Noto Serif SC",serif;font-size:26px;font-weight:700;color:var(--navy)}
+    .kpi-val span{font-size:13px;font-weight:500}
+    .kpi-lbl{font-size:11.5px;color:var(--text-light);margin-top:2px;letter-spacing:.5px}
+    .kpi-sub{font-size:11px;margin-top:4px;font-weight:500}
+    .section{margin-bottom:0;padding-top:40px}
+    .section-num{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:3px;margin-bottom:6px}
+    .section h2{font-family:"Noto Serif SC",serif;font-size:20px;font-weight:700;color:var(--navy-dark);margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--navy);position:relative}
+    .section h2::after{content:'';position:absolute;bottom:-2px;left:0;width:60px;height:2px;background:var(--gold)}
+    .section h3{font-family:"Noto Serif SC",serif;font-size:16px;font-weight:600;color:var(--navy);margin:28px 0 14px;padding-left:12px;border-left:3px solid var(--gold)}
+    p{margin-bottom:14px;color:var(--text);text-align:justify}
+    strong{color:var(--navy-dark)}
+    .highlight{color:var(--gold);font-weight:700}
+    .highlight-rose{color:var(--red);font-weight:600}
+    .highlight-green{color:var(--green-cicc);font-weight:600}
+    .highlight-blue{color:var(--blue-accent);font-weight:600}
+    .chart-card{background:var(--card);border:1px solid var(--border);padding:24px;margin:24px 0}
+    .chart-card .chart-title{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:8px;letter-spacing:.3px}
+    .chart-card .chart-title::before{content:'';display:inline-block;width:3px;height:14px;flex-shrink:0;background:var(--gold)}
+    .chart-box{width:100%;height:380px;min-width:0}
+    .chart-box.short{height:320px}
+    .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+    .chart-row .chart-card{margin:0}
+    .callout{background:var(--gray-50);border-left:4px solid var(--navy);padding:18px 22px;margin:20px 0;font-size:13.5px}
+    .callout.warn{border-left-color:var(--red);background:#fef8f7}
+    .callout.ok{border-left-color:var(--green-cicc);background:#f6fbf8}
+    .callout-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+    .callout-label.purple{color:var(--navy)}
+    .callout-label.rose{color:var(--red)}
+    .callout-label.green{color:var(--green-cicc)}
+    table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+    thead{background:var(--navy)}
+    th{color:#fff;font-weight:600;text-align:left;padding:10px 16px;font-size:12px;letter-spacing:.5px}
+    td{padding:10px 16px;border-bottom:1px solid var(--border-light);color:var(--text)}
+    tr:nth-child(even) td{background:var(--gray-50)}
+    tr:hover td{background:rgba(0,51,102,.03)}
+    .chain{display:flex;align-items:center;justify-content:center;gap:0;margin:28px 0;flex-wrap:wrap}
+    .chain-node{background:var(--card);border:1.5px solid var(--border);border-radius:6px;padding:14px 20px;text-align:center;min-width:140px;box-shadow:0 1px 3px rgba(0,20,60,.06)}
+    .chain-node.active{border-color:var(--navy);background:rgba(0,51,102,.04);box-shadow:0 2px 8px rgba(0,51,102,.12)}
+    .chain-node .cn-title{font-size:13px;font-weight:600;color:var(--navy)}
+    .chain-node .cn-sub{font-size:11px;color:var(--text-light);margin-top:4px}
+    .chain-arrow{font-size:18px;color:var(--gold);padding:0 6px;font-weight:700}
+    .report-footer{background:var(--card);padding:0 48px 32px}
+    .footer-inner{border-top:2px solid var(--navy);padding-top:24px;position:relative}
+    .footer-inner::after{content:'';position:absolute;top:-2px;left:0;width:60px;height:2px;background:var(--gold)}
+    .footer-disclaimer{font-size:11px;color:var(--text-light);line-height:1.8;text-align:justify}
+    .footer-disclaimer strong{color:var(--text-secondary);font-size:11.5px;letter-spacing:1px}
+    .footer-brand{margin-top:20px;display:flex;justify-content:space-between;align-items:flex-end;padding-top:16px;border-top:1px solid var(--border-light)}
+    .footer-brand .fb-left{font-size:11px;color:var(--text-light)}
+    .footer-brand .fb-right{font-family:"Noto Serif SC",serif;font-size:13px;font-weight:600;color:var(--gold);letter-spacing:3px}
+    @media(max-width:768px){.report-header,.content-area,.report-footer{padding-left:20px;padding-right:20px}.kpi-row{grid-template-columns:repeat(3,1fr);margin:0 -20px;padding:20px}.chart-row{grid-template-columns:1fr}.chain{flex-direction:column}.chain-arrow{transform:rotate(90deg)}.report-header h1{font-size:24px}.brand-bar{padding:10px 20px}}
+    @media print{body{background:#fff}.page{max-width:100%}.chart-card{break-inside:avoid}.section{break-inside:avoid}}
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ BRAND BAR ============ -->
+  <div class="brand-bar">
+    <div class="brand-name">深度研究报告</div>
+    <div class="brand-date">电子 &middot; PCB元件 &nbsp;|&nbsp; 2026年2月</div>
+  </div>
+
+  <!-- ============ REPORT HEADER ============ -->
+  <div class="report-header">
+    <div class="report-meta-top">
+      <div class="report-type">公司深度</div>
+      <div class="report-rating">
+        <div class="rating-label">评级</div>
+        <div class="rating-value">推荐</div>
+      </div>
+    </div>
+    <h1>崇达技术 (002815.SZ)</h1>
+    <div class="subtitle">AI算力东风起，PCB龙头迎拐点</div>
+    <div class="tags">
+      <span class="tag tag-a">PCB &middot; 成熟期主体+成长期细分</span>
+      <span class="tag tag-b">护城河 3.4/5</span>
+      <span class="tag tag-c">申万元件 (801083.SI) &nbsp;|&nbsp; 2025Q3</span>
+    </div>
+  </div>
+
+  <!-- ============ CONTENT AREA ============ -->
+  <div class="content-area">
+
+    <!-- KPI ROW -->
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-val">62.77<span>亿</span></div><div class="kpi-lbl">2024年营收</div><div class="kpi-sub" style="color:var(--green-cicc)">同比+8.7%</div></div>
+      <div class="kpi"><div class="kpi-val">3.03<span>亿</span></div><div class="kpi-lbl">2024年净利润</div><div class="kpi-sub" style="color:var(--red)">同比-28.2%</div></div>
+      <div class="kpi"><div class="kpi-val">21.43<span>%</span></div><div class="kpi-lbl">毛利率(2025Q3)</div><div class="kpi-sub" style="color:var(--green-cicc)">触底回升中</div></div>
+      <div class="kpi"><div class="kpi-val">3.92<span>%</span></div><div class="kpi-lbl">ROE(2025Q3)</div><div class="kpi-sub" style="color:var(--text-light)">盈利效率待修复</div></div>
+      <div class="kpi"><div class="kpi-val">26.59<span>%</span></div><div class="kpi-lbl">资产负债率</div><div class="kpi-sub" style="color:var(--green-cicc)">财务安全稳健</div></div>
+    </div>
+
+    <!-- ============ PART 01: 行业概览 ============ -->
+    <div class="section">
+      <div class="section-num">PART 01</div>
+      <h2>行业概览与产业链定位</h2>
+
+      <p>崇达技术（SZ: 002815）成立于2004年，2016年深交所上市，总部位于广东深圳。公司是国内领先的<strong>印制线路板（PCB）</strong>制造商，主营产品涵盖高多层板、HDI板、挠性板、刚挠结合板及IC载板等多种高端PCB产品。公司深耕<strong>中小批量、多品种、快交期</strong>的样板及小批量板市场，在工控医疗、通信设备、汽车电子等领域建立了稳固的客户基础。</p>
+
+      <p>PCB是电子信息产业的"基石"，几乎所有电子产品都需要PCB作为电气连接的载体。根据Prismark数据，<span class="highlight">2024年全球PCB产值约820亿美元</span>，中国大陆占比超过54%，是全球最大的PCB生产基地。随着AI算力需求爆发、新能源汽车渗透率提升和5G基础设施持续建设，PCB行业迎来新一轮结构性增长机遇。</p>
+
+      <h3>产业链位置</h3>
+      <div class="chain">
+        <div class="chain-node"><div class="cn-title">上游 &middot; 原材料</div><div class="cn-sub">覆铜板/铜箔/油墨<br/>树脂/玻纤布</div></div>
+        <div class="chain-arrow">&rarr;</div>
+        <div class="chain-node active"><div class="cn-title">中游 &middot; PCB制造</div><div class="cn-sub">崇达技术<br/>高多层/HDI/IC载板</div></div>
+        <div class="chain-arrow">&rarr;</div>
+        <div class="chain-node"><div class="cn-title">下游 &middot; 电子整机</div><div class="cn-sub">通信/汽车/服务器<br/>消费电子/工控医疗</div></div>
+        <div class="chain-arrow">&rarr;</div>
+        <div class="chain-node"><div class="cn-title">终端应用</div><div class="cn-sub">AI数据中心/5G基站<br/>新能源车/智能终端</div></div>
+      </div>
+
+      <p>崇达技术处于PCB产业链的<strong>核心制造环节</strong>，直接对接下游电子整机厂商。公司在中小批量快速交付领域具备突出优势——<span class="highlight-green">客户超过3000家</span>，涵盖全球多家知名电子企业，产品应用领域广泛，有效分散了单一行业周期波动风险。</p>
+
+      <div class="chart-card">
+        <div class="chart-title">图1 &middot; PCB行业市场规模及预测（中国大陆，亿元）</div>
+        <div id="chart-market" class="chart-box short"></div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label purple">核心发现</div>
+        <p style="margin:0">中国PCB市场在经历2022-2023年的需求调整后，<strong>2024年强劲反弹至4121亿元</strong>，同比增长13.4%。展望2025-2026年，AI服务器对高层数PCB和高速互联基板的需求将持续驱动行业增长，预计CAGR维持在8-10%区间。崇达技术作为中高端PCB龙头，有望充分受益于这一轮AI算力驱动的产业升级周期。</p>
+      </div>
+    </div>
+
+    <!-- ============ PART 02: 生命周期 ============ -->
+    <div class="section">
+      <div class="section-num">PART 02</div>
+      <h2>行业生命周期判断：成熟期主体 + 成长期细分</h2>
+
+      <p>PCB行业整体已进入<strong>成熟期</strong>，但其内部存在显著的结构分化：传统消费电子PCB需求趋缓，而<strong>AI服务器用高层数PCB、汽车电子PCB、IC载板</strong>等细分领域仍处于高速成长阶段。这种"成熟期主体+成长期细分"的特征，决定了行业投资机会主要来自结构升级而非总量扩张。</p>
+
+      <table>
+        <thead><tr><th>维度</th><th>数据/现状</th><th>判断依据</th></tr></thead>
+        <tbody>
+          <tr><td><strong>行业增速（整体）</strong></td><td>5-8%</td><td>全球PCB产值增速从双位数回落至中个位数</td></tr>
+          <tr><td><strong>细分增速（AI/HPC）</strong></td><td>20-30%</td><td>AI服务器PCB用量是传统服务器的3-5倍</td></tr>
+          <tr><td><strong>集中度</strong></td><td>CR10 &asymp; 35%</td><td>鹏鼎控股全球第一，头部集中趋势明显</td></tr>
+          <tr><td><strong>渗透率（高端化）</strong></td><td>~25-30%</td><td>高层数（>12层）、HDI占比仍在提升</td></tr>
+          <tr><td><strong>利润率</strong></td><td>承压后回升</td><td>行业毛利率经历2023年低谷后边际改善</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout ok">
+        <div class="callout-label green">阶段判断</div>
+        <p style="margin:0">PCB行业呈现<strong>"总量稳、结构升"</strong>的成熟期特征。投资逻辑不再是"大水漫灌"式的行业beta，而是寻找能够切入AI算力、汽车电子等高景气细分赛道的<strong>结构性alpha企业</strong>。崇达技术凭借IC载板布局和高端产品线，有望从"传统PCB龙头"向"AI算力受益标的"转型。</p>
+      </div>
+    </div>
+
+    <!-- ============ PART 03: 护城河与竞争格局 ============ -->
+    <div class="section">
+      <div class="section-num">PART 03</div>
+      <h2>护城河与竞争格局</h2>
+
+      <p>PCB行业的竞争壁垒主要体现在<strong>技术工艺积累、客户认证周期和资本投入门槛</strong>三个维度。崇达技术在中小批量快速交付领域建立了差异化竞争优势，但在绝对规模和技术前沿上仍与鹏鼎控股、沪电股份等存在差距。</p>
+
+      <div class="chart-row">
+        <div class="chart-card">
+          <div class="chart-title">图2 &middot; 护城河八维评估</div>
+          <div id="chart-moat" class="chart-box"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">图3 &middot; 竞争对手财务对比（2025Q3归一化）</div>
+          <div id="chart-compete" class="chart-box"></div>
+        </div>
+      </div>
+
+      <h3>护城河拆解</h3>
+      <table>
+        <thead><tr><th>维度</th><th>评分</th><th>分析</th></tr></thead>
+        <tbody>
+          <tr><td><strong>技术壁垒</strong></td><td><span class="highlight-green">4.0/5</span></td><td>掌握高多层、HDI、刚挠结合板等先进工艺。IC载板布局构筑未来技术壁垒。研发投入持续加码，2024年研发费用率约4.5%。</td></tr>
+          <tr><td><strong>客户认证</strong></td><td><span class="highlight-green">4.5/5</span></td><td>PCB行业客户认证周期长达6-18个月，一旦进入合格供应商名录具有显著粘性。崇达已获得全球超3000家客户认证，涵盖通信、汽车、工控等核心领域。</td></tr>
+          <tr><td><strong>资本门槛</strong></td><td>3.0/5</td><td>高端PCB产线投资大（单条线数亿元），但行业内已有大量成熟玩家。IC载板产线投入更重，构成较高进入壁垒。</td></tr>
+          <tr><td><strong>转换成本</strong></td><td><span class="highlight-green">4.0/5</span></td><td>下游客户更换PCB供应商需重新进行产品认证、可靠性验证，时间成本和风险较高，形成较强锁定效应。</td></tr>
+          <tr><td><strong>品牌效应</strong></td><td>3.0/5</td><td>PCB属于B2B产品，品牌效应弱于消费品，但在特定细分市场（样板/小批量）崇达具有良好口碑。</td></tr>
+          <tr><td><strong>资源禀赋</strong></td><td>3.0/5</td><td>生产基地集中在珠三角，区位优势明显（靠近上游原材料和下游客户），但非独占性资源。</td></tr>
+          <tr><td><strong>渠道控制</strong></td><td>3.0/5</td><td>直销模式为主，客户关系管理能力强，但渠道壁垒有限。</td></tr>
+          <tr><td><strong>数据壁垒</strong></td><td>2.0/5</td><td>制造工艺数据积累有一定价值，但整体数据壁垒在PCB行业尚未形成显著竞争优势。</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <div class="callout-label purple">护城河综合评估：3.4/5 (中等偏上)</div>
+        <p style="margin:0">崇达技术的护城河<strong>主要依赖技术积累和客户认证</strong>，这是PCB行业最核心的两大壁垒。客户认证的高转换成本为公司提供了相对稳固的收入基础。但在绝对技术领先性（如先进IC载板）和规模优势上，与沪电股份、鹏鼎控股仍有差距。<strong>IC载板的突破是拓宽护城河的关键抓手。</strong></p>
+      </div>
+
+      <h3>竞争格局：第二梯队领先</h3>
+      <p>从图3可以看出，<span class="highlight">沪电股份在盈利能力和增速上全面领先</span>，得益于其在高端通信板和汽车板领域的深厚积累。鹏鼎控股以绝对规模优势稳居行业龙头，2024年营收超300亿元。东山精密则通过并购FPC资产进入第一梯队。崇达技术属于<strong>第二梯队领先者</strong>，在中小批量快速交付领域具有独特竞争优势。</p>
+
+      <p>值得关注的是，崇达2025年前三季度<span class="highlight-green">营收增速达22.27%</span>，显著高于行业平均水平，显示出AI算力需求对公司的拉动效应正在显现。如果IC载板业务能够成功放量，公司有望从第二梯队向第一梯队跃迁。</p>
+    </div>
+
+    <!-- ============ PART 04: PEST宏观分析 ============ -->
+    <div class="section">
+      <div class="section-num">PART 04</div>
+      <h2>PEST 宏观环境分析</h2>
+
+      <p>PEST分析从政策(P)、经济(E)、社会(S)、技术(T)四个维度审视PCB行业面临的外部环境。当前宏观环境整体有利于PCB行业，尤其是政策支持和技术驱动构成显著正面因素：</p>
+
+      <table>
+        <thead><tr><th>维度</th><th>正面因素</th><th>负面因素</th><th>综合影响</th></tr></thead>
+        <tbody>
+          <tr><td><strong>P 政策</strong></td><td>国产替代政策持续推进；半导体/AI产业扶持政策密集出台；"新基建"带动PCB需求</td><td>中美科技博弈带来供应链不确定性；环保监管趋严增加合规成本</td><td style="color:var(--green-cicc)">显著正面</td></tr>
+          <tr><td><strong>E 经济</strong></td><td>AI算力资本开支高景气；新能源车渗透率持续提升；5G建设推进</td><td>全球经济增速放缓；消费电子需求复苏偏弱；铜价等原材料成本波动</td><td style="color:var(--green-cicc)">偏正面</td></tr>
+          <tr><td><strong>S 社会</strong></td><td>数字化转型加速；智能设备普及率持续提升</td><td>人力成本上升（PCB仍属劳动密集型环节）；招工难度加大</td><td style="color:var(--text-light)">中性</td></tr>
+          <tr><td><strong>T 技术</strong></td><td><strong>AI/HPC爆发</strong>驱动高层数PCB需求；IC载板国产化空间巨大；智能制造提效</td><td>技术迭代快，研发投入持续增加；先进封装可能部分替代传统PCB</td><td style="color:var(--green-cicc)">强正面，最关键驱动力</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout ok">
+        <div class="callout-label green">最大机遇信号</div>
+        <p style="margin:0"><strong>技术维度(T)是当前PCB行业最核心的驱动力。</strong>AI大模型训练和推理所需的高性能服务器，对PCB的层数、材料、工艺精度提出了远高于传统服务器的要求。以英伟达GB200为例，单颗GPU模组所需PCB面积和层数均大幅增加。据测算，<strong>AI服务器单机PCB价值量是传统服务器的3-5倍</strong>。这一结构性变量为崇达技术等高端PCB厂商打开了巨大增量空间。</p>
+      </div>
+    </div>
+
+    <!-- ============ PART 05: 估值与景气度 ============ -->
+    <div class="section">
+      <div class="section-num">PART 05</div>
+      <h2>估值与行业景气度</h2>
+
+      <p>PCB行业具有显著的<strong>周期性特征</strong>，行业景气度与下游电子产业资本开支周期高度相关。当前时点，多项指标显示PCB行业正处于<strong>景气上行周期的早中期阶段</strong>：</p>
+
+      <table>
+        <thead><tr><th>景气指标</th><th>当前状况</th><th>方向判断</th></tr></thead>
+        <tbody>
+          <tr><td><strong>AI服务器资本开支</strong></td><td>北美四大云厂商2025年Capex预算同比+40-60%</td><td style="color:var(--green-cicc)">强劲上行</td></tr>
+          <tr><td><strong>覆铜板价格</strong></td><td>2024年下半年开始回升，涨幅约5-10%</td><td style="color:var(--green-cicc)">温和上行</td></tr>
+          <tr><td><strong>PCB厂商产能利用率</strong></td><td>主要厂商产能利用率从70%回升至80%+</td><td style="color:var(--green-cicc)">持续改善</td></tr>
+          <tr><td><strong>下游订单能见度</strong></td><td>AI/HPC订单饱满，传统消费电子订单温和恢复</td><td style="color:var(--green-cicc)">结构性向好</td></tr>
+          <tr><td><strong>库存周期</strong></td><td>行业去库存接近尾声，补库需求启动</td><td style="color:var(--green-cicc)">拐点确认</td></tr>
+        </tbody>
+      </table>
+
+      <h3>崇达技术估值定位</h3>
+      <p>从估值角度看，崇达技术当前PE-TTM约25-30x，处于历史中位数偏上水平。考虑到公司正处于<strong>IC载板业务爬坡期</strong>和<strong>AI算力订单放量期</strong>，市场给予了一定的成长溢价。关键假设在于：IC载板量产进度和AI服务器PCB订单的可持续性。</p>
+
+      <p>从PB角度看，公司PB约1.5-2.0x，<span class="highlight-green">资产负债率仅26.59%</span>，账上现金充裕，财务安全边际充足。如果AI算力需求持续超预期，当前估值仍有提升空间；但如果IC载板进展不及预期，估值可能面临回调压力。</p>
+    </div>
+
+    <!-- ============ PART 06: 公司深度分析 ============ -->
+    <div class="section">
+      <div class="section-num">PART 06</div>
+      <h2>公司深度分析</h2>
+
+      <p>财务数据是验证竞争优势是否有效转化为股东回报的核心证据。崇达技术近年来呈现出<strong>"营收稳步增长、利润率阶段性承压后回升"</strong>的特征，与PCB行业整体景气周期高度吻合。</p>
+
+      <div class="chart-card">
+        <div class="chart-title">图4 &middot; 营收与净利润趋势 (2018-2024)</div>
+        <div id="chart-revenue" class="chart-box"></div>
+      </div>
+
+      <h3>营收分析：规模稳步扩张</h3>
+      <p>公司营收从2018年的36.56亿元增长至2024年的62.77亿元，<span class="highlight">6年CAGR约9.4%</span>，体现了持续的规模扩张能力。2021年受益于5G建设高峰和消费电子需求旺盛，营收突破59亿元。2023年受行业下行周期影响增速放缓至57.72亿元，但<span class="highlight-green">2024年强劲反弹至62.77亿元</span>，同比增长8.7%。</p>
+
+      <p>值得注意的是，2025年前三季度营收已达55.93亿元，<span class="highlight-green">同比增长22.27%</span>，增速显著加快，显示AI算力需求对公司的拉动效应正在兑现。</p>
+
+      <h3>利润分析：短期承压，拐点隐现</h3>
+      <p>净利润方面，2022年达到6.75亿元的历史高点后，2023-2024年出现明显回落，2024年仅3.03亿元。利润承压主要源于：(1) 原材料成本上行；(2) IC载板新产线折旧和爬坡投入；(3) 行业竞争加剧导致产品价格承压。但<span class="highlight-green">2025年前三季度净利润已达3.14亿元</span>，超过2024年全年水平，盈利拐点已现。</p>
+
+      <div class="chart-row">
+        <div class="chart-card">
+          <div class="chart-title">图5 &middot; 业务结构（2024年营收拆分）</div>
+          <div id="chart-structure" class="chart-box"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">图6 &middot; 毛利率变化趋势</div>
+          <div id="chart-margin" class="chart-box"></div>
+        </div>
+      </div>
+
+      <h3>业务结构：PCB主业为核心，IC载板蓄势待发</h3>
+      <p>从图5可以看出，<strong>PCB板业务</strong>贡献了绝对主力营收（57.02亿元，占比90.8%），这是公司的基本盘和现金牛业务。<strong>IC载板</strong>虽然目前营收仅2.35亿元（占比3.7%），但这是公司未来增长的关键战略方向——IC载板是芯片封装的核心载体，随着先进封装技术（Chiplet、2.5D/3D封装）的普及，IC载板需求将迎来爆发式增长。</p>
+
+      <h3>毛利率趋势：触底回升</h3>
+      <p>从图6可以清晰看出，崇达技术毛利率经历了<span class="highlight-rose">2020年至2024年的持续下行</span>，从25.1%下降至14.6%，低于行业平均水平。主要原因包括：(1) 行业竞争加剧带来的定价压力；(2) IC载板新产线前期投入拉低整体毛利率；(3) 原材料成本周期性上涨。</p>
+
+      <p>但<span class="highlight-green">2025Q3毛利率已回升至21.43%</span>，超过行业平均水平约20%，显示出明确的回暖趋势。随着IC载板产能利用率提升和AI订单带来的产品结构优化，预计毛利率仍有进一步修复空间。</p>
+
+      <table>
+        <thead><tr><th>关键指标</th><th>2022</th><th>2023</th><th>2024</th><th>2025Q3</th><th>趋势判断</th></tr></thead>
+        <tbody>
+          <tr><td>营业收入(亿元)</td><td>58.71</td><td>57.72</td><td>62.77</td><td>55.93</td><td style="color:var(--green-cicc)">加速增长</td></tr>
+          <tr><td>归母净利润(亿元)</td><td>6.75</td><td>4.22</td><td>3.03</td><td>3.14</td><td style="color:var(--green-cicc)">拐点确认</td></tr>
+          <tr><td>毛利率</td><td>22.5%</td><td>18.6%</td><td>14.6%</td><td>21.43%</td><td style="color:var(--green-cicc)">触底回升</td></tr>
+          <tr><td>净利率</td><td>11.5%</td><td>7.3%</td><td>4.8%</td><td>6.19%</td><td style="color:var(--green-cicc)">修复中</td></tr>
+          <tr><td>资产负债率</td><td>28.3%</td><td>27.1%</td><td>25.8%</td><td>26.59%</td><td style="color:var(--green-cicc)">低杠杆稳健</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout ok">
+        <div class="callout-label green">财务健康度评级</div>
+        <p style="margin:0">崇达技术财务状况<strong>稳健且处于改善通道</strong>。资产负债率仅26.59%，远低于60%警戒线，为未来扩产和并购预留了充足的杠杆空间。2025Q3净利润已超过2024全年，毛利率从14.6%回升至21.43%，<strong>盈利拐点已经确认</strong>。关键观察变量是IC载板业务的量产进度和毛利率贡献。</p>
+      </div>
+    </div>
+
+    <!-- ============ PART 07: 投资建议与风险提示 ============ -->
+    <div class="section">
+      <div class="section-num">PART 07</div>
+      <h2>投资建议与风险提示</h2>
+
+      <h3>核心投资逻辑</h3>
+      <table>
+        <thead><tr><th>逻辑维度</th><th>看多理由</th><th>看空理由</th></tr></thead>
+        <tbody>
+          <tr><td><strong>行业景气度</strong></td><td>AI算力Capex高增；PCB行业景气上行</td><td>AI投资可能存在过热风险；周期见顶后下行</td></tr>
+          <tr><td><strong>产品结构</strong></td><td>IC载板蓄势待发；高端产品占比提升</td><td>IC载板量产进度不确定；技术差距待缩小</td></tr>
+          <tr><td><strong>盈利能力</strong></td><td>毛利率触底回升；2025Q3净利润超2024全年</td><td>新产线折旧压力持续；成本控制仍需时间</td></tr>
+          <tr><td><strong>竞争格局</strong></td><td>中小批量领域竞争优势稳固；客户认证壁垒</td><td>头部厂商规模优势显著；行业整合可能挤压空间</td></tr>
+          <tr><td><strong>估值水平</strong></td><td>成长性已初步验证；市场预期尚未完全反映</td><td>当前PE偏高；需要业绩持续兑现才能消化估值</td></tr>
+        </tbody>
+      </table>
+
+      <h3>关键假设与验证指标</h3>
+      <p><strong>假设1：AI服务器PCB订单持续放量</strong> &rarr; 跟踪北美云厂商Capex计划、公司季度营收增速和高端产品占比变化</p>
+      <p><strong>假设2：IC载板2025-2026年实现规模量产</strong> &rarr; 跟踪IC载板营收占比、产能利用率和良率爬坡进度</p>
+      <p><strong>假设3：毛利率持续回升至22%+</strong> &rarr; 跟踪季度毛利率变化、产品结构和原材料价格走势</p>
+
+      <h3>投资评级：推荐</h3>
+      <div class="callout ok">
+        <div class="callout-label green">投资结论</div>
+        <p style="margin:0">给予崇达技术<strong>"推荐"评级</strong>。核心逻辑：(1) AI算力东风下，PCB行业景气度处于上行周期；(2) 公司毛利率和净利润已现拐点，2025年业绩有望实现显著增长；(3) IC载板布局打开中长期成长空间；(4) 低杠杆财务结构提供安全边际。建议投资者重点关注IC载板量产进展和AI订单可持续性，作为评估公司长期价值的核心变量。</p>
+      </div>
+
+      <h3>风险因素</h3>
+      <div class="callout warn">
+        <div class="callout-label rose">重点风险</div>
+        <p style="margin-bottom:8px"><strong>1. AI资本开支低于预期（高）</strong>：若北美云厂商缩减AI服务器资本开支，高端PCB需求将受到直接冲击，公司营收增速可能大幅放缓。</p>
+        <p style="margin-bottom:8px"><strong>2. IC载板量产不及预期（中高）</strong>：IC载板技术门槛高、良率爬坡周期长，若量产进度延迟或良率不达标，将拖累盈利表现。</p>
+        <p style="margin-bottom:8px"><strong>3. 原材料价格大幅上涨（中）</strong>：铜箔、覆铜板等原材料价格若大幅上行，将直接挤压毛利率空间。</p>
+        <p style="margin-bottom:8px"><strong>4. 行业竞争加剧（中）</strong>：头部PCB厂商持续扩产，中端产品价格竞争可能进一步加剧。</p>
+        <p style="margin:0"><strong>5. 中美科技摩擦升级（中低）</strong>：若出口管制进一步收紧，可能影响部分海外客户订单。</p>
+      </div>
+    </div>
+
+    <!-- ============ 附录 ============ -->
+    <div class="section" style="padding-bottom:40px;">
+      <div class="section-num">附录</div>
+      <h2>数据来源与说明</h2>
+      <table>
+        <thead><tr><th>数据类型</th><th>来源</th><th>时间范围</th></tr></thead>
+        <tbody>
+          <tr><td>公司财务数据</td><td>Tushare Pro API (002815.SZ)</td><td>2018-2025Q3</td></tr>
+          <tr><td>PCB行业数据</td><td>Prismark / CPCA / 各券商研报</td><td>2022-2026E</td></tr>
+          <tr><td>竞品财务数据</td><td>Tushare Pro (鹏鼎/东山/沪电)</td><td>2025Q3</td></tr>
+          <tr><td>宏观经济数据</td><td>Tushare Pro (GDP/CPI/PMI)</td><td>2024-2025</td></tr>
+          <tr><td>AI服务器数据</td><td>TrendForce / IDC / 券商研报</td><td>2024-2026E</td></tr>
+          <tr><td>分析框架</td><td>基于行业研究方法论</td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--text-light);margin-top:16px;">本报告中的竞品财务数据为基于公开信息的估算值，仅供参考。归一化数据用于可视化对比，不代表绝对水平。部分财务数据可能因年报/季报口径不同存在微小差异。</p>
+    </div>
+
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <div class="report-footer">
+    <div class="footer-inner">
+      <div class="footer-disclaimer">
+        <strong>免责声明</strong><br/>
+        本报告仅供研究参考，不构成任何投资建议。报告中的数据和分析基于公开信息整理，我们力求准确但不保证其完整性和准确性。投资者据此操作，风险自担。投资有风险，入市需谨慎。过往业绩不代表未来表现，市场有风险，投资需谨慎。本报告不对任何人因使用本报告内容而产生的任何损失承担责任。
+      </div>
+      <div class="footer-brand">
+        <div class="fb-left">数据来源: Tushare Pro / Prismark / CPCA / 公司年报<br/>分析框架: 行业研究方法论</div>
+        <div class="fb-right">深度研究报告</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ ECHARTS ============ -->
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script>
+/* ----- Color Palette ----- */
+const NAVY='#003366',NAVY_L='#1a4d80',GOLD='#c4973b',RED='#c0392b',GREEN='#27763d',BLUE='#2980b9',CYAN='#16a085';
+const G400='#a0a0b8',G300='#c8c8d8',G200='#e8e8f0',G100='#f4f4f8';
+const TXT='#2c2c3a',TXT_S='#5a5a7a',GL='rgba(0,20,60,0.07)';
+const ttBase={backgroundColor:'rgba(255,255,255,0.98)',borderColor:'#e0e0ec',textStyle:{color:TXT,fontSize:12},extraCssText:'box-shadow:0 4px 16px rgba(0,20,60,0.12);border-radius:4px;'};
+function mk(id){return echarts.init(document.getElementById(id),null,{renderer:'canvas'});}
+
+/* ========== Chart 1: PCB Market Size ========== */
+const cMarket=mk('chart-market');
+cMarket.setOption({
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'},...ttBase,formatter:function(p){return '<b style="color:'+NAVY+'">'+p[0].axisValue+'</b><br/>市场规模: <b>'+p[0].value+'</b>亿元';}},
+  grid:{left:60,right:40,top:40,bottom:36,containLabel:true},
+  xAxis:{type:'category',data:['2022','2023','2024','2025E','2026E'],axisLine:{lineStyle:{color:G300}},axisLabel:{color:TXT_S,fontSize:12},axisTick:{lineStyle:{color:G300}}},
+  yAxis:{type:'value',name:'亿元',min:3000,nameTextStyle:{color:G400,fontSize:11},axisLine:{show:false},splitLine:{lineStyle:{color:GL}},axisLabel:{color:G400,fontSize:11}},
+  series:[{
+    type:'bar',barWidth:48,
+    itemStyle:{color:function(params){return params.dataIndex>=3?new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(196,151,59,0.8)'},{offset:1,color:'rgba(196,151,59,0.25)'}]):new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(0,51,102,0.8)'},{offset:1,color:'rgba(0,51,102,0.25)'}])},borderRadius:[4,4,0,0]},
+    data:[3400,3633,4121,4333,4767],
+    label:{show:true,position:'top',color:TXT_S,fontSize:12,fontWeight:600,formatter:'{c}'}
+  }],
+  graphic:[{type:'text',right:20,top:12,style:{text:'CAGR ~8.8%',fill:GOLD,fontSize:13,fontWeight:700}}]
+});
+
+/* ========== Chart 2: Moat Radar ========== */
+const cMoat=mk('chart-moat');
+cMoat.setOption({
+  tooltip:{...ttBase},
+  legend:{data:['崇达技术','行业均值'],textStyle:{color:TXT_S,fontSize:11},top:0},
+  radar:{
+    indicator:[{name:'技术壁垒',max:5},{name:'客户认证',max:5},{name:'资本门槛',max:5},{name:'资源禀赋',max:5},{name:'数据壁垒',max:5},{name:'品牌效应',max:5},{name:'渠道控制',max:5},{name:'转换成本',max:5}],
+    shape:'polygon',center:['50%','55%'],radius:'58%',
+    axisName:{color:TXT_S,fontSize:10.5},
+    splitArea:{areaStyle:{color:[G100,'rgba(0,51,102,0.02)']}},
+    splitLine:{lineStyle:{color:GL}},
+    axisLine:{lineStyle:{color:GL}}
+  },
+  series:[{type:'radar',data:[
+    {name:'崇达技术',value:[4,4.5,3,3,2,3,3,4],
+      areaStyle:{color:'rgba(0,51,102,0.15)'},lineStyle:{color:NAVY,width:2},itemStyle:{color:NAVY},symbol:'circle',symbolSize:6},
+    {name:'行业均值',value:[3,3,2.5,2.5,1.5,2,2.5,2.5],
+      areaStyle:{color:'rgba(196,151,59,0.1)'},lineStyle:{color:GOLD,width:1.5,type:'dashed'},itemStyle:{color:GOLD},symbol:'circle',symbolSize:4}
+  ]}]
+});
+
+/* ========== Chart 3: Competitor Radar ========== */
+const cComp=mk('chart-compete');
+cComp.setOption({
+  tooltip:{...ttBase},
+  legend:{data:['崇达技术','鹏鼎控股','东山精密','沪电股份'],textStyle:{color:TXT_S,fontSize:10},top:0,itemGap:10},
+  radar:{
+    indicator:[{name:'ROE',max:100},{name:'毛利率',max:100},{name:'净利率',max:100},{name:'营收增速',max:100},{name:'财务安全',max:100}],
+    shape:'polygon',center:['50%','56%'],radius:'52%',
+    axisName:{color:TXT_S,fontSize:11},
+    splitArea:{areaStyle:{color:[G100,'rgba(0,51,102,0.02)']}},
+    splitLine:{lineStyle:{color:GL}},
+    axisLine:{lineStyle:{color:GL}}
+  },
+  series:[{type:'radar',data:[
+    {name:'崇达技术',value:[19,61,31,44,73],
+      areaStyle:{color:'rgba(0,51,102,0.12)'},lineStyle:{color:NAVY,width:2},itemStyle:{color:NAVY},symbol:'circle',symbolSize:5},
+    {name:'鹏鼎控股',value:[35,59,45,29,69],
+      areaStyle:{color:'rgba(196,151,59,0.08)'},lineStyle:{color:GOLD,width:1.5},itemStyle:{color:GOLD},symbol:'circle',symbolSize:4},
+    {name:'东山精密',value:[29,39,23,5,41],
+      areaStyle:{color:'rgba(192,57,43,0.08)'},lineStyle:{color:RED,width:1.5},itemStyle:{color:RED},symbol:'diamond',symbolSize:4},
+    {name:'沪电股份',value:[100,100,100,100,53],
+      areaStyle:{color:'rgba(39,118,61,0.08)'},lineStyle:{color:GREEN,width:2},itemStyle:{color:GREEN},symbol:'triangle',symbolSize:5}
+  ]}]
+});
+
+/* ========== Chart 4: Revenue & Net Profit Trend ========== */
+const cRev=mk('chart-revenue');
+cRev.setOption({
+  tooltip:{trigger:'axis',...ttBase,formatter:function(p){let s='<b style="color:'+NAVY+'">'+p[0].axisValue+'</b><br/>';p.forEach(function(i){s+=i.marker+' '+i.seriesName+': <b>'+i.value+'</b>亿元<br/>';});return s;}},
+  legend:{textStyle:{color:TXT_S,fontSize:11},top:0,itemGap:20},
+  grid:{left:56,right:56,top:48,bottom:36,containLabel:true},
+  xAxis:{type:'category',data:['2018','2019','2020','2021','2022','2023','2024'],axisLine:{lineStyle:{color:G300}},axisLabel:{color:TXT_S,fontSize:11},axisTick:{lineStyle:{color:G300}}},
+  yAxis:[
+    {type:'value',name:'营收(亿元)',nameTextStyle:{color:G400,fontSize:11},axisLine:{show:false},splitLine:{lineStyle:{color:GL}},axisLabel:{color:G400,fontSize:11}},
+    {type:'value',name:'净利润(亿元)',nameTextStyle:{color:G400,fontSize:11},axisLine:{show:false},splitLine:{show:false},axisLabel:{color:G400,fontSize:11}}
+  ],
+  series:[
+    {name:'营业收入',type:'bar',barWidth:30,yAxisIndex:0,
+      itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(0,51,102,0.8)'},{offset:1,color:'rgba(0,51,102,0.2)'}]),borderRadius:[3,3,0,0]},
+      data:[36.56,37.27,43.68,59.96,58.71,57.72,62.77]},
+    {name:'归母净利润',type:'line',smooth:true,yAxisIndex:1,symbol:'circle',symbolSize:8,
+      lineStyle:{width:3,color:GOLD},itemStyle:{color:GOLD},
+      areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(196,151,59,0.15)'},{offset:1,color:'rgba(196,151,59,0.01)'}])},
+      data:[5.61,5.26,4.45,6.12,6.75,4.22,3.03]}
+  ],
+  graphic:[
+    {type:'text',left:'68%',top:58,style:{text:'2024: 利润低谷',fill:RED,fontSize:11,fontWeight:600}},
+    {type:'text',right:20,top:40,style:{text:'2025Q3已超全年',fill:GREEN,fontSize:10.5,fontWeight:600}}
+  ]
+});
+
+/* ========== Chart 5: Business Structure Pie ========== */
+const cStruct=mk('chart-structure');
+cStruct.setOption({
+  tooltip:{trigger:'item',...ttBase,formatter:function(p){return '<b style="color:'+NAVY+'">'+p.name+'</b><br/>营收: <b>'+p.value+'</b>亿元<br/>占比: <b>'+p.percent+'%</b>';}},
+  legend:{orient:'vertical',right:20,top:'center',textStyle:{color:TXT_S,fontSize:12},itemGap:16},
+  series:[{
+    type:'pie',radius:['38%','68%'],center:['40%','52%'],
+    avoidLabelOverlap:true,
+    padAngle:3,
+    itemStyle:{borderRadius:6,borderColor:'#fff',borderWidth:2},
+    label:{show:true,formatter:'{b}\n{d}%',fontSize:11,color:TXT_S,lineHeight:16},
+    labelLine:{length:16,length2:12,lineStyle:{color:G300}},
+    emphasis:{itemStyle:{shadowBlur:12,shadowOffsetX:0,shadowColor:'rgba(0,20,60,0.15)'},label:{fontSize:13,fontWeight:700}},
+    data:[
+      {value:57.02,name:'PCB板',itemStyle:{color:NAVY}},
+      {value:2.35,name:'IC载板',itemStyle:{color:GOLD}},
+      {value:3.40,name:'废料及其他',itemStyle:{color:G300}}
+    ]
+  }]
+});
+
+/* ========== Chart 6: Gross Margin Trend ========== */
+const cMargin=mk('chart-margin');
+cMargin.setOption({
+  tooltip:{trigger:'axis',...ttBase,formatter:function(p){let s='<b style="color:'+NAVY+'">'+p[0].axisValue+'</b><br/>';p.forEach(function(i){s+=i.marker+' '+i.seriesName+': <b>'+i.value+'%</b><br/>';});return s;}},
+  legend:{textStyle:{color:TXT_S,fontSize:11},top:0,itemGap:20},
+  grid:{left:44,right:24,top:44,bottom:28,containLabel:true},
+  xAxis:{type:'category',data:['2020','2021','2022','2023','2024','2025Q3'],axisLine:{lineStyle:{color:G300}},axisLabel:{color:TXT_S,fontSize:11},axisTick:{lineStyle:{color:G300}}},
+  yAxis:{type:'value',name:'%',min:10,max:30,nameTextStyle:{color:G400,fontSize:11},axisLine:{show:false},splitLine:{lineStyle:{color:GL}},axisLabel:{color:G400,fontSize:11}},
+  series:[
+    {name:'崇达毛利率',type:'line',smooth:true,symbol:'circle',symbolSize:8,
+      lineStyle:{width:3,color:NAVY},itemStyle:{color:NAVY},
+      areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(0,51,102,0.1)'},{offset:1,color:'rgba(0,51,102,0.01)'}])},
+      data:[25.1,23.8,22.5,18.6,14.6,21.43],
+      markPoint:{data:[{type:'min',name:'低谷',symbolSize:42,label:{color:'#fff',fontSize:10}},{name:'回升',coord:['2025Q3',21.43],symbolSize:42,label:{color:'#fff',fontSize:10},itemStyle:{color:GREEN}}],itemStyle:{color:RED}}
+    },
+    {name:'行业平均',type:'line',smooth:true,symbol:'diamond',symbolSize:6,
+      lineStyle:{width:2,color:GOLD,type:'dashed'},itemStyle:{color:GOLD},
+      data:[22,21,20,19,18,20]
+    }
+  ],
+  graphic:[{type:'text',right:16,top:10,style:{text:'触底回升',fill:GREEN,fontSize:12,fontWeight:700}}]
+});
+
+/* ----- Resize Handler ----- */
+const allCharts=[cMarket,cMoat,cComp,cRev,cStruct,cMargin];
+function resizeAll(){allCharts.forEach(function(c){c.resize();});}
+window.addEventListener('resize',resizeAll);
+setTimeout(resizeAll,100);
+setTimeout(resizeAll,500);
+</script>
+</body>
+</html>

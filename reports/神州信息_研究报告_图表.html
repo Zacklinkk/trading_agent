@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>神州信息(000555.SZ) 深度研究报告</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+    :root{--navy:#003366;--navy-light:#1a4d80;--navy-dark:#001f3f;--gold:#c4973b;--red:#c0392b;--green-cicc:#27763d;--blue-accent:#2980b9;--cyan:#16a085;--gray-400:#a0a0b8;--gray-300:#c8c8d8;--gray-200:#e8e8f0;--gray-100:#f4f4f8;--gray-50:#f9f9fc;--bg:#f7f8fc;--card:#fff;--text:#2c2c3a;--text-secondary:#5a5a7a;--text-light:#8888a8;--border:#e0e0ec;--border-light:#ececf4}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:"Noto Sans SC",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:14.5px;-webkit-font-smoothing:antialiased}
+    .page{max-width:980px;margin:0 auto;padding:0}
+    .brand-bar{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);padding:12px 40px;display:flex;justify-content:space-between;align-items:center}
+    .brand-bar .brand-name{font-family:"Noto Serif SC",serif;font-size:15px;font-weight:600;color:var(--gold);letter-spacing:4px}
+    .brand-bar .brand-date{font-size:12px;color:rgba(255,255,255,.6);letter-spacing:1px}
+    .report-header{background:var(--card);padding:48px 48px 40px;border-bottom:3px solid var(--navy);position:relative}
+    .report-header::after{content:'';position:absolute;bottom:-6px;left:0;right:0;height:3px;background:var(--gold)}
+    .report-meta-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+    .report-type{font-size:13px;font-weight:600;color:var(--navy);letter-spacing:3px;padding:5px 16px;border:1.5px solid var(--navy);display:inline-block}
+    .report-rating{text-align:right}
+    .report-rating .rating-label{font-size:11px;color:var(--text-light);letter-spacing:1px;margin-bottom:4px}
+    .report-rating .rating-value{font-family:"Noto Serif SC",serif;font-size:28px;font-weight:700;color:var(--gold)}
+    .report-header h1{font-family:"Noto Serif SC",serif;font-size:30px;font-weight:700;color:var(--navy-dark);margin-bottom:8px;line-height:1.4}
+    .report-header .subtitle{font-size:17px;color:var(--text-secondary);font-weight:400;margin-bottom:24px}
+    .tags{display:flex;gap:10px;flex-wrap:wrap}
+    .tag{padding:5px 16px;font-size:12px;font-weight:500;letter-spacing:.5px}
+    .tag-a{background:var(--navy);color:#fff}
+    .tag-b{background:var(--gold);color:#fff}
+    .tag-c{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+    .content-area{background:var(--card);padding:0 48px 48px}
+    .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:0 -48px;padding:28px 48px;background:var(--gray-50);border-bottom:1px solid var(--border-light)}
+    .kpi{text-align:center;padding:12px 8px;position:relative}
+    .kpi:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--border)}
+    .kpi-val{font-family:"Noto Serif SC",serif;font-size:26px;font-weight:700;color:var(--navy)}
+    .kpi-val span{font-size:13px;font-weight:500}
+    .kpi-lbl{font-size:11.5px;color:var(--text-light);margin-top:2px;letter-spacing:.5px}
+    .kpi-sub{font-size:11px;margin-top:4px;font-weight:500}
+    .section{margin-bottom:0;padding-top:40px}
+    .section-num{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:3px;margin-bottom:6px}
+    .section h2{font-family:"Noto Serif SC",serif;font-size:20px;font-weight:700;color:var(--navy-dark);margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--navy);position:relative}
+    .section h2::after{content:'';position:absolute;bottom:-2px;left:0;width:60px;height:2px;background:var(--gold)}
+    .section h3{font-family:"Noto Serif SC",serif;font-size:16px;font-weight:600;color:var(--navy);margin:28px 0 14px;padding-left:12px;border-left:3px solid var(--gold)}
+    p{margin-bottom:14px;color:var(--text);text-align:justify}
+    strong{color:var(--navy-dark)}
+    .highlight{color:var(--gold);font-weight:700}
+    .highlight-rose{color:var(--red);font-weight:600}
+    .highlight-green{color:var(--green-cicc);font-weight:600}
+    .highlight-blue{color:var(--blue-accent);font-weight:600}
+    .chart-card{background:var(--card);border:1px solid var(--border);padding:24px;margin:24px 0}
+    .chart-card .chart-title{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:8px;letter-spacing:.3px}
+    .chart-card .chart-title::before{content:'';display:inline-block;width:3px;height:14px;flex-shrink:0;background:var(--gold)}
+    .chart-box{width:100%;height:380px;min-width:0}
+    .chart-box.short{height:320px}
+    .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+    .chart-row .chart-card{margin:0}
+    .callout{background:var(--gray-50);border-left:4px solid var(--navy);padding:18px 22px;margin:20px 0;font-size:13.5px}
+    .callout.warn{border-left-color:var(--red);background:#fef8f7}
+    .callout.ok{border-left-color:var(--green-cicc);background:#f6fbf8}
+    .callout-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+    .callout-label.purple{color:var(--navy)}
+    .callout-label.rose{color:var(--red)}
+    .callout-label.green{color:var(--green-cicc)}
+    table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+    thead{background:var(--navy)}
+    th{color:#fff;font-weight:600;text-align:left;padding:10px 16px;font-size:12px;letter-spacing:.5px}
+    td{padding:10px 16px;border-bottom:1px solid var(--border-light);color:var(--text)}
+    tr:nth-child(even) td{background:var(--gray-50)}
+    tr:hover td{background:rgba(0,51,102,.03)}
+    .chain{display:flex;align-items:center;justify-content:center;gap:0;margin:28px 0;flex-wrap:wrap}
+    .chain-node{background:var(--card);border:1.5px solid var(--border);border-radius:6px;padding:14px 20px;text-align:center;min-width:140px;box-shadow:0 1px 3px rgba(0,20,60,.06)}
+    .chain-node.active{border-color:var(--navy);background:rgba(0,51,102,.04);box-shadow:0 2px 8px rgba(0,51,102,.12)}
+    .chain-node .cn-title{font-size:13px;font-weight:600;color:var(--navy)}
+    .chain-node .cn-sub{font-size:11px;color:var(--text-light);margin-top:4px}
+    .chain-arrow{font-size:18px;color:var(--gold);padding:0 6px;font-weight:700}
+    .report-footer{background:var(--card);padding:0 48px 32px}
+    .footer-inner{border-top:2px solid var(--navy);padding-top:24px;position:relative}
+    .footer-inner::after{content:'';position:absolute;top:-2px;left:0;width:60px;height:2px;background:var(--gold)}
+    .footer-disclaimer{font-size:11px;color:var(--text-light);line-height:1.8;text-align:justify}
+    .footer-disclaimer strong{color:var(--text-secondary);font-size:11.5px;letter-spacing:1px}
+    .footer-brand{margin-top:20px;display:flex;justify-content:space-between;align-items:flex-end;padding-top:16px;border-top:1px solid var(--border-light)}
+    .footer-brand .fb-left{font-size:11px;color:var(--text-light)}
+    .footer-brand .fb-right{font-family:"Noto Serif SC",serif;font-size:13px;font-weight:600;color:var(--gold);letter-spacing:3px}
+    @media(max-width:768px){.report-header,.content-area,.report-footer{padding-left:20px;padding-right:20px}.kpi-row{grid-template-columns:repeat(3,1fr);margin:0 -20px;padding:20px}.chart-row{grid-template-columns:1fr}.chain{flex-direction:column}.chain-arrow{transform:rotate(90deg)}.report-header h1{font-size:24px}.brand-bar{padding:10px 20px}}
+    @media print{body{background:#fff}.page{max-width:100%}.chart-card{break-inside:avoid}.section{break-inside:avoid}}
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- ===== 品牌栏 ===== -->
+  <div class="brand-bar">
+    <div class="brand-name">深度研究报告</div>
+    <div class="brand-date">计算机 &middot; IT服务 &nbsp;|&nbsp; 2026年2月</div>
+  </div>
+
+  <!-- ===== 报告头部 ===== -->
+  <div class="report-header">
+    <div class="report-meta-top">
+      <div class="report-type">公司深度</div>
+      <div class="report-rating">
+        <div class="rating-label">评级</div>
+        <div class="rating-value">中性</div>
+      </div>
+    </div>
+    <h1>神州信息 (000555.SZ)</h1>
+    <div class="subtitle">银行核心系统龙头，盈利困境待破局</div>
+    <div class="tags">
+      <span class="tag tag-a">金融科技 &middot; 信创+AI</span>
+      <span class="tag tag-b">护城河 3.4/5</span>
+      <span class="tag tag-c">银行核心系统市占率 40.72% &nbsp;|&nbsp; 谨慎观望</span>
+    </div>
+  </div>
+
+  <!-- ===== 内容区域 ===== -->
+  <div class="content-area">
+
+    <!-- KPI行 -->
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-val">100.0<span>亿</span></div><div class="kpi-lbl">2024年营收</div><div class="kpi-sub" style="color:var(--red)">同比 -17.0%</div></div>
+      <div class="kpi"><div class="kpi-val">-5.36<span>亿</span></div><div class="kpi-lbl">2024年净利润</div><div class="kpi-sub" style="color:var(--red)">首次转亏</div></div>
+      <div class="kpi"><div class="kpi-val">11.51<span>%</span></div><div class="kpi-lbl">毛利率(2025Q3)</div><div class="kpi-sub" style="color:var(--red)">持续恶化</div></div>
+      <div class="kpi"><div class="kpi-val">40.72<span>%</span></div><div class="kpi-lbl">银行核心系统市占率</div><div class="kpi-sub" style="color:var(--green-cicc)">行业第一</div></div>
+      <div class="kpi"><div class="kpi-val">59.05<span>%</span></div><div class="kpi-lbl">资产负债率</div><div class="kpi-sub" style="color:var(--gold)">偏高，需关注</div></div>
+    </div>
+
+    <!-- ===== Part 01: 行业概览 ===== -->
+    <div class="section"><div class="section-num">PART 01</div><h2>行业概览：银行IT服务赛道</h2>
+      <p>神州信息（SZ: 000555）成立于2000年，2011年深交所上市，总部位于北京。公司是中国领先的<strong>金融科技全栈解决方案提供商</strong>，核心业务聚焦于银行IT系统的建设与运维。作为国内银行核心系统领域的绝对龙头，神州信息服务了超过<span class="highlight">900家银行客户</span>，银行核心系统市场占有率达到<strong>40.72%</strong>，稳居行业第一。</p>
+      <p>中国银行业IT解决方案市场在经历了前些年的快速增长后，正步入<strong>稳健发展阶段</strong>。2024年市场规模约713亿元，增速从早期的双位数回落至约2.9%。驱动力正在从传统IT基础设施建设转向<strong>信创替代</strong>和<strong>AI智能化升级</strong>两大新引擎。</p>
+
+      <div class="chart-card"><div class="chart-title">图1 &middot; 银行业IT解决方案市场规模与增速 (2020-2024)</div><div id="chart-market" class="chart-box short"></div></div>
+
+      <div class="callout"><div class="callout-label purple">行业关键洞察</div><p style="margin:0">银行IT市场整体增速放缓至低个位数，但<strong>结构性机会</strong>突出：(1) 信创替代——国产化核心系统对IBM/Oracle的替代窗口期约5-8年；(2) AI赋能——大模型在风控、客服、营销等场景的落地。神州信息作为龙头，理论上最受益于这两大趋势，但<span class="highlight-rose">能否将市场地位转化为盈利能力</span>是核心问题。</p></div>
+
+      <h3>产业链位置</h3>
+      <div class="chain">
+        <div class="chain-node"><div class="cn-title">上游 &middot; 基础设施</div><div class="cn-sub">芯片/数据库/OS<br/>华为/中科院/达梦</div></div>
+        <div class="chain-arrow">&rarr;</div>
+        <div class="chain-node active"><div class="cn-title">中游 &middot; IT服务商</div><div class="cn-sub">解决方案/系统集成<br/>神州信息(龙头)</div></div>
+        <div class="chain-arrow">&rarr;</div>
+        <div class="chain-node"><div class="cn-title">下游 &middot; 银行客户</div><div class="cn-sub">六大行/股份行<br/>城商行/农信社</div></div>
+        <div class="chain-arrow">&rarr;</div>
+        <div class="chain-node"><div class="cn-title">终端用户</div><div class="cn-sub">企业/个人<br/>金融服务消费者</div></div>
+      </div>
+    </div>
+
+    <!-- ===== Part 02: 生命周期 ===== -->
+    <div class="section"><div class="section-num">PART 02</div><h2>行业生命周期判断</h2>
+      <p>银行IT服务行业需要从<strong>两个维度</strong>进行生命周期判断——传统业务与新兴业务处于截然不同的阶段：</p>
+      <table><thead><tr><th>维度</th><th>传统银行IT</th><th>信创/AI新业务</th></tr></thead><tbody>
+        <tr><td><strong>渗透率</strong></td><td>核心系统覆盖率 &gt;90%，接近饱和</td><td>信创替代率约15-20%，处于加速渗透期</td></tr>
+        <tr><td><strong>行业增速</strong></td><td>2-3%，低个位数</td><td>20-30%，高速增长</td></tr>
+        <tr><td><strong>竞争格局</strong></td><td>寡头竞争，格局稳定</td><td>群雄逐鹿，新进入者涌现</td></tr>
+        <tr><td><strong>利润率</strong></td><td>持续承压，项目制毛利走低</td><td>尚在投入期，短期拖累利润</td></tr>
+        <tr><td><strong>阶段判断</strong></td><td style="color:var(--gold)"><strong>成熟期</strong></td><td style="color:var(--green-cicc)"><strong>成长期早期</strong></td></tr>
+      </tbody></table>
+      <div class="callout ok"><div class="callout-label green">阶段判断</div><p style="margin:0">神州信息面临<strong>"一体两翼"</strong>的生命周期困境：主体业务（传统银行IT）已步入成熟期，增长乏力且毛利率持续下滑；而新兴业务（信创核心系统、AI应用）虽处于成长期，但尚未形成足够的收入规模来对冲传统业务的衰退。这种<strong>"青黄不接"</strong>的状态，正是公司2024年业绩大幅下滑的根本原因。</p></div>
+    </div>
+
+    <!-- ===== Part 03: 护城河与竞争格局 ===== -->
+    <div class="section"><div class="section-num">PART 03</div><h2>护城河与竞争格局分析</h2>
+      <p>对于IT服务类公司，护城河主要体现在<strong>客户粘性</strong>和<strong>行业壁垒</strong>两个方面。银行核心系统作为金融基础设施的"心脏"，天然具备较高的转换成本——这是神州信息最强大的护城河。</p>
+
+      <div class="chart-row">
+        <div class="chart-card"><div class="chart-title">图2 &middot; 护城河多维评估 (1-5分)</div><div id="chart-moat" class="chart-box"></div></div>
+        <div class="chart-card"><div class="chart-title">图3 &middot; 竞争对手财务对比雷达图 (2025Q3)</div><div id="chart-radar" class="chart-box"></div></div>
+      </div>
+
+      <h3>护城河拆解</h3>
+      <table><thead><tr><th>维度</th><th>评分</th><th>分析</th></tr></thead><tbody>
+        <tr><td><strong>客户转换成本</strong></td><td><span class="highlight-green">5/5</span></td><td>银行核心系统替换周期5-10年，迁移成本极高（技术复杂度+监管审批+业务风险），一旦进入几乎不可能被替换。这是神州信息最核心的护城河。</td></tr>
+        <tr><td><strong>行业Know-how</strong></td><td><span class="highlight-green">4/5</span></td><td>深耕银行IT领域20余年，对银行业务流程、监管要求、技术架构的理解形成深厚积累，新进入者难以短期复制。</td></tr>
+        <tr><td><strong>客户关系</strong></td><td><span class="highlight-green">4/5</span></td><td>服务900+银行客户，覆盖六大行、主要股份行和大量城商农商行。长期合作关系形成信任壁垒。</td></tr>
+        <tr><td><strong>牌照资质</strong></td><td><span class="highlight">3/5</span></td><td>金融信创领域需要多项资质认证，但并非独家垄断，竞争对手同样可以获取。</td></tr>
+        <tr><td><strong>技术壁垒</strong></td><td><span class="highlight">3.5/5</span></td><td>分布式核心系统技术含量高，但恒生电子、中国软件等也在快速追赶。</td></tr>
+        <tr><td><strong>品牌效应</strong></td><td>3/5</td><td>在银行IT圈内品牌认知度高，但to-B行业品牌溢价有限。</td></tr>
+        <tr><td><strong>数据积累</strong></td><td><span class="highlight">3.5/5</span></td><td>长期服务积累了大量银行业务数据和技术经验，对AI训练有潜在价值。</td></tr>
+        <tr><td><strong>资本门槛</strong></td><td><span class="highlight-rose">2/5</span></td><td>IT服务行业资金门槛不高，项目制模式对资本要求有限。</td></tr>
+      </tbody></table>
+
+      <div class="callout"><div class="callout-label purple">护城河综合评估：3.4/5 (中等偏上)</div><p style="margin:0">神州信息的护城河核心是<strong>"客户锁定"</strong>——银行核心系统极高的转换成本使得存量客户几乎不可能流失。但问题在于：(1) 高转换成本也意味着<strong>增量获客困难</strong>，市场格局趋于固化；(2) 护城河保护了"不被替换"，但<span class="highlight-rose">无法保护"盈利水平"</span>——银行客户拥有极强的议价能力，不断压缩IT供应商的利润空间。</p></div>
+
+      <h3>竞争格局：神州领先但护城河正在被侵蚀</h3>
+      <p>从图3的雷达图可以看出，虽然神州信息在营收增速上表现突出（2025Q3同比+29.84%），但在<strong>盈利质量</strong>方面显著落后于恒生电子和宇信科技。恒生电子以高毛利率（69%+）和稳健的盈利能力占据质量优势，宇信科技以高ROE展现经营效率。神州信息陷入了<span class="highlight-rose">"规模大但不赚钱"</span>的困境。</p>
+    </div>
+
+    <!-- ===== Part 04: PEST宏观分析 ===== -->
+    <div class="section"><div class="section-num">PART 04</div><h2>PEST 宏观环境分析</h2>
+      <p>PEST分析从政策（P）、经济（E）、社会（S）、技术（T）四个维度审视外部环境对银行IT行业的影响：</p>
+      <table><thead><tr><th>维度</th><th>正面因素</th><th>负面因素</th><th>综合影响</th></tr></thead><tbody>
+        <tr><td><strong>P 政策</strong></td><td>信创强制推进、金融基础设施自主可控政策、数字人民币基建需求</td><td>政策推进节奏不确定，部分银行信创预算收紧</td><td style="color:var(--green-cicc)"><strong>最大正面</strong></td></tr>
+        <tr><td><strong>E 经济</strong></td><td>银行业资产规模持续扩张，金融科技投入刚性</td><td>银行净息差收窄，利润承压导致IT预算谨慎</td><td style="color:var(--gold)">偏负面</td></tr>
+        <tr><td><strong>S 社会</strong></td><td>数字化金融服务需求持续增长，适老化改造、普惠金融</td><td>银行员工对新系统切换的抵触，变革管理成本高</td><td style="color:var(--text-light)">中性</td></tr>
+        <tr><td><strong>T 技术</strong></td><td>大模型/AI、分布式架构、云原生带来新一轮技术升级需求</td><td>技术路线不确定，投入回报周期长，开源替代威胁</td><td style="color:var(--green-cicc)">正面为主</td></tr>
+      </tbody></table>
+      <div class="callout ok"><div class="callout-label green">政策东风</div><p style="margin:0"><strong>信创政策</strong>是神州信息最大的外部利好。2022年中国人民银行发布《金融科技发展规划(2022-2025年)》，明确要求"关键信息基础设施核心技术和重要产品实现国产化替代"。银行核心系统的国产化替代是确定性趋势，但问题在于：(1) 替代节奏可能慢于预期；(2) 竞争对手也在分食这块蛋糕。</p></div>
+      <div class="callout warn"><div class="callout-label rose">关键风险</div><p style="margin:0"><strong>银行预算压力</strong>是最大的短期逆风。2024年商业银行净息差降至1.53%的历史低位，利润增速放缓导致IT投入更加谨慎。在"降本增效"的大环境下，银行对IT供应商的压价更加激进——这直接反映在神州信息毛利率的持续下滑中。</p></div>
+    </div>
+
+    <!-- ===== Part 05: 估值与景气度 ===== -->
+    <div class="section"><div class="section-num">PART 05</div><h2>估值与景气度分析</h2>
+      <p>对于当前亏损的IT服务公司，传统的PE估值方法失效，需要结合<strong>PS（市销率）</strong>和<strong>行业景气度</strong>进行综合判断：</p>
+      <table><thead><tr><th>指标</th><th>当前值</th><th>历史区间</th><th>判断</th></tr></thead><tbody>
+        <tr><td><strong>PE-TTM</strong></td><td>N/A（亏损）</td><td>20x - 80x (历史盈利期)</td><td style="color:var(--text-light)">不适用</td></tr>
+        <tr><td><strong>PS-TTM</strong></td><td>~1.2x</td><td>0.8x - 3.5x</td><td style="color:var(--gold)">中等偏低</td></tr>
+        <tr><td><strong>PB</strong></td><td>~2.0x</td><td>1.5x - 5.0x</td><td style="color:var(--gold)">中等偏低</td></tr>
+        <tr><td><strong>信创景气度</strong></td><td>中等偏上</td><td>—</td><td style="color:var(--green-cicc)">政策驱动确定</td></tr>
+        <tr><td><strong>银行IT开支意愿</strong></td><td>偏弱</td><td>—</td><td style="color:var(--red)">净息差压力传导</td></tr>
+      </tbody></table>
+      <div class="callout"><div class="callout-label purple">估值判断</div><p style="margin:0">估值处于历史中低位区间，但<span class="highlight-rose">低估值不等于投资机会</span>——公司当前处于亏损状态，盈利拐点尚不明确。PS 1.2x的估值在IT服务行业中不算便宜（对比宇信科技PS约1.0x），考虑到盈利能力的差异，当前估值<strong>并未充分反映基本面恶化的风险</strong>。在盈利拐点确认之前，估值缺乏向上弹性。</p></div>
+    </div>
+
+    <!-- ===== Part 06: 公司深度分析 ===== -->
+    <div class="section"><div class="section-num">PART 06</div><h2>公司深度分析：规模与盈利的悖论</h2>
+      <p>神州信息的核心矛盾可以用一句话概括：<strong>行业第一的市场份额，行业末位的盈利能力</strong>。以下从营收趋势、业务结构和毛利率变化三个维度展开分析。</p>
+
+      <div class="chart-card"><div class="chart-title">图4 &middot; 营收与净利润趋势 (2018-2024)</div><div id="chart-revenue" class="chart-box"></div></div>
+
+      <h3>营收分析：2024年断崖式下跌</h3>
+      <p>从图4可以直观看出，公司营收在2018-2023年间保持稳健增长，从90.77亿增至120.56亿，年复合增速约5.8%。然而<strong>2024年营收骤降至100.03亿</strong>，<span class="highlight-rose">同比下滑17%</span>。净利润更是从2019年高峰的4.66亿一路滑坡，2024年跌至-5.36亿，为公司历史上<strong>首次年度亏损</strong>。</p>
+      <p>2024年营收下滑的直接原因包括：(1) 部分银行推迟信创项目的立项和验收；(2) 系统集成业务受项目交付周期影响营收确认延后；(3) 行业竞争加剧导致部分项目报价降低。值得注意的是，2025年前三季度营收已达86.75亿元，同比增速回升至<span class="highlight-green">+29.84%</span>，但亏损仍在持续（-1.08亿），<strong>表明增收不增利的困局尚未缓解</strong>。</p>
+
+      <div class="chart-row">
+        <div class="chart-card"><div class="chart-title">图5 &middot; 业务收入结构 (2024年)</div><div id="chart-biz" class="chart-box short"></div></div>
+        <div class="chart-card"><div class="chart-title">图6 &middot; 毛利率变化趋势 (2019-2025H1) &mdash; 持续恶化</div><div id="chart-margin" class="chart-box short"></div></div>
+      </div>
+
+      <h3>业务结构：技术服务为主，系统集成为辅</h3>
+      <p>从图5可以看出，<strong>技术服务</strong>（包括软件开发、运维服务、咨询等）贡献了68.7%的收入（68.68亿元），是绝对主力。<strong>系统集成</strong>业务占比31.3%（31.29亿元），主要包括硬件集成和第三方产品转售。</p>
+      <p>问题在于：技术服务本应是高附加值业务，但神州信息的技术服务毛利率已从2019年的24.2%下滑至2025H1的15.5%，<span class="highlight-rose">六年间下降8.7个百分点</span>。这意味着公司核心业务的盈利能力正在被系统性侵蚀。</p>
+
+      <h3>毛利率趋势：最核心的预警信号</h3>
+      <p>图6是本报告最重要的一张图。<strong>毛利率的持续恶化</strong>是判断神州信息投资价值的关键变量：</p>
+      <p><strong>1. 综合毛利率从2019年的20.5%降至2025H1的13.0%</strong>——六年半累计下降7.5个百分点，年均下降约1.15个百分点，且<span class="highlight-rose">没有任何止跌迹象</span>。</p>
+      <p><strong>2. 技术服务毛利率从24.2%降至15.5%</strong>——银行客户的议价能力持续挤压利润空间。项目制交付模式下，人力成本刚性上升而收费标准难以同步提高。</p>
+      <p><strong>3. 系统集成毛利率从14.0%降至8.6%</strong>——硬件集成业务本身就是低毛利业务，在竞争加剧下进一步恶化。</p>
+
+      <div class="callout warn"><div class="callout-label rose">核心预警</div><p style="margin:0"><strong>毛利率的持续下滑揭示了一个根本性问题</strong>：神州信息虽然拥有40%+的银行核心系统市占率，但这种市场地位并未转化为定价权。相反，银行客户利用IT供应商之间的竞争持续压价。当毛利率降至13%时，扣除期间费用后净利润几乎没有空间——这解释了为什么2024年全年和2025年前三季度均处于亏损状态。如果毛利率不能企稳回升，即使营收恢复增长也无法扭亏。</p></div>
+    </div>
+
+    <!-- ===== Part 07: 投资建议 ===== -->
+    <div class="section"><div class="section-num">PART 07</div><h2>投资建议与风险提示</h2>
+      <h3>核心投资逻辑</h3>
+      <table><thead><tr><th>逻辑</th><th>看多理由</th><th>看空理由</th></tr></thead><tbody>
+        <tr><td><strong>市场地位</strong></td><td>银行核心系统市占率40%+，绝对龙头</td><td>市场份额领先并未带来盈利溢价</td></tr>
+        <tr><td><strong>信创机遇</strong></td><td>国产替代确定性趋势，龙头理应最受益</td><td>替代节奏慢于预期，竞争对手在追赶</td></tr>
+        <tr><td><strong>AI赋能</strong></td><td>大模型+银行场景，潜在增量业务</td><td>尚在投入期，商业化路径不清晰</td></tr>
+        <tr><td><strong>盈利能力</strong></td><td>2025Q3亏损收窄，营收恢复增长</td><td><strong>毛利率持续恶化无止跌迹象，增收不增利</strong></td></tr>
+        <tr><td><strong>估值</strong></td><td>PS处于历史中低位</td><td>亏损状态下低估值可能是"价值陷阱"</td></tr>
+      </tbody></table>
+
+      <h3>投资评级：中性（谨慎观望）</h3>
+      <div class="callout"><div class="callout-label purple">投资结论</div>
+        <p style="margin-bottom:8px">维持<strong>中性评级</strong>，核心逻辑如下：</p>
+        <p style="margin-bottom:8px"><strong>正面：</strong>银行核心系统市占率第一的行业地位难以撼动，信创国产化和AI浪潮提供中长期成长确定性，2025年营收已恢复增长态势。</p>
+        <p style="margin:0"><strong>但更审慎：</strong>毛利率持续六年恶化且无止跌信号是最大的基本面隐忧。在"增收不增利"的困局未解之前，即便营收恢复增长也难以带来利润拐点。建议<span class="highlight-rose">等待毛利率企稳信号</span>（季度毛利率环比止跌或回升）再考虑介入。</p>
+      </div>
+
+      <h3>关键跟踪指标</h3>
+      <p><strong>拐点信号1：季度毛利率环比止跌或回升</strong> &rarr; 关注每季度财报的综合毛利率和技术服务毛利率</p>
+      <p><strong>拐点信号2：信创项目大单中标</strong> &rarr; 关注大型银行信创核心系统替换项目的招标结果</p>
+      <p><strong>拐点信号3：净利润转正</strong> &rarr; 关注单季度净利润是否能实现扭亏为盈</p>
+
+      <h3>风险因素</h3>
+      <div class="callout warn"><div class="callout-label rose">重点风险</div>
+        <p style="margin-bottom:8px"><strong>1. 毛利率持续恶化风险（高）</strong>：如果综合毛利率跌破10%，公司将面临结构性亏损，市场可能重新评估其商业模式的可持续性</p>
+        <p style="margin-bottom:8px"><strong>2. 银行IT预算缩减风险（中高）</strong>：银行净息差持续收窄可能导致IT投入进一步压缩，影响公司营收增长</p>
+        <p style="margin-bottom:8px"><strong>3. 竞争加剧风险（中）</strong>：中国软件、恒生电子、宇信科技等在信创领域加速布局，可能蚕食神州信息的市场份额</p>
+        <p style="margin-bottom:8px"><strong>4. 应收账款风险（中）</strong>：资产负债率59.05%偏高，项目制业务的回款周期较长，存在坏账风险</p>
+        <p style="margin:0"><strong>5. 技术路线风险（中低）</strong>：信创技术路线（如数据库、操作系统选择）存在不确定性，押注错误的技术路线可能导致沉没成本</p>
+      </div>
+    </div>
+
+    <!-- ===== 附录 ===== -->
+    <div class="section" style="padding-bottom:40px;"><div class="section-num">附录</div><h2>数据来源与说明</h2>
+      <table><thead><tr><th>数据类型</th><th>来源</th><th>时间范围</th></tr></thead><tbody>
+        <tr><td>公司财务数据</td><td>Tushare Pro API (000555.SZ)</td><td>2018-2025Q3</td></tr>
+        <tr><td>行业竞对数据</td><td>Wind / 各公司年报</td><td>2025Q3</td></tr>
+        <tr><td>银行IT市场规模</td><td>IDC / 赛迪研究院 / 券商研报</td><td>2020-2024</td></tr>
+        <tr><td>宏观政策数据</td><td>人民银行 / 银保监会公开文件</td><td>2022-2025</td></tr>
+        <tr><td>分析框架</td><td>《如何快速了解一个行业》(肖璟著)</td><td>&mdash;</td></tr>
+      </tbody></table>
+      <p style="font-size:12px;color:var(--text-light);margin-top:16px;">本报告中的竞品财务数据经过归一化处理，仅供相对比较参考。部分财务数据可能因年报/季报口径不同存在微小差异。银行IT市场规模数据为多方来源综合估算值。</p>
+    </div>
+
+  </div>
+
+  <!-- ===== 页脚 ===== -->
+  <div class="report-footer"><div class="footer-inner">
+    <div class="footer-disclaimer"><strong>免责声明</strong><br/>本报告仅供研究参考，不构成任何投资建议。报告中的数据和分析基于公开信息整理，我们力求准确但不保证其完整性和准确性。投资者据此操作，风险自担。投资有风险，入市需谨慎。本报告所载观点、结论及意见仅代表研究团队在出具本报告当日的判断，可能会因后续情况发生变化而进行调整。</div>
+    <div class="footer-brand"><div class="fb-left">数据来源: Tushare Pro / Wind / IDC / 公司年报<br/>分析框架: 《如何快速了解一个行业》(肖璟著)</div><div class="fb-right">深度研究报告</div></div>
+  </div></div>
+</div>
+
+<!-- ===== ECharts ===== -->
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script>
+const NAVY='#003366',NAVY_L='#1a4d80',GOLD='#c4973b',RED='#c0392b',GREEN='#27763d',BLUE='#2980b9',CYAN='#16a085';
+const G400='#a0a0b8',G300='#c8c8d8',G200='#e8e8f0',G100='#f4f4f8';
+const TXT='#2c2c3a',TXT_S='#5a5a7a',GL='rgba(0,20,60,0.07)';
+const ttBase={backgroundColor:'rgba(255,255,255,0.98)',borderColor:'#e0e0ec',textStyle:{color:TXT,fontSize:12},extraCssText:'box-shadow:0 4px 16px rgba(0,20,60,0.12);border-radius:4px;'};
+function mk(id){return echarts.init(document.getElementById(id),null,{renderer:'canvas'});}
+
+/* ===== 图1: 银行IT市场规模 ===== */
+const c1=mk('chart-market');
+c1.setOption({
+  tooltip:{trigger:'axis',...ttBase,formatter:function(p){
+    let s='<b style="color:'+NAVY+'">'+p[0].axisValue+'年</b><br/>';
+    p.forEach(i=>{
+      if(i.seriesName==='市场规模') s+=i.marker+' 市场规模: <b>'+i.value+'</b>亿元<br/>';
+      else s+=i.marker+' 同比增速: <b>'+i.value+'</b>%<br/>';
+    });return s;
+  }},
+  legend:{textStyle:{color:TXT_S,fontSize:11},top:0,itemGap:20},
+  grid:{left:56,right:56,top:48,bottom:32,containLabel:true},
+  xAxis:{type:'category',data:['2020','2021','2022','2023','2024'],axisLine:{lineStyle:{color:G300}},axisLabel:{color:TXT_S,fontSize:11},axisTick:{lineStyle:{color:G300}}},
+  yAxis:[
+    {type:'value',name:'亿元',nameTextStyle:{color:G400,fontSize:11},axisLine:{show:false},splitLine:{lineStyle:{color:GL}},axisLabel:{color:G400,fontSize:11}},
+    {type:'value',name:'%',nameTextStyle:{color:G400,fontSize:11},axisLine:{show:false},splitLine:{show:false},axisLabel:{color:G400,fontSize:11,formatter:'{value}%'}}
+  ],
+  series:[
+    {name:'市场规模',type:'bar',barWidth:36,yAxisIndex:0,
+      itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(0,51,102,0.8)'},{offset:1,color:'rgba(0,51,102,0.25)'}]),borderRadius:[3,3,0,0]},
+      data:[620,660,683,693,713],
+      label:{show:true,position:'top',color:NAVY,fontSize:11,fontWeight:600,formatter:'{c}'}
+    },
+    {name:'同比增速',type:'line',yAxisIndex:1,smooth:true,symbol:'circle',symbolSize:8,
+      lineStyle:{width:2.5,color:GOLD},itemStyle:{color:GOLD},
+      data:[8.5,6.5,3.5,1.5,2.9],
+      label:{show:true,position:'top',color:GOLD,fontSize:11,fontWeight:600,formatter:'{c}%'}
+    }
+  ]
+});
+
+/* ===== 图2: 护城河雷达图 ===== */
+const c2=mk('chart-moat');
+c2.setOption({
+  tooltip:{...ttBase},
+  legend:{data:['神州信息','行业均值'],textStyle:{color:TXT_S,fontSize:11},top:0},
+  radar:{
+    indicator:[
+      {name:'客户转换成本',max:5},{name:'行业Know-how',max:5},{name:'客户关系',max:5},
+      {name:'牌照资质',max:5},{name:'技术壁垒',max:5},{name:'品牌效应',max:5},
+      {name:'数据积累',max:5},{name:'资本门槛',max:5}
+    ],
+    shape:'polygon',center:['50%','55%'],radius:'58%',
+    axisName:{color:TXT_S,fontSize:10},
+    splitArea:{areaStyle:{color:[G100,'rgba(0,51,102,0.02)']}},
+    splitLine:{lineStyle:{color:GL}},
+    axisLine:{lineStyle:{color:GL}}
+  },
+  series:[{type:'radar',data:[
+    {name:'神州信息',value:[5,4,4,3,3.5,3,3.5,2],
+      areaStyle:{color:'rgba(0,51,102,0.15)'},lineStyle:{color:NAVY,width:2},itemStyle:{color:NAVY},symbol:'circle',symbolSize:5},
+    {name:'行业均值',value:[3,2.5,2.5,2,2.5,2,2,2],
+      areaStyle:{color:'rgba(196,151,59,0.1)'},lineStyle:{color:GOLD,width:1.5,type:'dashed'},itemStyle:{color:GOLD},symbol:'circle',symbolSize:4}
+  ]}]
+});
+
+/* ===== 图3: 竞争对手雷达图 ===== */
+const c3=mk('chart-radar');
+c3.setOption({
+  tooltip:{...ttBase},
+  legend:{data:['神州信息','中国软件','恒生电子','宇信科技'],textStyle:{color:TXT_S,fontSize:11},top:0,itemGap:12},
+  radar:{
+    indicator:[
+      {name:'ROE',max:100},{name:'毛利率',max:100},{name:'净利率',max:100},
+      {name:'营收增速',max:100},{name:'财务安全',max:100}
+    ],
+    shape:'polygon',center:['50%','58%'],radius:'52%',
+    axisName:{color:TXT_S,fontSize:11},
+    splitArea:{areaStyle:{color:[G100,'rgba(0,51,102,0.02)']}},
+    splitLine:{lineStyle:{color:GL}},
+    axisLine:{lineStyle:{color:GL}}
+  },
+  series:[{type:'radar',data:[
+    {name:'神州信息',value:[0,17,0,100,41],
+      areaStyle:{color:'rgba(0,51,102,0.12)'},lineStyle:{color:NAVY,width:2},itemStyle:{color:NAVY},symbol:'circle',symbolSize:5},
+    {name:'中国软件',value:[0,59,0,32,59],
+      areaStyle:{color:'rgba(192,57,43,0.08)'},lineStyle:{color:RED,width:1.5,type:'dashed'},itemStyle:{color:RED},symbol:'diamond',symbolSize:5},
+    {name:'恒生电子',value:[80,100,100,0,69],
+      areaStyle:{color:'rgba(39,118,61,0.08)'},lineStyle:{color:GREEN,width:2},itemStyle:{color:GREEN},symbol:'circle',symbolSize:5},
+    {name:'宇信科技',value:[100,49,89,0,74],
+      areaStyle:{color:'rgba(196,151,59,0.08)'},lineStyle:{color:GOLD,width:1.5},itemStyle:{color:GOLD},symbol:'triangle',symbolSize:6}
+  ]}]
+});
+
+/* ===== 图4: 营收与净利润趋势 ===== */
+const c4=mk('chart-revenue');
+c4.setOption({
+  tooltip:{trigger:'axis',...ttBase,formatter:function(p){
+    let s='<b style="color:'+NAVY+'">'+p[0].axisValue+'</b><br/>';
+    p.forEach(i=>{
+      s+=i.marker+' '+i.seriesName+': <b>'+i.value+'</b>亿元<br/>';
+    });return s;
+  }},
+  legend:{textStyle:{color:TXT_S,fontSize:11},top:0,itemGap:20},
+  grid:{left:56,right:56,top:48,bottom:40,containLabel:true},
+  xAxis:{type:'category',data:['2018','2019','2020','2021','2022','2023','2024'],axisLine:{lineStyle:{color:G300}},axisLabel:{color:TXT_S,fontSize:11},axisTick:{lineStyle:{color:G300}}},
+  yAxis:[
+    {type:'value',name:'营收(亿元)',nameTextStyle:{color:G400,fontSize:11},axisLine:{show:false},splitLine:{lineStyle:{color:GL}},axisLabel:{color:G400,fontSize:11}},
+    {type:'value',name:'净利润(亿元)',nameTextStyle:{color:G400,fontSize:11},axisLine:{show:false},splitLine:{show:false},axisLabel:{color:G400,fontSize:11}}
+  ],
+  series:[
+    {name:'营收',type:'bar',barWidth:32,yAxisIndex:0,
+      itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(0,51,102,0.75)'},{offset:1,color:'rgba(0,51,102,0.2)'}]),borderRadius:[3,3,0,0]},
+      data:[90.77,101.46,106.86,113.56,119.99,120.56,100.03]
+    },
+    {name:'净利润',type:'line',yAxisIndex:1,smooth:true,symbol:'circle',symbolSize:8,
+      lineStyle:{width:3,color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:GREEN},{offset:0.7,color:GOLD},{offset:1,color:RED}])},
+      itemStyle:{color:function(params){return params.value<0?RED:params.value<2?GOLD:GREEN;}},
+      data:[0.47,3.82,4.66,3.88,2.06,2.04,-5.36],
+      markPoint:{data:[
+        {name:'峰值',coord:['2020',4.66],symbolSize:44,label:{color:'#fff',fontSize:10,formatter:'{c}'},itemStyle:{color:GREEN}},
+        {name:'转亏',coord:['2024',-5.36],symbolSize:50,label:{color:'#fff',fontSize:10,formatter:'{c}'},itemStyle:{color:RED}}
+      ]},
+      markLine:{data:[{yAxis:0,label:{formatter:'盈亏平衡线',color:G400,fontSize:10},lineStyle:{color:G400,type:'dashed',width:1.5}}]}
+    }
+  ],
+  graphic:[{type:'text',right:20,top:52,style:{text:'2024年首次亏损 -5.36亿',fill:RED,fontSize:11,fontWeight:700}}]
+});
+
+/* ===== 图5: 业务结构饼图 ===== */
+const c5=mk('chart-biz');
+c5.setOption({
+  tooltip:{...ttBase,formatter:function(p){return '<b style="color:'+NAVY+'">'+p.name+'</b><br/>营收: <b>'+p.value+'</b>亿元 ('+p.percent+'%)';}},
+  legend:{orient:'vertical',right:20,top:'center',textStyle:{color:TXT_S,fontSize:12}},
+  series:[{
+    type:'pie',radius:['42%','72%'],center:['40%','52%'],
+    label:{show:true,formatter:'{b}\n{d}%',fontSize:12,color:TXT},
+    labelLine:{length:20,length2:12,lineStyle:{color:G300}},
+    itemStyle:{borderRadius:4,borderColor:'#fff',borderWidth:3},
+    data:[
+      {value:68.68,name:'技术服务',itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:NAVY},{offset:1,color:NAVY_L}])}},
+      {value:31.29,name:'系统集成',itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:GOLD},{offset:1,color:'#d4a94b'}])}}
+    ],
+    emphasis:{itemStyle:{shadowBlur:12,shadowOffsetX:0,shadowColor:'rgba(0,20,60,0.2)'}}
+  }],
+  graphic:[{type:'group',left:'33%',top:'44%',children:[
+    {type:'text',left:'center',top:0,style:{text:'2024年',fill:G400,fontSize:11,textAlign:'center'}},
+    {type:'text',left:'center',top:18,style:{text:'100.03亿',fill:NAVY,fontSize:16,fontWeight:700,textAlign:'center'}}
+  ]}]
+});
+
+/* ===== 图6: 毛利率趋势——持续恶化 ===== */
+const c6=mk('chart-margin');
+c6.setOption({
+  tooltip:{trigger:'axis',...ttBase,formatter:function(p){
+    let s='<b style="color:'+NAVY+'">'+p[0].axisValue+'</b><br/>';
+    p.forEach(i=>{s+=i.marker+' '+i.seriesName+': <b>'+i.value+'%</b><br/>';});return s;
+  }},
+  legend:{textStyle:{color:TXT_S,fontSize:11},top:0,itemGap:14},
+  grid:{left:44,right:20,top:44,bottom:28,containLabel:true},
+  xAxis:{type:'category',data:['2019','2020','2021','2022','2023','2024','2025H1'],axisLine:{lineStyle:{color:G300}},axisLabel:{color:TXT_S,fontSize:11},axisTick:{lineStyle:{color:G300}}},
+  yAxis:{type:'value',name:'%',min:5,max:28,nameTextStyle:{color:G400,fontSize:11},axisLine:{show:false},splitLine:{lineStyle:{color:GL}},axisLabel:{color:G400,fontSize:11,formatter:'{value}%'}},
+  series:[
+    {name:'技术服务毛利率',type:'line',smooth:true,symbol:'circle',symbolSize:6,
+      lineStyle:{width:2.5,color:NAVY},itemStyle:{color:NAVY},
+      data:[24.2,22.8,21.0,19.5,18.0,16.7,15.5],
+      markPoint:{data:[{type:'min',symbolSize:40,label:{color:'#fff',fontSize:10},itemStyle:{color:RED}}]}
+    },
+    {name:'系统集成毛利率',type:'line',smooth:true,symbol:'diamond',symbolSize:6,
+      lineStyle:{width:2,color:GOLD},itemStyle:{color:GOLD},
+      data:[14.0,13.5,12.8,12.0,11.5,11.0,8.6]
+    },
+    {name:'综合毛利率',type:'line',smooth:true,symbol:'circle',symbolSize:7,
+      lineStyle:{width:3,color:RED},itemStyle:{color:RED},
+      areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(192,57,43,0.12)'},{offset:1,color:'rgba(192,57,43,0.01)'}])},
+      data:[20.5,19.6,18.2,17.0,16.0,14.9,13.0],
+      markLine:{data:[{yAxis:13,label:{formatter:'2025H1: 13.0%',color:RED,fontSize:11,fontWeight:600,position:'insideEndTop'},lineStyle:{color:RED,type:'dashed',width:1.5}}]}
+    }
+  ],
+  graphic:[
+    {type:'text',right:16,top:52,style:{text:'连续6年下滑',fill:RED,fontSize:12,fontWeight:700}},
+    {type:'text',right:16,top:70,style:{text:'无止跌迹象',fill:RED,fontSize:11}}
+  ]
+});
+
+/* ===== 响应式 ===== */
+const all=[c1,c2,c3,c4,c5,c6];
+function ra(){all.forEach(c=>c.resize());}
+window.addEventListener('resize',ra);
+setTimeout(ra,100);setTimeout(ra,500);
+</script>
+</body>
+</html>
