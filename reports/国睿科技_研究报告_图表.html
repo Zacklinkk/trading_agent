@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>国睿科技 行业研究报告</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans SC',sans-serif;background:#fff;color:#2c3e50;line-height:1.8;font-size:15px}
+.report{max-width:1100px;margin:0 auto;padding:40px 60px}
+.header{border-bottom:3px solid #003366;padding-bottom:30px;margin-bottom:40px}
+.header h1{font-family:'Noto Serif SC',serif;font-size:32px;color:#003366;font-weight:700;margin-bottom:8px}
+.header .subtitle{font-size:18px;color:#c4973b;font-weight:500}
+.header .meta{font-size:13px;color:#6b7b8d;margin-top:12px;display:flex;gap:24px}
+.header .meta span{display:inline-flex;align-items:center;gap:4px}
+.section{margin-bottom:36px}
+.section h2{font-family:'Noto Serif SC',serif;font-size:22px;color:#003366;border-left:4px solid #c4973b;padding-left:14px;margin-bottom:18px}
+.section h3{font-size:16px;color:#003366;margin:16px 0 10px;font-weight:600}
+.section p,.section li{font-size:14.5px;color:#2c3e50;margin-bottom:6px}
+.section ul{padding-left:20px;list-style:disc}
+.tag{display:inline-block;padding:3px 12px;border-radius:4px;font-size:13px;font-weight:500;margin:4px 4px 4px 0}
+.tag-blue{background:#e8f0fe;color:#003366}
+.tag-gold{background:#fdf2e0;color:#8b6914}
+.tag-red{background:#fde8e8;color:#c0392b}
+.tag-green{background:#e8f5e9;color:#27763d}
+.highlight-box{background:#f8f9fc;border:1px solid #e0e6ed;border-radius:8px;padding:20px;margin:16px 0}
+.highlight-box h4{color:#003366;font-size:15px;margin-bottom:10px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th{background:#003366;color:#fff;padding:10px 12px;text-align:left;font-weight:500}
+td{padding:9px 12px;border-bottom:1px solid #e8ecf0}
+tr:nth-child(even){background:#f8f9fc}
+.chart-container{width:100%;height:380px;margin:20px 0;border:1px solid #e8ecf0;border-radius:8px;padding:10px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:16px 0}
+.kpi-card{background:#f8f9fc;border:1px solid #e0e6ed;border-radius:8px;padding:16px;text-align:center}
+.kpi-card .value{font-size:24px;font-weight:700;color:#003366}
+.kpi-card .label{font-size:12px;color:#6b7b8d;margin-top:4px}
+.kpi-card .change{font-size:12px;margin-top:4px}
+.up{color:#c0392b}
+.down{color:#27763d}
+.chain{display:flex;align-items:center;justify-content:center;gap:0;margin:20px 0;flex-wrap:wrap}
+.chain-node{background:#003366;color:#fff;padding:10px 20px;border-radius:6px;font-size:13px;text-align:center;min-width:120px}
+.chain-arrow{font-size:24px;color:#c4973b;padding:0 8px}
+.chain-node.highlight{background:#c4973b}
+.pest-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.pest-card{border:1px solid #e0e6ed;border-radius:8px;padding:16px}
+.pest-card h4{font-size:14px;margin-bottom:8px}
+.pest-card.p h4{color:#003366}
+.pest-card.e h4{color:#c4973b}
+.pest-card.s h4{color:#27763d}
+.pest-card.t h4{color:#c0392b}
+.pest-card ul{font-size:13px;padding-left:16px;margin:0}
+.pest-card li{margin-bottom:4px}
+.risk-box{background:#fdf2e0;border:1px solid #e8d5a8;border-radius:8px;padding:20px;margin:16px 0}
+.risk-box h4{color:#8b6914;margin-bottom:10px}
+.footer{border-top:2px solid #003366;padding-top:20px;margin-top:40px;font-size:12px;color:#6b7b8d}
+@media print{.report{padding:20px 30px}.chart-container{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="report">
+
+<div class="header">
+<h1>国睿科技（600562.SH）行业研究报告</h1>
+<div class="subtitle">国防军工 · 雷达电子 · 标准版</div>
+<div class="meta">
+<span>申万一级：国防军工（801740.SI）</span>
+<span>报告日期：2025年2月</span>
+<span>研究深度：标准版</span>
+</div>
+</div>
+
+<!-- 一、行业概览 -->
+<div class="section">
+<h2>一、行业概览</h2>
+<h3>1.1 公司定位</h3>
+<p>国睿科技是中国电子科技集团（CETC）旗下第14研究所的核心上市平台，聚焦<strong>雷达整机及子系统</strong>领域，是中国军用雷达产业链中游最重要的上市公司之一。公司控股股东为中电科南京创新科技有限公司，实际控制人为中国电子科技集团有限公司。</p>
+<p>经营范围涵盖军工电子、电子信息及应用系统、无线通信和系统、微波器件等。</p>
+
+<div class="kpi-grid">
+<div class="kpi-card"><div class="value">40.0%</div><div class="label">综合毛利率（2025Q3）</div></div>
+<div class="kpi-card"><div class="value">5.95%</div><div class="label">ROE（2025Q3）</div></div>
+<div class="kpi-card"><div class="value">0.51</div><div class="label">EPS（TTM）</div></div>
+<div class="kpi-card"><div class="value">~6.3x</div><div class="label">动态市盈率</div></div>
+</div>
+
+<h3>1.2 主营业务结构（2024年报）</h3>
+<div id="chart-biz" class="chart-container"></div>
+
+<h3>1.3 产业链定位</h3>
+<div class="chain">
+<div class="chain-node">上游<br><small>微波器件/芯片<br>特种材料/元器件</small></div>
+<div class="chain-arrow">→</div>
+<div class="chain-node highlight">中游（国睿科技）<br><small>雷达整机及子系统<br>信号处理/软件</small></div>
+<div class="chain-arrow">→</div>
+<div class="chain-node">下游<br><small>军方/武器平台<br>民航/气象/交通</small></div>
+</div>
+</div>
+
+<!-- 二、生命周期判断 -->
+<div class="section">
+<h2>二、生命周期判断</h2>
+<div class="highlight-box">
+<h4>判断结论：<span class="tag tag-green">成长期（中后期）</span></h4>
+<p>中国军用雷达行业处于<strong>成长中后期</strong>阶段，核心判断依据：</p>
+<ul>
+<li><strong>渗透率</strong>：有源相控阵雷达（AESA）在新型作战平台上的渗透率已达60-70%，但存量装备升级替换需求巨大，整体雷达装备信息化渗透率约35-45%</li>
+<li><strong>增速趋势</strong>：2020-2024年国睿科技营收从36.1亿增长到34.0亿（受十四五节奏调整），2024年恢复增长趋势（同比+6.7%）</li>
+<li><strong>定性特征</strong>：国防预算持续增长（2024年1.67万亿，+7.2%），装备费占比提升，"二十年建军目标"驱动新一轮采购周期</li>
+<li><strong>技术迭代</strong>：数字阵列雷达、认知雷达、量子雷达等新技术正在导入，技术升级带来新增量</li>
+</ul>
+</div>
+</div>
+
+<!-- 三、护城河与竞争格局 -->
+<div class="section">
+<h2>三、护城河与竞争格局分析</h2>
+<h3>3.1 护城河评估</h3>
+<p>国睿科技作为中电科14所的上市平台，拥有军工行业中极为稀缺的护城河组合：</p>
+
+<div id="chart-moat" class="chart-container"></div>
+
+<table>
+<tr><th>维度</th><th>评分</th><th>分析</th></tr>
+<tr><td>牌照/特许权</td><td><span class="tag tag-blue">5/5</span></td><td>军工生产资质+武器装备科研生产许可证+保密资质三证齐全，新进入者几乎不可能获取</td></tr>
+<tr><td>技术壁垒</td><td><span class="tag tag-blue">5/5</span></td><td>14所是中国雷达技术的"国家队"，掌握相控阵雷达核心Know-how，专利超千项</td></tr>
+<tr><td>资本门槛</td><td><span class="tag tag-blue">4/5</span></td><td>雷达系统研发投入巨大，单型号研制周期5-10年，试错成本极高</td></tr>
+<tr><td>客户关系（转换成本）</td><td><span class="tag tag-blue">5/5</span></td><td>军方客户采购体系封闭，型号配套一旦确定，替换成本极高（需重新定型试验）</td></tr>
+<tr><td>品牌</td><td><span class="tag tag-gold">4/5</span></td><td>"14所出品"在国内雷达领域有最高品牌认知，但军工B端品牌影响有限</td></tr>
+<tr><td>数据壁垒</td><td><span class="tag tag-gold">3/5</span></td><td>多年型号研制积累的目标特征数据库和算法库有一定壁垒</td></tr>
+</table>
+
+<h3>3.2 竞争格局</h3>
+<p>中国军用雷达行业呈<strong>极高寡占型</strong>格局（CR3 > 70%），主要由中电科体系主导：</p>
+
+<div id="chart-radar" class="chart-container"></div>
+
+<table>
+<tr><th>公司</th><th>关联研究所</th><th>主要领域</th><th>2024营收（亿）</th><th>特点</th></tr>
+<tr><td><strong>国睿科技（600562）</strong></td><td>中电科14所</td><td>地面/舰载/机载雷达</td><td>34.0</td><td>综合雷达龙头，14所核心平台</td></tr>
+<tr><td>四创电子（600990）</td><td>中电科38所</td><td>气象雷达/预警雷达</td><td>24.3</td><td>气象+军用双线，38所平台</td></tr>
+<tr><td>海格通信（002465）</td><td>——</td><td>通信导航/北斗</td><td>55.8</td><td>通信为主，雷达为辅</td></tr>
+<tr><td>中航电子（已并入中航机载）</td><td>航空工业体系</td><td>机载雷达/航电</td><td>——</td><td>航空体系雷达供应商</td></tr>
+</table>
+
+<p><strong>核心结论</strong>：军用雷达行业进入壁垒极高（资质+技术+客户关系），格局高度稳定。国睿科技在地面防空雷达和舰载雷达领域具有绝对领先地位。</p>
+</div>
+
+<!-- 四、PEST 宏观分析 -->
+<div class="section">
+<h2>四、PEST 宏观分析</h2>
+<div class="pest-grid">
+<div class="pest-card p">
+<h4>P - 政策环境（极度有利）</h4>
+<ul>
+<li>2024年国防预算1.67万亿，同比+7.2%，连续多年高于GDP增速</li>
+<li>"二十年建军目标"（2027年建军百年目标+2035年基本实现现代化）</li>
+<li>装备费占国防预算比重持续提升（约41%→45%+）</li>
+<li>十四五后半段订单释放加速，十五五规划有望进一步加码</li>
+<li>军民融合国家战略，鼓励国防科技工业发展</li>
+</ul>
+</div>
+<div class="pest-card e">
+<h4>E - 经济环境（中性偏正）</h4>
+<ul>
+<li>GDP增速5%左右，国防预算增速仍快于GDP（+7.2%）</li>
+<li>国防预算占GDP比重1.26%，与美国3.5%差距大，提升空间充足</li>
+<li>人民币汇率波动对进口元器件有一定影响</li>
+<li>PMI在50上下波动，制造业景气度一般，但军工独立于经济周期</li>
+</ul>
+</div>
+<div class="pest-card s">
+<h4>S - 社会环境（正面）</h4>
+<ul>
+<li>地缘政治紧张（台海、南海），国防需求刚性增强</li>
+<li>社会对国防安全关注度提升，国防支出增长获广泛支持</li>
+<li>理工科人才供给充足，军工行业人才吸引力回升</li>
+</ul>
+</div>
+<div class="pest-card t">
+<h4>T - 技术环境（持续升级）</h4>
+<ul>
+<li>AESA有源相控阵向数字阵列雷达（DAR）迭代</li>
+<li>认知雷达、软件化雷达趋势明确</li>
+<li>GaN（氮化镓）替代GaAs（砷化镓）提升雷达性能</li>
+<li>雷达+AI融合（自适应波束、目标智能识别）</li>
+<li>量子雷达技术储备（远期方向）</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- 五、财务分析 -->
+<div class="section">
+<h2>五、公司财务分析</h2>
+<h3>5.1 营收与利润趋势</h3>
+<div id="chart-revenue" class="chart-container"></div>
+
+<h3>5.2 各业务板块毛利率对比</h3>
+<div id="chart-margin" class="chart-container"></div>
+
+<h3>5.3 核心财务指标</h3>
+<table>
+<tr><th>指标</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025Q3</th></tr>
+<tr><td>营业收入（亿元）</td><td>36.1</td><td>34.3</td><td>32.3</td><td>31.8</td><td>34.0</td><td>21.2（前3季）</td></tr>
+<tr><td>雷达整机占比</td><td>63.3%</td><td>58.8%</td><td>65.8%</td><td>69.3%</td><td>79.9%</td><td>90.1%</td></tr>
+<tr><td>综合毛利率</td><td>24.7%</td><td>26.9%</td><td>29.8%</td><td>34.7%</td><td>36.0%</td><td>40.1%</td></tr>
+<tr><td>净利率</td><td>14.1%</td><td>13.9%</td><td>14.9%</td><td>16.7%</td><td>18.6%</td><td>17.6%</td></tr>
+<tr><td>ROE</td><td>9.8%</td><td>9.1%</td><td>9.7%</td><td>10.5%</td><td>10.2%</td><td>5.95%</td></tr>
+<tr><td>EPS（元）</td><td>0.41</td><td>0.38</td><td>0.39</td><td>0.43</td><td>0.51</td><td>0.30</td></tr>
+</table>
+
+<p><strong>核心趋势</strong>：公司近年战略聚焦雷达主业，剥离低毛利的轨交业务，雷达整机占比从2020年63%提升至2025年90%+，毛利率从24.7%跃升至40.1%，盈利质量显著改善。</p>
+</div>
+
+<!-- 六、估值与景气度 -->
+<div class="section">
+<h2>六、估值与景气度</h2>
+<h3>6.1 估值分析</h3>
+<div class="highlight-box">
+<h4>当前估值：<span class="tag tag-green">历史低位区间</span></h4>
+<ul>
+<li><strong>动态市盈率</strong>：~6.3x（TTM），处于历史极低分位（<5%）</li>
+<li><strong>行业对比</strong>：国防军工行业平均PE 40-60x，国睿科技显著低估</li>
+<li><strong>PB</strong>：约1.0x，接近净资产值</li>
+<li><strong>成长期估值方法（PEG）</strong>：若2025-2027年净利润复合增速15%+，当前PEG ≈ 0.42，具备安全边际</li>
+</ul>
+</div>
+
+<div id="chart-valuation" class="chart-container"></div>
+
+<h3>6.2 景气度判断</h3>
+<table>
+<tr><th>指标类型</th><th>指标</th><th>当前状态</th><th>信号</th></tr>
+<tr><td>先行指标</td><td>国防预算增速</td><td>+7.2%（2024）</td><td><span class="tag tag-green">正面</span></td></tr>
+<tr><td>先行指标</td><td>装备费占比</td><td>持续提升（~45%）</td><td><span class="tag tag-green">正面</span></td></tr>
+<tr><td>同步指标</td><td>公司营收增速</td><td>+6.7%（2024）</td><td><span class="tag tag-green">回升</span></td></tr>
+<tr><td>同步指标</td><td>合同负债/预收</td><td>稳步增长</td><td><span class="tag tag-green">正面</span></td></tr>
+<tr><td>滞后指标</td><td>利润兑现</td><td>净利率18.6%创新高</td><td><span class="tag tag-green">正面</span></td></tr>
+<tr><td>情绪指标</td><td>军工板块估值</td><td>历史低位</td><td><span class="tag tag-gold">底部区域</span></td></tr>
+</table>
+</div>
+
+<!-- 七、投资建议 -->
+<div class="section">
+<h2>七、投资建议与风险提示</h2>
+<div class="highlight-box">
+<h4>核心逻辑</h4>
+<ul>
+<li><strong>确定性</strong>：14所核心平台地位不可替代，军方采购关系高度稳定</li>
+<li><strong>成长性</strong>：雷达主业聚焦+十五五新一轮采购周期驱动业绩增长</li>
+<li><strong>安全边际</strong>：估值处于历史极低分位（PE ~6x），显著低于行业平均水平</li>
+<li><strong>催化剂</strong>：十五五规划落地、资产注入预期（14所优质资产）、国企改革</li>
+</ul>
+</div>
+<div class="risk-box">
+<h4>风险因素</h4>
+<ul>
+<li><strong>订单节奏风险</strong>：军品采购受五年规划节奏影响，可能出现年度间波动</li>
+<li><strong>关联交易风险</strong>：大量关联交易（14所体系内），定价公允性需关注</li>
+<li><strong>资产注入不及预期</strong>：14所优质资产注入进度和范围存在不确定性</li>
+<li><strong>国际形势变化</strong>：地缘政治缓和可能导致国防预算增速放缓</li>
+<li><strong>技术路线风险</strong>：新型雷达技术迭代可能改变竞争格局</li>
+</ul>
+</div>
+</div>
+
+<!-- 附录 -->
+<div class="section">
+<h2>附录</h2>
+<h3>数据来源</h3>
+<table>
+<tr><th>数据类型</th><th>来源</th></tr>
+<tr><td>公司财务数据</td><td>Tushare Pro API（fina_indicator / fina_mainbz）</td></tr>
+<tr><td>行业指数走势</td><td>Tushare Pro API（sw_daily）</td></tr>
+<tr><td>同行业公司数据</td><td>Tushare Pro API（index_member / fina_indicator）</td></tr>
+<tr><td>宏观经济数据</td><td>Tushare Pro API（macro_gdp / macro_pmi）/ AKShare</td></tr>
+<tr><td>国防预算数据</td><td>财政部年度预算报告</td></tr>
+<tr><td>行业政策信息</td><td>政府公开文件、券商研报</td></tr>
+</table>
+</div>
+
+<div class="footer">
+<p>免责声明：本报告仅供研究参考，不构成投资建议。投资者据此操作，风险自担。</p>
+<p>数据截止日期：2025年2月 | 报告生成工具：Industry Research Skill + ECharts 5</p>
+</div>
+
+</div>
+
+<script>
+// Chart 1: 业务结构饼图
+var c1=echarts.init(document.getElementById('chart-biz'));
+c1.setOption({
+  title:{text:'主营业务构成（2024年报）',left:'center',textStyle:{fontSize:14,color:'#003366'}},
+  tooltip:{trigger:'item',formatter:'{b}: {c}亿 ({d}%)'},
+  legend:{bottom:10,textStyle:{fontSize:12}},
+  series:[{
+    type:'pie',radius:['40%','70%'],
+    label:{formatter:'{b}\n{d}%',fontSize:12},
+    data:[
+      {value:27.18,name:'雷达整机及子系统',itemStyle:{color:'#003366'}},
+      {value:3.99,name:'工业软件及智能制造',itemStyle:{color:'#c4973b'}},
+      {value:2.83,name:'轨道交通控制系统',itemStyle:{color:'#6b7b8d'}}
+    ]
+  }]
+});
+
+// Chart 2: 护城河雷达图
+var c2=echarts.init(document.getElementById('chart-moat'));
+c2.setOption({
+  title:{text:'护城河评估（1-5分）',left:'center',textStyle:{fontSize:14,color:'#003366'}},
+  tooltip:{},
+  radar:{indicator:[
+    {name:'牌照/特许权',max:5},{name:'技术壁垒',max:5},{name:'资本门槛',max:5},
+    {name:'客户关系',max:5},{name:'品牌',max:5},{name:'数据壁垒',max:5},
+    {name:'资源禀赋',max:5},{name:'行业标准',max:5}
+  ],radius:'65%'},
+  series:[{
+    type:'radar',
+    data:[
+      {value:[5,5,4,5,4,3,3,4],name:'国睿科技',areaStyle:{color:'rgba(0,51,102,0.2)'},lineStyle:{color:'#003366'},itemStyle:{color:'#003366'}},
+      {value:[3,3,3,3,3,2,2,2],name:'行业平均',areaStyle:{color:'rgba(196,151,59,0.1)'},lineStyle:{color:'#c4973b',type:'dashed'},itemStyle:{color:'#c4973b'}}
+    ]
+  }],
+  legend:{bottom:5,textStyle:{fontSize:12}}
+});
+
+// Chart 3: 竞争格局雷达图
+var c3=echarts.init(document.getElementById('chart-radar'));
+c3.setOption({
+  title:{text:'主要雷达企业竞争力对比',left:'center',textStyle:{fontSize:14,color:'#003366'}},
+  tooltip:{},
+  radar:{indicator:[
+    {name:'技术实力',max:5},{name:'型号覆盖',max:5},{name:'营收规模',max:5},
+    {name:'盈利能力',max:5},{name:'客户关系',max:5},{name:'资产注入预期',max:5}
+  ],radius:'65%'},
+  series:[{
+    type:'radar',
+    data:[
+      {value:[5,5,4,4,5,5],name:'国睿科技',lineStyle:{color:'#003366'},itemStyle:{color:'#003366'}},
+      {value:[4,3,3,3,4,3],name:'四创电子',lineStyle:{color:'#c4973b'},itemStyle:{color:'#c4973b'}},
+      {value:[3,2,5,3,3,2],name:'海格通信',lineStyle:{color:'#27763d'},itemStyle:{color:'#27763d'}}
+    ]
+  }],
+  legend:{bottom:5,textStyle:{fontSize:12}}
+});
+
+// Chart 4: 营收利润趋势
+var c4=echarts.init(document.getElementById('chart-revenue'));
+c4.setOption({
+  title:{text:'营收与净利润趋势',left:'center',textStyle:{fontSize:14,color:'#003366'}},
+  tooltip:{trigger:'axis'},
+  legend:{bottom:5,textStyle:{fontSize:12}},
+  grid:{left:60,right:60,top:50,bottom:50,containLabel:true},
+  xAxis:{type:'category',data:['2018','2019','2020','2021','2022','2023','2024'],axisLabel:{fontSize:12}},
+  yAxis:[
+    {type:'value',name:'营收（亿元）',nameTextStyle:{fontSize:11},axisLabel:{fontSize:11}},
+    {type:'value',name:'净利润（亿元）',nameTextStyle:{fontSize:11},axisLabel:{fontSize:11}}
+  ],
+  series:[
+    {name:'营业收入',type:'bar',data:[10.4,11.6,36.1,34.3,32.3,31.8,34.0],barWidth:'40%',
+     itemStyle:{color:'#003366'},
+     markPoint:{data:[{type:'max',name:'最高'}]}},
+    {name:'归母净利润',type:'line',yAxisIndex:1,data:[1.8,1.9,5.1,4.8,4.8,5.3,6.3],
+     lineStyle:{color:'#c4973b',width:2.5},itemStyle:{color:'#c4973b'},symbol:'circle',symbolSize:8,
+     markPoint:{data:[{type:'max',name:'最高',symbolSize:50}]}}
+  ]
+});
+
+// Chart 5: 各业务毛利率
+var c5=echarts.init(document.getElementById('chart-margin'));
+c5.setOption({
+  title:{text:'各业务板块毛利率变化',left:'center',textStyle:{fontSize:14,color:'#003366'}},
+  tooltip:{trigger:'axis',formatter:function(p){var s=p[0].axisValue;p.forEach(function(i){s+='<br>'+i.marker+i.seriesName+': '+i.value+'%'});return s}},
+  legend:{bottom:5,textStyle:{fontSize:12}},
+  grid:{left:50,right:30,top:50,bottom:50,containLabel:true},
+  xAxis:{type:'category',data:['2020','2021','2022','2023','2024'],axisLabel:{fontSize:12}},
+  yAxis:{type:'value',name:'毛利率（%）',min:0,max:50,axisLabel:{formatter:'{value}%',fontSize:11}},
+  series:[
+    {name:'雷达整机及子系统',type:'line',data:[26.6,29.7,33.5,39.8,37.7],lineStyle:{color:'#003366',width:2.5},itemStyle:{color:'#003366'},symbol:'circle',symbolSize:7},
+    {name:'工业软件及智能制造',type:'line',data:[37.0,36.6,37.9,37.4,36.8],lineStyle:{color:'#c4973b',width:2},itemStyle:{color:'#c4973b'},symbol:'diamond',symbolSize:7},
+    {name:'轨道交通控制系统',type:'line',data:[13.2,14.9,10.8,11.5,19.3],lineStyle:{color:'#6b7b8d',width:2},itemStyle:{color:'#6b7b8d'},symbol:'triangle',symbolSize:7},
+    {name:'综合毛利率',type:'line',data:[24.7,26.9,29.8,34.7,36.0],lineStyle:{color:'#c0392b',width:2,type:'dashed'},itemStyle:{color:'#c0392b'},symbol:'rect',symbolSize:6}
+  ]
+});
+
+// Chart 6: 估值区间
+var c6=echarts.init(document.getElementById('chart-valuation'));
+c6.setOption({
+  title:{text:'国防军工板块指数走势（2025年近期）',left:'center',textStyle:{fontSize:14,color:'#003366'}},
+  tooltip:{trigger:'axis'},
+  grid:{left:60,right:30,top:50,bottom:40,containLabel:true},
+  xAxis:{type:'category',data:['06/23','06/25','06/27','06/30','07/02','07/04','07/07','07/09','07/11','07/14','07/16','07/18','07/21','07/23','07/25','07/28','07/30','07/31'],axisLabel:{fontSize:11,rotate:30}},
+  yAxis:{type:'value',name:'指数点位',min:1450,max:1800,axisLabel:{fontSize:11}},
+  series:[{
+    name:'国防军工指数',type:'line',
+    data:[1523,1577,1597,1666,1630,1619,1620,1618,1633,1625,1613,1670,1684,1660,1689,1722,1724,1718],
+    lineStyle:{color:'#003366',width:2},
+    areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(0,51,102,0.3)'},{offset:1,color:'rgba(0,51,102,0.02)'}]}},
+    itemStyle:{color:'#003366'},symbol:'none',
+    markArea:{data:[[{yAxis:1500,itemStyle:{color:'rgba(39,118,61,0.08)'},label:{show:true,position:'insideTop',formatter:'低估区间',fontSize:11,color:'#27763d'}},{yAxis:1620}],
+                    [{yAxis:1700,itemStyle:{color:'rgba(192,57,43,0.08)'},label:{show:true,position:'insideTop',formatter:'偏高区间',fontSize:11,color:'#c0392b'}},{yAxis:1800}]]}
+  }]
+});
+
+window.addEventListener('resize',function(){c1.resize();c2.resize();c3.resize();c4.resize();c5.resize();c6.resize()});
+</script>
+</body>
+</html>
