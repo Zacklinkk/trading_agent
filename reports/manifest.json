@@ -67,6 +67,18 @@
             { "label": "动态PE",    "value": "~6.3", "unit": "x", "change": "历史低位", "trend": "up" },
             { "label": "PEG估值",   "value": "0.42", "unit": "",  "change": "安全边际", "trend": "up" }
           ]
+        },
+        {
+          "type": "财报分析",
+          "filename": "国睿科技_财报分析报告.html",
+          "subtitle": "五年财务趋势·现金流画像·红旗检测",
+          "date": "2026年3月",
+          "tags": ["三大报表", "现金流画像", "红旗检测"],
+          "kpis": [
+            { "label": "2024年营收", "value": "34.00", "unit": "亿", "change": "2025Q3: 21.18亿", "trend": "up" },
+            { "label": "2024年净利", "value": "6.30",  "unit": "亿", "change": "2025Q3: 3.73亿",  "trend": "up" },
+            { "label": "ROE",        "value": "10.90", "unit": "%",  "change": "2025Q3: 5.95%",   "trend": "up" }
+          ]
         }
       ]
     }

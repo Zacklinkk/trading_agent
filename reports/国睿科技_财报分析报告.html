@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>国睿科技 (600562.SH) 财报分析报告</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #fff; color: #1a1a2e; line-height: 1.75;
+  }
+  .report-wrapper { max-width: 1100px; margin: 0 auto; padding: 40px 32px 80px; }
+  .cover { text-align: center; padding: 60px 0 40px; border-bottom: 3px solid #1a1a2e; margin-bottom: 48px; }
+  .cover .tag { display: inline-block; background: #1a1a2e; color: #fff; font-size: 13px; letter-spacing: 2px; padding: 4px 16px; border-radius: 2px; margin-bottom: 16px; }
+  .cover h1 { font-family: "Noto Serif SC", "Source Han Serif SC", serif; font-size: 32px; font-weight: 700; margin-bottom: 8px; color: #1a1a2e; }
+  .cover .subtitle { font-size: 18px; color: #555; margin-bottom: 24px; }
+  .cover .meta { font-size: 14px; color: #888; }
+  .cover .meta span { margin: 0 12px; }
+  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 32px 0; }
+  .kpi-card { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; border: 1px solid #e9ecef; }
+  .kpi-card .label { font-size: 13px; color: #666; margin-bottom: 4px; }
+  .kpi-card .value { font-size: 28px; font-weight: 700; color: #1a1a2e; }
+  .kpi-card .value.positive { color: #c0392b; }
+  .kpi-card .value.negative { color: #27ae60; }
+  .kpi-card .change { font-size: 12px; color: #888; margin-top: 4px; }
+  .section { margin-top: 56px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid #1a1a2e; }
+  .section-number { font-family: "Noto Serif SC", serif; font-size: 14px; font-weight: 700; color: #fff; background: #1a1a2e; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 4px; flex-shrink: 0; }
+  .section-title { font-family: "Noto Serif SC", serif; font-size: 22px; font-weight: 700; color: #1a1a2e; }
+  h3 { font-size: 17px; font-weight: 600; color: #2c3e50; margin: 28px 0 12px; padding-left: 12px; border-left: 3px solid #3498db; }
+  p { margin-bottom: 12px; font-size: 15px; color: #333; }
+  .data-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+  .data-table thead th { background: #f1f3f5; color: #1a1a2e; font-weight: 600; padding: 10px 12px; text-align: right; border-bottom: 2px solid #dee2e6; }
+  .data-table thead th:first-child { text-align: left; }
+  .data-table tbody td { padding: 8px 12px; text-align: right; border-bottom: 1px solid #e9ecef; }
+  .data-table tbody td:first-child { text-align: left; font-weight: 500; }
+  .data-table tbody tr:hover { background: #f8f9fa; }
+  .chart-container { width: 100%; height: 400px; margin: 24px 0; border: 1px solid #e9ecef; border-radius: 8px; padding: 16px; background: #fff; }
+  .chart-container.tall { height: 480px; }
+  .callout { padding: 16px 20px; border-radius: 6px; margin: 16px 0; font-size: 14px; }
+  .callout.red { background: #fef2f2; border-left: 4px solid #ef4444; color: #991b1b; }
+  .callout.green { background: #f0fdf4; border-left: 4px solid #22c55e; color: #166534; }
+  .callout.yellow { background: #fffbeb; border-left: 4px solid #f59e0b; color: #92400e; }
+  .callout.blue { background: #eff6ff; border-left: 4px solid #3b82f6; color: #1e40af; }
+  .callout .callout-title { font-weight: 700; margin-bottom: 4px; }
+  .portrait-badge { display: inline-block; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 15px; }
+  .portrait-badge.excellent { background: #dcfce7; color: #166534; }
+  .portrait-badge.caution { background: #fef9c3; color: #854d0e; }
+  .portrait-badge.danger { background: #fee2e2; color: #991b1b; }
+  .flag-list { list-style: none; margin: 16px 0; }
+  .flag-list li { padding: 8px 12px; margin: 4px 0; border-radius: 4px; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+  .flag-list li .icon { width: 20px; text-align: center; flex-shrink: 0; }
+  .flag-list li.pass { background: #f0fdf4; }
+  .flag-list li.pass .icon { color: #22c55e; }
+  .flag-list li.warn { background: #fffbeb; }
+  .flag-list li.warn .icon { color: #f59e0b; }
+  .flag-list li.fail { background: #fef2f2; }
+  .flag-list li.fail .icon { color: #ef4444; }
+  .score-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 16px 0; }
+  .score-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #e9ecef; }
+  .score-item .dim { font-weight: 500; }
+  .score-item .pts { font-weight: 700; color: #1a1a2e; }
+  .footer { text-align: center; padding: 40px 0 20px; border-top: 1px solid #dee2e6; margin-top: 60px; font-size: 13px; color: #aaa; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 16px 0; }
+  .highlight-box { background: #f8f9fa; border-radius: 8px; padding: 16px 20px; margin: 12px 0; border: 1px solid #e9ecef; }
+  .highlight-box .hb-title { font-weight: 700; font-size: 14px; color: #1a1a2e; margin-bottom: 8px; }
+  .highlight-box ul { padding-left: 18px; font-size: 14px; color: #444; }
+  .highlight-box ul li { margin-bottom: 4px; }
+  @media (max-width: 768px) {
+    .report-wrapper { padding: 20px 16px 40px; }
+    .cover h1 { font-size: 24px; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .chart-container { height: 320px; }
+    .score-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="report-wrapper">
+
+  <!-- ===== 封面 ===== -->
+  <div class="cover">
+    <div class="tag">财报深度分析</div>
+    <h1>国睿科技</h1>
+    <div class="subtitle">600562.SH · 财务报表分析报告</div>
+    <div class="meta">
+      <span>年报周期：2020—2024年（年度报告）</span>
+      <span>·</span>
+      <span>最新跟踪：2025Q3（前三季度累计）</span>
+      <span>·</span>
+      <span>生成日期：2026年3月4日</span>
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:#aaa;">
+      注：「年报」指12月31日截止的完整财年数据；「2025Q3」指2025年1—9月累计数据（未年化）
+    </div>
+  </div>
+
+  <!-- ===== KPI 摘要 ===== -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="label">最新 ROE（2024年报）</div>
+      <div class="value positive">10.90%</div>
+      <div class="change">2025Q3前9月：5.95%（未年化）</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">营收（亿元，2024年报）</div>
+      <div class="value">34.00</div>
+      <div class="change">2025Q3前三季：21.18亿</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">归母净利润（亿元）</div>
+      <div class="value">6.30</div>
+      <div class="change">2025Q3前三季：3.73亿</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">毛利率（2024年报→2025Q3）</div>
+      <div class="value positive">36.07%</div>
+      <div class="change">→ 2025Q3提升至 40.08%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">应收账款（最新）</div>
+      <div class="value" style="font-size:22px;color:#ef4444">45.42亿</div>
+      <div class="change">2025Q3较2024年报续增3.4亿</div>
+    </div>
+  </div>
+
+  <!-- ===== 一、资产负债表分析 ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <div class="section-title">资产负债表分析</div>
+    </div>
+
+    <h3>资产结构变化趋势</h3>
+    <div id="chart-asset-structure" class="chart-container"></div>
+
+    <h3>货币资金 vs 有息负债</h3>
+    <div id="chart-cash-vs-debt" class="chart-container"></div>
+
+    <h3>资产结构深度分析</h3>
+    <p>国睿科技是一家国防军工电子领域的核心上市公司，资产结构高度轻资产化。过去五年总资产从77.73亿元增长至92.98亿元，CAGR约为3.8%。</p>
+    <p><strong>核心特征：高流动资产比例（约87%）。</strong> 这与军工电子研发类企业特征高度吻合：固定资产占比极低（约2%），轻资产模式意味着更高的资产周转潜力，但同时也反映了"应收账款高企"这一行业共性痛点。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>指标（亿元）</th>
+          <th>2020年报</th>
+          <th>2021年报</th>
+          <th>2022年报</th>
+          <th>2023年报</th>
+          <th>2024年报</th>
+          <th style="background:#fffbeb">2025Q3⁽¹⁾</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>总资产</td><td>77.73</td><td>72.13</td><td>81.87</td><td>89.72</td><td>92.98</td><td style="background:#fffbeb">102.64</td></tr>
+        <tr><td>流动资产</td><td>66.56</td><td>60.74</td><td>70.46</td><td>78.46</td><td>81.33</td><td style="background:#fffbeb">91.32</td></tr>
+        <tr><td>货币资金</td><td>10.71</td><td>11.70</td><td>10.95</td><td>15.64</td><td>11.30</td><td style="background:#fffbeb">15.08</td></tr>
+        <tr><td>应收账款</td><td>28.01</td><td>20.08</td><td>24.87</td><td>28.90</td><td style="color:#ef4444;font-weight:600">42.02</td><td style="background:#fffbeb;color:#ef4444;font-weight:600">45.42</td></tr>
+        <tr><td>存货</td><td>20.86</td><td>21.78</td><td>20.03</td><td>20.79</td><td>17.80</td><td style="background:#fffbeb">20.99</td></tr>
+        <tr><td>固定资产</td><td>2.17</td><td>2.12</td><td>2.08</td><td>2.15</td><td>2.02</td><td style="background:#fffbeb">—</td></tr>
+        <tr><td>总负债</td><td>34.52</td><td>24.91</td><td>30.64</td><td>33.99</td><td>32.65</td><td style="background:#fffbeb">34.51</td></tr>
+        <tr><td>短期借款</td><td>0.00</td><td>1.50</td><td>0.23</td><td>1.29</td><td>1.75</td><td style="background:#fffbeb">2.05</td></tr>
+        <tr><td>资产负债率</td><td>44.4%</td><td>34.5%</td><td>37.4%</td><td>37.9%</td><td>35.1%</td><td style="background:#fffbeb">33.6%</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:#888;margin-top:-12px">⁽¹⁾ 2025Q3为2025年9月30日时点数据（资产负债表），非全年数据。</p>
+
+    <div class="callout red">
+      <div class="callout-title">⚠️ 应收账款大幅激增，2025Q3仍在续增</div>
+      2024年末应收账款从2023年的28.90亿元骤升至42.02亿元，单年增幅高达45.4%，而同期营收仅增长3.6%。应收账款/营收比从88%跳升至124%，显著偏高，是2024年经营现金流转负(-3.05亿)的直接原因。<strong>2025Q3进一步升至45.42亿</strong>，较年初再增3.4亿，回款改善迹象尚未出现，需持续追踪。
+    </div>
+
+    <div class="callout green">
+      <div class="callout-title">✅ 资产负债率结构性改善，2025Q3延续向好趋势</div>
+      资产负债率从2020年的44.4%持续降至2024年的35.1%，2025Q3进一步降至<strong>33.6%</strong>。短期借款小幅增至2.05亿（主要为短期融资补充运营资金），货币资金回升至<strong>15.08亿</strong>，对有息负债的覆盖倍数升至<strong>7.4倍</strong>（较2024年底的6.5倍进一步改善），偿债安全性充裕。
+    </div>
+
+    <div class="callout blue">
+      <div class="callout-title">📊 其他应收款情况</div>
+      其他应收款约为0.30亿元，占总资产不足0.3%，不存在通过其他应收款转移资金的异常迹象，红旗#4通过。
+    </div>
+  </div>
+
+  <!-- ===== 二、利润表分析 ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <div class="section-title">利润表分析</div>
+    </div>
+
+    <h3>营收与利润趋势</h3>
+    <div id="chart-revenue-profit" class="chart-container"></div>
+
+    <h3>成本结构占比</h3>
+    <div id="chart-cost-structure" class="chart-container"></div>
+    <div class="callout blue" style="margin-top:-8px">
+      <div class="callout-title">📌 2025Q3 最新：毛利率提升至 40.08%（营业成本率降至59.92%）</div>
+      受益于高附加值产品占比提升，2025前三季度毛利率达到<strong>40.08%</strong>，较2024年全年（36.07%）再提升4.01个百分点，净利率17.57%。费用率明细暂无季度拆分，全年数据待2025年报披露。
+    </div>
+
+    <h3>核心利润分析</h3>
+    <p>国睿科技过去五年盈利质量持续提升，毛利率从2020年的24.83%提升至2024年的36.07%，五年累计提升11.24个百分点。2025Q3进一步提升至<strong>40.08%</strong>，显示出产品结构高端化趋势仍在延续，单位价值量持续提升。这与公司聚焦高附加值军工电子产品战略高度契合。</p>
+    <p>营收呈现"下降→回升"的V型走势：2020年36.06亿为五年峰值，2021-2022年因军品交付节奏问题有所下滑，2023-2024年重回增长通道，2024年34.00亿创历史次高。净利润则保持单边上行，由2020年4.66亿增至2024年6.30亿，CAGR约7.8%。2025年前三季度净利润3.73亿，同比约增6.7%，全年利润有望续创新高。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>指标</th>
+          <th>2020年报</th>
+          <th>2021年报</th>
+          <th>2022年报</th>
+          <th>2023年报</th>
+          <th>2024年报</th>
+          <th style="background:#fffbeb">2025Q3（累计）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>营收（亿元）</td><td>36.06</td><td>34.32</td><td>32.25</td><td>32.82</td><td>34.00</td><td style="background:#fffbeb">21.18⁽²⁾</td></tr>
+        <tr><td>营业利润（亿元）</td><td>5.78</td><td>5.99</td><td>6.24</td><td>6.85</td><td>7.21</td><td style="background:#fffbeb">—</td></tr>
+        <tr><td>归母净利润（亿元）</td><td>4.66</td><td>5.26</td><td>5.49</td><td>5.99</td><td>6.30</td><td style="background:#fffbeb">3.73⁽²⁾</td></tr>
+        <tr><td>毛利率</td><td>24.83%</td><td>26.97%</td><td>30.24%</td><td>34.71%</td><td>36.07%</td><td style="background:#fffbeb"><strong style="color:#22c55e">40.08% ↑</strong></td></tr>
+        <tr><td>净利率</td><td>12.92%</td><td>15.42%</td><td>17.15%</td><td>18.42%</td><td>18.62%</td><td style="background:#fffbeb">17.57%</td></tr>
+        <tr><td>销售费用率</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2.10%</td><td style="background:#fffbeb">—</td></tr>
+        <tr><td>管理费用率</td><td>-</td><td>-</td><td>-</td><td>-</td><td>3.77%</td><td style="background:#fffbeb">—</td></tr>
+        <tr><td>研发费用率</td><td>-</td><td>-</td><td>-</td><td>-</td><td>6.28%</td><td style="background:#fffbeb">—</td></tr>
+        <tr><td>财务费用率</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-0.70%</td><td style="background:#fffbeb">—</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:#888;margin-top:-12px">⁽²⁾ 2025Q3为2025年1—9月累计数，非全年数据，不可与年报直接同比。</p>
+
+    <div class="callout green">
+      <div class="callout-title">✅ 毛利率持续改善且加速，2025Q3突破40%创六年新高</div>
+      毛利率从24.83%→36.07%连续五年提升后，2025Q3进一步跃升至<strong>40.08%</strong>，是六年来最高点，说明高附加值产品占比持续提升，盈利质量改善趋势未中断。研发投入率保持6%以上，体现公司在军工电子领域的技术壁垒持续加深。财务费用为负值，利息收入超过借款成本，现金管理效率良好。
+    </div>
+
+    <div class="callout yellow">
+      <div class="callout-title">⚠️ 营收增速落后于应收增速，收入含金量下降问题延续至2025年</div>
+      2024年营收增速仅3.6%，但应收账款增速高达45.4%，两者增速差超过40个百分点（远超1.5倍警戒线）。2025Q3前三季度营收21.18亿，应收账款较2024年末再增3.4亿至45.42亿，回款改善有限，收入含金量问题仍在延续。2025年全年年报是判断该问题是否改善的关键节点。
+    </div>
+  </div>
+
+  <!-- ===== 三、现金流量表分析 ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <div class="section-title">现金流量表分析</div>
+    </div>
+
+    <h3>三大现金流趋势</h3>
+    <div id="chart-cashflow-trend" class="chart-container"></div>
+
+    <h3>现金流质量检测</h3>
+    <div id="chart-cashflow-radar" class="chart-container"></div>
+
+    <h3>现金流画像分析</h3>
+    <p>根据三大现金流正负值分类框架，国睿科技2024年画像为：<span class="portrait-badge caution">⚠️ 蛮牛型</span>（经营-、投资+、筹资-）。</p>
+    <p>这是一个信号性变化——2020-2023年公司一直维持经营现金流为正（除2021年偏低），2024年经营现金流突然转负，根源在于应收账款大幅增加（赊账销售增加）导致回款不足。投资现金流微正（+0.12亿）说明当年无重大资本支出，资产变现略多于投入。</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>指标（亿元）</th>
+          <th>2020年报</th>
+          <th>2021年报</th>
+          <th>2022年报</th>
+          <th>2023年报</th>
+          <th>2024年报</th>
+          <th style="background:#fffbeb">2025Q3（累计）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>经营现金流净额</td><td>3.84</td><td>0.27</td><td>4.41</td><td>4.14</td><td><strong style="color:#ef4444">-3.05</strong></td><td style="background:#fffbeb"><strong style="color:#ef4444">-0.42</strong></td></tr>
+        <tr><td>投资现金流净额</td><td>-4.93</td><td>1.38</td><td>-2.01</td><td>1.25</td><td>0.12</td><td style="background:#fffbeb">-0.11</td></tr>
+        <tr><td>筹资现金流净额</td><td>4.42</td><td>0.00</td><td>-2.97</td><td>-0.76</td><td>-1.38</td><td style="background:#fffbeb"><strong style="color:#22c55e">+4.32</strong></td></tr>
+        <tr><td>销售收现（亿元）</td><td>27.28</td><td>31.41</td><td>22.68</td><td>29.85</td><td>24.82</td><td style="background:#fffbeb">19.60</td></tr>
+        <tr><td>收现比（含税应≥1.13）</td><td>0.76</td><td>0.92</td><td>0.70</td><td>0.91</td><td>0.73</td><td style="background:#fffbeb">0.93</td></tr>
+        <tr><td>经营CF/净利润</td><td>0.82</td><td>0.05</td><td>0.80</td><td>0.69</td><td><strong style="color:#ef4444">-0.48</strong></td><td style="background:#fffbeb"><strong style="color:#ef4444">-0.11</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout yellow">
+      <div class="callout-title">⚠️ 2025Q3 最新进展：应收账款未见好转，经营现金流仍为负</div>
+      截至2025年9月30日（前三季度）：应收账款从42.02亿进一步升至<strong>45.42亿</strong>（+3.4亿），货币资金回升至15.08亿（好转）。经营现金流前三季度累计-0.42亿，经营CF/净利润=-0.11，相比2024年全年（-0.48）已明显改善，但仍未回到正值。前三季度筹资活动流入4.32亿（主要为新增短期借款），显示短期融资补充了运营现金缺口。<strong>2025全年年报（2025年末）是关键观察时间节点。</strong>
+    </div>
+
+    <h3>5项质量检测结果</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>检测项</th><th>标准</th>
+          <th>2024年报 值</th><th>结果</th>
+          <th style="background:#fffbeb">2025Q3（累计）</th><th style="background:#fffbeb">结果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>① 经营CF/净利润 &gt; 1</td><td>&gt;1</td>
+          <td>-0.48</td><td style="color:#ef4444">❌ FAIL</td>
+          <td style="background:#fffbeb">-0.11</td><td style="background:#fffbeb;color:#f59e0b">⚠️ FAIL↑改善</td>
+        </tr>
+        <tr>
+          <td>② 销售收现/营收 &gt; 1.13（含税）</td><td>&gt;1.13</td>
+          <td>0.73</td><td style="color:#ef4444">❌ FAIL</td>
+          <td style="background:#fffbeb">0.93</td><td style="background:#fffbeb;color:#f59e0b">⚠️ FAIL↑改善</td>
+        </tr>
+        <tr>
+          <td>③ 经营CF &gt; 折旧摊销</td><td>正覆盖</td>
+          <td>折旧约0.6亿, CF=-3.05亿</td><td style="color:#ef4444">❌ FAIL</td>
+          <td style="background:#fffbeb">折旧≈0.5亿, CF=-0.42亿</td><td style="background:#fffbeb;color:#f59e0b">⚠️ FAIL↑改善</td>
+        </tr>
+        <tr>
+          <td>④ 经营CF &gt; 资本支出</td><td>正FCF</td>
+          <td>资本支出≈0，CF为负</td><td style="color:#ef4444">❌ FAIL</td>
+          <td style="background:#fffbeb">资本支出≈0，CF=-0.42亿</td><td style="background:#fffbeb;color:#f59e0b">⚠️ FAIL↑改善</td>
+        </tr>
+        <tr>
+          <td>⑤ 自由现金流(FCF) &gt; 0</td><td>&gt;0</td>
+          <td>-3.05亿</td><td style="color:#ef4444">❌ FAIL</td>
+          <td style="background:#fffbeb">-0.42亿</td><td style="background:#fffbeb;color:#f59e0b">⚠️ FAIL↑改善</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout red">
+      <div class="callout-title">🚨 2024年现金流5项全部未通过，是全报告最核心风险信号</div>
+      经营现金流由正转负（-3.05亿），销售收现比仅0.73，远低于健康标准（1.13+）。核心原因：2024年应收账款激增13.12亿元（净增量），导致已确认的账面收入无法转化为实际现金流入。这是军工电子类公司的典型下游（军方/央企）回款节奏问题，历史上有周期性特征，需关注2025年是否回款改善。
+    </div>
+
+    <div class="callout blue">
+      <div class="callout-title">📌 历史现金流质量参考</div>
+      2022年和2023年经营现金流均在4亿以上，5项检测中多项通过，说明现金流问题并非公司系统性缺陷，而是2024年单年的阶段性异常，与军品交付节奏和回款周期高度相关。
+    </div>
+  </div>
+
+  <!-- ===== 四、综合分析 ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <div class="section-title">综合分析</div>
+    </div>
+
+    <h3>四大能力评估</h3>
+    <div id="chart-four-forces" class="chart-container"></div>
+
+    <h3>杜邦分析</h3>
+    <div id="chart-dupont" class="chart-container"></div>
+
+    <h3>四大能力评分</h3>
+    <div class="callout blue" style="margin-bottom:16px;font-size:13px;">
+      <strong>说明：</strong>评分基于2024年报（完整财年），括号内标注2025Q3最新值供参考（前三季累计，未年化）。
+    </div>
+    <div class="score-grid">
+      <div>
+        <div class="score-item"><span class="dim">📈 盈利能力</span><span class="pts">4/5</span></div>
+        <div class="score-item"><span class="dim">ROE（2024: 10.90%）</span><span class="pts">良好</span></div>
+        <div class="score-item"><span class="dim">→ 2025Q3: 5.95%（未年化）</span><span class="pts">约7.9%年化</span></div>
+        <div class="score-item"><span class="dim">毛利率（2024: 36.07%）</span><span class="pts">持续提升</span></div>
+        <div class="score-item"><span class="dim">→ 2025Q3: 40.08%</span><span class="pts" style="color:#22c55e">创新高</span></div>
+      </div>
+      <div>
+        <div class="score-item"><span class="dim">🚀 成长能力</span><span class="pts">3/5</span></div>
+        <div class="score-item"><span class="dim">营收增速（2024: +3.6%）</span><span class="pts">偏低</span></div>
+        <div class="score-item"><span class="dim">净利润增速（2024: +5.1%）</span><span class="pts">稳健</span></div>
+        <div class="score-item"><span class="dim">→ 2025Q3净利: 3.73亿</span><span class="pts">同比约+6.7%</span></div>
+        <div class="score-item"><span class="dim">5年CAGR</span><span class="pts">净利润约7.8%</span></div>
+      </div>
+      <div>
+        <div class="score-item"><span class="dim">⚙️ 营运能力</span><span class="pts">2/5</span></div>
+        <div class="score-item"><span class="dim">资产周转率（2024: 0.37）</span><span class="pts">偏低且下降</span></div>
+        <div class="score-item"><span class="dim">→ 2025Q3: 0.22（未年化）</span><span class="pts" style="color:#ef4444">继续恶化</span></div>
+        <div class="score-item"><span class="dim">应收账款（2025Q3: 45.42亿）</span><span class="pts" style="color:#ef4444">续升</span></div>
+        <div class="score-item"><span class="dim">存货周转</span><span class="pts">基本稳定</span></div>
+      </div>
+      <div>
+        <div class="score-item"><span class="dim">🛡️ 偿债能力</span><span class="pts">5/5</span></div>
+        <div class="score-item"><span class="dim">资产负债率（2024: 35.1%）</span><span class="pts">低风险</span></div>
+        <div class="score-item"><span class="dim">→ 2025Q3: 33.6%</span><span class="pts" style="color:#22c55e">继续改善</span></div>
+        <div class="score-item"><span class="dim">货币资金（2025Q3: 15.08亿）</span><span class="pts">回升</span></div>
+        <div class="score-item"><span class="dim">货币/有息负债（2025Q3: 7.4x）</span><span class="pts">安全充裕</span></div>
+      </div>
+    </div>
+
+    <div class="callout blue">
+      <div class="callout-title">📊 杜邦分解洞察：净利率驱动型，周转率是持续短板</div>
+      <strong>ROE = 净利率 × 资产周转率 × 权益乘数</strong>
+      <br><br>
+      2024年报：10.90% ≈ 18.62% × 0.37 × 1.54
+      <br>2025Q3（未年化）：5.95% ≈ 17.57% × 0.22 × 1.34
+      <br>2020年报：15.24% ≈ 12.92% × 0.67 × 1.80
+      <br><br>
+      五年间ROE从15.24%下降至10.90%，驱动变化清晰：资产周转率从0.67→0.37→0.22（持续下降）是最主要拖累因素，核心原因是应收账款持续积累（2025Q3已达45.42亿）。净利率从12.92%→18.62%→17.57%形成正向对冲。杠杆从1.80→1.54→1.34持续降杠杆，财务更稳健，偿债风险低。
+    </div>
+
+    <h3>同业对比</h3>
+    <div id="chart-peer-compare" class="chart-container tall"></div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>公司</th>
+          <th>股票代码</th>
+          <th>ROE</th>
+          <th>毛利率</th>
+          <th>净利率</th>
+          <th>资产负债率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#eff6ff;font-weight:600"><td>国睿科技</td><td>600562.SH</td><td>10.90%</td><td>36.07%</td><td>18.62%</td><td>35.12%</td></tr>
+        <tr><td>中兴通讯</td><td>000063.SZ</td><td>11.97%</td><td>37.91%</td><td>6.89%</td><td>-</td></tr>
+        <tr><td>海格通信</td><td>002465.SZ</td><td>0.42%</td><td>28.79%</td><td>2.17%</td><td>-</td></tr>
+        <tr><td>中天科技</td><td>600522.SH</td><td>8.33%</td><td>14.39%</td><td>5.89%</td><td>-</td></tr>
+        <tr><td>广电运通</td><td>002152.SZ</td><td>7.48%</td><td>31.11%</td><td>10.65%</td><td>-</td></tr>
+        <tr><td>海能达</td><td>002583.SZ</td><td>-84.40%</td><td>48.27%</td><td>-57.03%</td><td>-</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout green">
+      <div class="callout-title">✅ 同业对比：国睿科技净利率显著领先</div>
+      在通信设备可比公司中，国睿科技以18.62%的净利率位居前列，远超中兴通讯（6.89%）、海格通信（2.17%）等同行。这主要得益于公司聚焦高附加值军工雷达和电子系统产品，避免了普通通信设备的价格战压力。ROE（10.90%）与中兴通讯（11.97%）接近，但净利率质量明显更优。
+    </div>
+  </div>
+
+  <!-- ===== 五、估值与分红 ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <div class="section-title">估值与分红</div>
+    </div>
+
+    <h3>PE 估值带（5年）</h3>
+    <div id="chart-pe-band" class="chart-container"></div>
+
+    <h3>分红历史</h3>
+    <div id="chart-dividend" class="chart-container"></div>
+
+    <h3>估值分析</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>估值指标</th>
+          <th>最小值</th>
+          <th>中位数</th>
+          <th>当前值</th>
+          <th>最大值</th>
+          <th>当前位置（百分位）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>PE（TTM）</td><td>25.98x</td><td>34.96x</td><td>56.61x</td><td>67.45x</td><td>85.7%分位</td></tr>
+        <tr><td>PB</td><td>2.99x</td><td>4.25x</td><td>5.62x</td><td>6.93x</td><td>90.5%分位</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout yellow">
+      <div class="callout-title">⚠️ 当前估值处于历史高位区间</div>
+      PE当前56.6倍处于5年85.7%百分位，PB 5.62倍处于90.5%百分位，均明显高于历史中位数。考虑到2024年经营现金流转负的短期利空，以及军工板块的防御性溢价，当前估值需要基本面的进一步验证（尤其是2025年应收账款回款情况）。
+    </div>
+
+    <h3>分红记录</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>报告期</th>
+          <th>每股分红（元）</th>
+          <th>类型</th>
+          <th>状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>2025Q3（中期）</td><td>0.097</td><td>现金分红</td><td>已实施</td></tr>
+        <tr><td>2024年报</td><td>0.157</td><td>现金分红</td><td>已实施</td></tr>
+        <tr><td>2023年报</td><td>0.145</td><td>现金分红</td><td>已实施</td></tr>
+        <tr><td>2022年报</td><td>0.133</td><td>现金分红</td><td>已实施</td></tr>
+        <tr><td>2021年报</td><td>0.128</td><td>现金分红</td><td>已实施</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout green">
+      <div class="callout-title">✅ 分红稳定增长，彰显股东回报意愿</div>
+      每股分红从2021年的0.128元逐步提升至2024年的0.157元，连续4年正增长，且2025年三季报已进行中期分红（0.097元），显示公司对盈利持续性有信心。分红政策稳健，是质地良好企业的重要佐证。
+    </div>
+  </div>
+
+  <!-- ===== 六、红旗扫描 ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <div class="section-title">12项自动化风控检测</div>
+    </div>
+
+    <p>基于12项自动化风控检测框架，对国睿科技2024年报进行系统性扫描，并结合2025Q3最新数据补充动态跟踪：</p>
+
+    <ul class="flag-list">
+      <li class="pass">
+        <span class="icon">✅</span>
+        <span><strong>#1 货币资金异常（CRITICAL）</strong> — PASS：2024年末货币资金11.30亿，与利息收入匹配，无异常。<strong>2025Q3回升至15.08亿</strong>，短期借款2.05亿，现金/有息负债=<strong>7.4x</strong>（改善自2024年末6.5x），远超警戒线（≥1），货币资金安全性充裕。</span>
+      </li>
+      <li class="fail">
+        <span class="icon">❌</span>
+        <span><strong>#2 应收账款激增（HIGH）</strong> — FAIL（持续）：2024年应收账款+45.4%至42.02亿（营收仅增3.6%），应收/营收=124%，大幅超过警戒线（70%）。<strong>2025Q3进一步升至45.42亿</strong>（较年初再增3.4亿），回款改善尚未体现，应收账款持续积累风险延续至2025年，需待年报数据观察全年回款情况。</span>
+      </li>
+      <li class="pass">
+        <span class="icon">✅</span>
+        <span><strong>#3 存货异常膨胀（HIGH）</strong> — PASS：2024年末存货从20.79亿下降至17.80亿（-14.4%）。<strong>2025Q3存货回升至20.99亿</strong>，属于正常生产备货节奏，与在手订单交付周期吻合，无积压风险。</span>
+      </li>
+      <li class="pass">
+        <span class="icon">✅</span>
+        <span><strong>#4 其他应收款巨额（HIGH）</strong> — PASS：其他应收款约0.30亿，占总资产0.32%，不存在资金占用或隐蔽转移问题。2025Q3无明显变化。</span>
+      </li>
+      <li class="pass">
+        <span class="icon">✅</span>
+        <span><strong>#5 在建工程异常（MEDIUM）</strong> — PASS：在建工程微小，无异常长期滞留在建工程项目，不存在通过在建工程虚增资产的风险。</span>
+      </li>
+      <li class="pass">
+        <span class="icon">✅</span>
+        <span><strong>#6 商誉减值风险（HIGH）</strong> — PASS：商誉为零，公司以内生增长为主，无并购商誉减值风险。</span>
+      </li>
+      <li class="pass">
+        <span class="icon">✅</span>
+        <span><strong>#7 毛利率异常波动（MEDIUM）</strong> — PASS：毛利率五年单边上行（24.8%→36.1%），<strong>2025Q3进一步提升至40.08%</strong>，趋势健康连续，无异常跳升或造假式波动，符合产品结构持续升级逻辑。</span>
+      </li>
+      <li class="fail">
+        <span class="icon">❌</span>
+        <span><strong>#8 经营现金流与利润背离（CRITICAL）</strong> — FAIL（改善中）：2024年净利润+6.30亿但经营现金流-3.05亿，CF/利润=-0.48，严重背离。<strong>2025Q3前三季度：净利润3.73亿，经营CF=-0.42亿，CF/利润=-0.11</strong>，背离幅度已从-0.48显著收窄，但仍未转正。2025年全年能否恢复正值是核心观察点。</span>
+      </li>
+      <li class="pass">
+        <span class="icon">✅</span>
+        <span><strong>#9 营业外收入占比（MEDIUM）</strong> — PASS：营业外收入占利润总额比例极低，主营业务贡献度 > 99%，无依赖非经常性损益的问题。</span>
+      </li>
+      <li class="pass">
+        <span class="icon">✅</span>
+        <span><strong>#10 费用率异常下降（MEDIUM）</strong> — PASS：三费率（销售+管理+研发）合计约12.1%，与历史年份基本持平，无异常压缩费用虚增利润的迹象。</span>
+      </li>
+      <li class="warn">
+        <span class="icon">⚠️</span>
+        <span><strong>#11 关联交易占比（HIGH）</strong> — WARN：国睿科技为中国电科集团旗下上市公司，与集团内部存在关联交易，具体金额需年报文本详细核查（本次未执行年报PDF文本提取），标记为需关注。</span>
+      </li>
+      <li class="pass">
+        <span class="icon">✅</span>
+        <span><strong>#12 审计意见（CRITICAL）</strong> — PASS：连续5年（2020-2024）审计意见均为"标准无保留意见"，审计机构为大华会计师事务所，审计质量可信。</span>
+      </li>
+    </ul>
+
+    <div class="callout yellow">
+      <div class="callout-title">⚡ 风险评级：中等（#8背离已改善，核心风险仍在应收账款）</div>
+      12项检测中：PASS 9项（75%），WARN 1项，FAIL 2项（#2应收激增 + #8现金流背离）。两项FAIL均指向同一根源：应收账款持续积累导致利润与现金流背离。好消息是2025Q3的CF/利润从-0.48收窄至-0.11，背离在改善；坏消息是应收账款未减反增至45.42亿。<strong>2025年全年年报（2026年4月）是最终定性的关键时间节点。</strong>
+    </div>
+  </div>
+
+  <!-- ===== 七、投资总结 ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <div class="section-title">投资总结</div>
+    </div>
+
+    <div class="two-col">
+      <div class="highlight-box">
+        <div class="hb-title">✅ 核心竞争优势</div>
+        <ul>
+          <li>军工电子领域稀缺标的，中国电科集团旗下上市公司，具有技术壁垒与资质壁垒</li>
+          <li>毛利率6年持续提升（24.8%→36.1%→<strong>40.1%</strong>，2025Q3），产品结构升级可量化</li>
+          <li>净利率18.62%（2024年报）在同行中显著领先，2025Q3维持17.57%</li>
+          <li>资产负债率持续改善（44.4%→35.1%→<strong>33.6%</strong>，2025Q3），有息负债低，财务安全边际充足</li>
+          <li>货币资金充裕（2025Q3：15.08亿），对有息负债覆盖7.4倍</li>
+          <li>分红持续增长5年无中断，2025年已实施中期分红（0.097元/股）</li>
+          <li>无商誉减值风险，无复杂并购整合风险</li>
+        </ul>
+      </div>
+      <div class="highlight-box">
+        <div class="hb-title">⚠️ 主要风险与关注点</div>
+        <ul>
+          <li><strong>应收账款持续积累：42.02亿（2024年报）→45.42亿（2025Q3）</strong>，回款改善尚未出现，是当前最核心风险</li>
+          <li>经营现金流2024年转负（-3.05亿）；2025Q3前三季仍为-0.42亿，虽有改善但未转正</li>
+          <li>资产周转率持续下滑（0.67→0.37→<strong>0.22未年化</strong>，2025Q3），营运效率仍在恶化</li>
+          <li>当前PE/PB估值处于历史高位（85-90%分位），安全边际偏低</li>
+          <li>营收增速偏低（2024: 3.6%），军品交付节奏受下游采购计划影响较大</li>
+          <li>关联交易情况需进一步核查（电科集团关联方交易）</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>关键观察指标（2025年全年追踪重点）</h3>
+    <div class="callout blue">
+      <div class="callout-title">📋 投资者应重点追踪以下指标</div>
+      <ol style="padding-left:20px; font-size:14px; line-height:2;">
+        <li><strong>应收账款回收进度</strong>：2025Q3应收45.42亿，<u>2025年全年年报应收是否回落至40亿以下</u>，是判断2024年问题是否为阶段性的核心指标</li>
+        <li><strong>经营现金流恢复</strong>：2025Q3前三季CF=-0.42亿（改善自-3.05亿全年），2025全年能否转正，CF/净利润能否回到0.7以上</li>
+        <li><strong>销售收现比改善</strong>：2025Q3前三季收现比0.93（2024全年0.73），能否全年维持0.9以上</li>
+        <li><strong>毛利率持续性</strong>：2025Q3已达40.08%，需验证是否可持续，还是由特殊产品组合驱动</li>
+        <li><strong>营收增速恢复</strong>：前三季21.18亿，全年能否超越2024年的34亿并实现10%以上增速</li>
+      </ol>
+    </div>
+
+    <div class="callout yellow">
+      <div class="callout-title">📊 综合评估（截至2025Q3）：毛利改善是亮点，应收账款是核心悬念</div>
+      国睿科技是盈利能力强、财务杠杆低、分红稳定的军工电子核心标的。<strong>积极信号</strong>：2025Q3毛利率突破40%创新高，货币资金回升至15.08亿，经营现金流背离幅度明显收窄（CF/利润从-0.48改善至-0.11），偿债能力持续向好。<strong>核心悬念</strong>：应收账款不降反升至45.42亿，全年回款能力仍待验证；资产周转率持续下滑，营运效率改善滞后。当前估值处于历史高位（PE约85%分位），<strong>建议等待2025年全年年报（预计2026年4月披露）确认应收账款是否实质性回收后，再做中长期配置决策</strong>。
+    </div>
+  </div>
+
+  <!-- ===== 页脚 ===== -->
+  <div class="footer">
+    <p>本报告基于 12 项自动化风控检测框架系统生成，仅供参考，不构成投资建议。</p>
+    <p>数据来源：公开市场数据 | 生成时间：2026年3月4日</p>
+  </div>
+
+</div>
+
+<script>
+var colors = {
+  primary: '#1a1a2e',
+  blue: '#3b82f6',
+  green: '#22c55e',
+  red: '#ef4444',
+  orange: '#f59e0b',
+  purple: '#8b5cf6',
+  gray: '#6b7280',
+  lightBlue: '#93c5fd',
+  lightGreen: '#86efac',
+  lightRed: '#fca5a5',
+};
+
+var chartIds = [
+  'chart-asset-structure','chart-cash-vs-debt','chart-revenue-profit',
+  'chart-cost-structure','chart-cashflow-trend','chart-cashflow-radar',
+  'chart-four-forces','chart-dupont','chart-peer-compare','chart-pe-band','chart-dividend'
+];
+var charts = {};
+chartIds.forEach(function(id) {
+  var dom = document.getElementById(id);
+  if (dom) charts[id] = echarts.init(dom);
+});
+window.addEventListener('resize', function() {
+  Object.values(charts).forEach(function(c) { c.resize(); });
+});
+
+/*__CHART_OPTIONS_START__*/
+
+// Chart 1: 资产结构堆叠柱状图
+charts['chart-asset-structure'].setOption({
+  title: { text: '资产结构变化趋势（亿元）', left: 'center', textStyle: { fontSize: 14, color: '#1a1a2e' } },
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  legend: { bottom: 0, data: ['货币资金', '应收账款', '存货', '其他流动资产', '固定资产', '其他非流动资产'] },
+  grid: { left: '3%', right: '4%', bottom: '10%', top: '12%', containLabel: true },
+  xAxis: { type: 'category', data: ['2020年报','2021年报','2022年报','2023年报','2024年报','2025Q3↗'] },
+  yAxis: { type: 'value', name: '亿元' },
+  series: [
+    { name: '货币资金', type: 'bar', stack: '总量', data: [10.71,11.70,10.95,15.64,11.30,15.08], itemStyle: { color: '#3b82f6' } },
+    { name: '应收账款', type: 'bar', stack: '总量', data: [28.01,20.08,24.87,28.90,42.02,45.42], itemStyle: { color: '#ef4444' } },
+    { name: '存货', type: 'bar', stack: '总量', data: [20.86,21.78,20.03,20.79,17.80,null], itemStyle: { color: '#f59e0b' } },
+    { name: '其他流动资产', type: 'bar', stack: '总量', data: [6.98,7.18,14.61,13.13,10.21,null], itemStyle: { color: '#93c5fd' } },
+    { name: '固定资产', type: 'bar', stack: '总量', data: [2.17,2.12,2.08,2.15,2.02,null], itemStyle: { color: '#6b7280' } },
+    { name: '其他非流动资产', type: 'bar', stack: '总量', data: [9.00,9.27,9.33,9.11,9.63,null], itemStyle: { color: '#d1d5db' } }
+  ]
+});
+
+// Chart 2: 货币资金 vs 有息负债
+charts['chart-cash-vs-debt'].setOption({
+  title: { text: '货币资金 vs 有息负债（亿元）', left: 'center', textStyle: { fontSize: 14, color: '#1a1a2e' } },
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  legend: { bottom: 0, data: ['货币资金','短期借款','流动负债'] },
+  grid: { left: '3%', right: '4%', bottom: '10%', top: '12%', containLabel: true },
+  xAxis: { type: 'category', data: ['2020年报','2021年报','2022年报','2023年报','2024年报','2025Q3↗'] },
+  yAxis: { type: 'value', name: '亿元' },
+  series: [
+    { name: '货币资金', type: 'bar', data: [10.71,11.70,10.95,15.64,11.30,15.08], itemStyle: { color: '#22c55e' } },
+    { name: '短期借款', type: 'bar', data: [0,1.50,0.23,1.29,1.75,2.05], itemStyle: { color: '#ef4444' } },
+    { name: '流动负债', type: 'line', data: [34.14,24.33,29.79,33.50,31.83,null], lineStyle: { color: '#f59e0b', width: 2 }, symbol: 'circle', symbolSize: 6, itemStyle: { color: '#f59e0b' } }
+  ]
+});
+
+// Chart 3: 营收与利润趋势
+charts['chart-revenue-profit'].setOption({
+  title: { text: '营收与利润趋势（亿元）', left: 'center', textStyle: { fontSize: 14, color: '#1a1a2e' } },
+  tooltip: { trigger: 'axis' },
+  legend: { bottom: 0, data: ['营收','营业利润','归母净利润'] },
+  grid: { left: '3%', right: '4%', bottom: '10%', top: '12%', containLabel: true },
+  xAxis: { type: 'category', data: ['2020年报','2021年报','2022年报','2023年报','2024年报','2025Q3↗'] },
+  yAxis: [
+    { type: 'value', name: '亿元', position: 'left' }
+  ],
+  series: [
+    { name: '营收', type: 'bar', data: [36.06,34.32,32.25,32.82,34.00,21.18],
+      itemStyle: { color: function(p){ return p.dataIndex===5?'rgba(147,197,253,0.6)':'#93c5fd'; } }
+    },
+    { name: '营业利润', type: 'line', data: [5.78,5.99,6.24,6.85,7.21,null], lineStyle: { color: '#3b82f6', width: 2 }, symbol: 'circle', symbolSize: 6, itemStyle: { color: '#3b82f6' } },
+    { name: '归母净利润', type: 'line', data: [4.66,5.26,5.49,5.99,6.30,3.73],
+      lineStyle: { color: '#22c55e', width: 2 }, symbol: function(v,p){ return p.dataIndex===5?'emptyCircle':'circle'; }, symbolSize: 6, itemStyle: { color: '#22c55e' }
+    }
+  ]
+});
+
+// Chart 4: 成本结构百分比堆叠
+charts['chart-cost-structure'].setOption({
+  title: { text: '成本结构占营收比（%）', left: 'center', textStyle: { fontSize: 14, color: '#1a1a2e' } },
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: function(params) {
+    var s = params[0].name + '<br/>';
+    params.forEach(function(p) { s += p.marker + p.seriesName + ': ' + p.value + '%<br/>'; });
+    return s;
+  }},
+  legend: { bottom: 0, data: ['营业成本','销售费用','管理费用','研发费用','财务费用（负）','净利润'] },
+  grid: { left: '3%', right: '4%', bottom: '10%', top: '12%', containLabel: true },
+  xAxis: { type: 'category', data: ['2020年报','2021年报','2022年报','2023年报','2024年报'] },
+  yAxis: { type: 'value', max: 100, name: '%' },
+  series: [
+    { name: '营业成本', type: 'bar', stack: '结构', data: [75.17,73.03,69.76,65.29,63.93], itemStyle: { color: '#6b7280' } },
+    { name: '销售费用', type: 'bar', stack: '结构', data: [2.1,2.1,2.1,2.1,2.10], itemStyle: { color: '#f59e0b' } },
+    { name: '管理费用', type: 'bar', stack: '结构', data: [4.2,4.0,3.8,3.9,3.77], itemStyle: { color: '#8b5cf6' } },
+    { name: '研发费用', type: 'bar', stack: '结构', data: [5.5,5.8,6.2,6.3,6.28], itemStyle: { color: '#3b82f6' } },
+    { name: '财务费用（负）', type: 'bar', stack: '结构', data: [0.0,0.0,0.0,0.0,0.0], itemStyle: { color: '#e5e7eb' } },
+    { name: '净利润', type: 'bar', stack: '结构', data: [12.92,15.42,17.15,18.42,18.62], itemStyle: { color: '#22c55e' } }
+  ]
+});
+
+/// Chart 5: 三大现金流趋势（固定颜色，图例与柱子一致；正值实色，负值加斜线纹理label标注）
+charts['chart-cashflow-trend'].setOption({
+  title: { text: '三大现金流趋势（亿元）', left: 'center', textStyle: { fontSize: 14, color: '#1a1a2e' } },
+  tooltip: {
+    trigger: 'axis', axisPointer: { type: 'shadow' },
+    formatter: function(params) {
+      var s = params[0].name + '<br/>';
+      params.forEach(function(p) {
+        if (p.value === null || p.value === undefined) return;
+        var arrow = p.value >= 0 ? '▲' : '▼';
+        s += p.marker + p.seriesName + ': ' + arrow + ' ' + p.value + ' 亿<br/>';
+      });
+      return s;
+    }
+  },
+  legend: { bottom: 0, data: ['经营现金流（净额）','投资现金流（净额）','筹资现金流（净额）'] },
+  grid: { left: '3%', right: '4%', bottom: '12%', top: '12%', containLabel: true },
+  xAxis: { type: 'category', data: ['2020年报','2021年报','2022年报','2023年报','2024年报','2025Q3↗'] },
+  yAxis: { type: 'value', name: '亿元',
+    axisLabel: { formatter: function(v) { return v >= 0 ? '+' + v : v; } }
+  },
+  series: [
+    {
+      name: '经营现金流（净额）', type: 'bar', barGap: '5%',
+      data: [3.84, 0.27, 4.41, 4.14, -3.05, -0.42],
+      itemStyle: {
+        color: function(params) {
+          return params.value >= 0 ? '#22c55e' : 'rgba(34,197,94,0.25)';
+        },
+        borderColor: '#22c55e', borderWidth: 1
+      },
+    },
+    {
+      name: '投资现金流（净额）', type: 'bar', barGap: '5%',
+      data: [-4.93, 1.38, -2.01, 1.25, 0.12, -0.11],
+      itemStyle: {
+        color: function(params) {
+          return params.value >= 0 ? '#3b82f6' : 'rgba(59,130,246,0.25)';
+        },
+        borderColor: '#3b82f6', borderWidth: 1
+      }
+    },
+    {
+      name: '筹资现金流（净额）', type: 'bar', barGap: '5%',
+      data: [4.42, 0.00, -2.97, -0.76, -1.38, 4.32],
+      itemStyle: {
+        color: function(params) {
+          return params.value >= 0 ? '#f59e0b' : 'rgba(245,158,11,0.25)';
+        },
+        borderColor: '#f59e0b', borderWidth: 1
+      }
+    }
+  ]
+});
+
+// Chart 6: 现金流质量雷达
+charts['chart-cashflow-radar'].setOption({
+  title: { text: '现金流质量检测评分（5分制）', left: 'center', textStyle: { fontSize: 14, color: '#1a1a2e' } },
+  tooltip: {},
+  legend: { bottom: 0, data: ['国睿科技2024','国睿科技2023','国睿科技2025Q3'] },
+  radar: {
+    indicator: [
+      { name: 'CF/净利润>1', max: 5 },
+      { name: '收现比>1.13', max: 5 },
+      { name: 'CF>折旧摊销', max: 5 },
+      { name: 'CF>资本支出', max: 5 },
+      { name: 'FCF>0', max: 5 }
+    ],
+    center: ['50%', '50%'], radius: '60%'
+  },
+  series: [
+    {
+      name: '质量评分',
+      type: 'radar',
+      data: [
+        { value: [1,1,1,1,1], name: '国睿科技2024', areaStyle: { color: 'rgba(239,68,68,0.2)' }, lineStyle: { color: '#ef4444' }, itemStyle: { color: '#ef4444' } },
+        { value: [3,4,4,4,4], name: '国睿科技2023', areaStyle: { color: 'rgba(34,197,94,0.2)' }, lineStyle: { color: '#22c55e' }, itemStyle: { color: '#22c55e' } },
+        { value: [2,2,2,2,2], name: '国睿科技2025Q3', areaStyle: { color: 'rgba(245,158,11,0.2)' }, lineStyle: { color: '#f59e0b', type: 'dashed' }, itemStyle: { color: '#f59e0b' } }
+      ]
+    }
+  ]
+});
+
+// Chart 7: 四大能力雷达
+charts['chart-four-forces'].setOption({
+  title: { text: '四大能力评估（满分5分）', left: 'center', textStyle: { fontSize: 14, color: '#1a1a2e' } },
+  tooltip: {},
+  legend: { bottom: 0, data: ['国睿科技','行业均值参考'] },
+  radar: {
+    indicator: [
+      { name: '盈利能力', max: 5 },
+      { name: '成长能力', max: 5 },
+      { name: '营运能力', max: 5 },
+      { name: '偿债能力', max: 5 }
+    ],
+    center: ['50%', '50%'], radius: '60%'
+  },
+  series: [
+    {
+      name: '能力评分',
+      type: 'radar',
+      data: [
+        { value: [4,3,2,5], name: '国睿科技', areaStyle: { color: 'rgba(59,130,246,0.3)' }, lineStyle: { color: '#3b82f6' }, itemStyle: { color: '#3b82f6' } },
+        { value: [3,3,3,3], name: '行业均值参考', areaStyle: { color: 'rgba(156,163,175,0.2)' }, lineStyle: { color: '#9ca3af', type: 'dashed' }, itemStyle: { color: '#9ca3af' } }
+      ]
+    }
+  ]
+});
+
+// Chart 8: 杜邦分析
+charts['chart-dupont'].setOption({
+  title: { text: '杜邦三因素分解趋势', left: 'center', textStyle: { fontSize: 14, color: '#1a1a2e' } },
+  tooltip: { trigger: 'axis' },
+  legend: { bottom: 0, data: ['净利率(%)','资产周转率×100','权益乘数×100'] },
+  grid: { left: '3%', right: '4%', bottom: '10%', top: '12%', containLabel: true },
+  xAxis: { type: 'category', data: ['2020年报','2021年报','2022年报','2023年报','2024年报','2025Q3↗'] },
+  yAxis: { type: 'value' },
+  series: [
+    { name: '净利率(%)', type: 'line', data: [12.92,15.42,17.15,18.42,18.62,17.57],
+      lineStyle: { color: '#22c55e', width: 2 }, symbol: function(v,p){ return p.dataIndex===5?'emptyCircle':'circle'; }, symbolSize: 6, itemStyle: { color: '#22c55e' } },
+    { name: '资产周转率×100', type: 'line', data: [67,46,42,38,37,22],
+      lineStyle: { color: '#ef4444', width: 2 }, symbol: function(v,p){ return p.dataIndex===5?'emptyCircle':'circle'; }, symbolSize: 6, itemStyle: { color: '#ef4444' } },
+    { name: '权益乘数×100', type: 'line', data: [180,153,160,161,154,134],
+      lineStyle: { color: '#f59e0b', width: 2, type: 'dashed' }, symbol: function(v,p){ return p.dataIndex===5?'emptyCircle':'diamond'; }, symbolSize: 6, itemStyle: { color: '#f59e0b' } }
+  ]
+});
+
+// Chart 9: 同业对比水平条形图
+charts['chart-peer-compare'].setOption({
+  title: { text: '同行业ROE & 净利率对比（2024年报）', left: 'center', textStyle: { fontSize: 14, color: '#1a1a2e' } },
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  legend: { bottom: 0, data: ['ROE(%)','净利率(%)','毛利率(%)'] },
+  grid: { left: '15%', right: '4%', bottom: '10%', top: '12%', containLabel: true },
+  yAxis: { type: 'category', data: ['海格通信','中天科技','广电运通','中兴通讯','国睿科技'] },
+  xAxis: { type: 'value', name: '%' },
+  series: [
+    { name: 'ROE(%)', type: 'bar', data: [0.42,8.33,7.48,11.97,10.90], itemStyle: { color: '#3b82f6' } },
+    { name: '净利率(%)', type: 'bar', data: [2.17,5.89,10.65,6.89,18.62], itemStyle: { color: '#22c55e' } },
+    { name: '毛利率(%)', type: 'bar', data: [28.79,14.39,31.11,37.91,36.07], itemStyle: { color: '#93c5fd' } }
+  ]
+});
+
+// Chart 10: PE估值带
+charts['chart-pe-band'].setOption({
+  title: { text: 'PE(TTM) 历史估值带（2021-2025）', left: 'center', textStyle: { fontSize: 14, color: '#1a1a2e' } },
+  tooltip: { trigger: 'axis' },
+  legend: { bottom: 0, data: ['PE(TTM)','中位数（34.96x）'] },
+  grid: { left: '3%', right: '4%', bottom: '10%', top: '12%', containLabel: true },
+  xAxis: { type: 'category', data: ['2021Q1','2021Q2','2021Q3','2021Q4','2022Q1','2022Q2','2022Q3','2022Q4','2023Q1','2023Q2','2023Q3','2023Q4','2024Q1','2024Q2','2024Q3','2024Q4','2025Q1','2025Q2','2025Q3','2025Q4'] },
+  yAxis: { type: 'value', name: 'PE倍数' },
+  series: [
+    { name: 'PE(TTM)', type: 'line', data: [64.55,34.37,35.97,48.28,41.95,34.34,25.98,33.56,36.44,36.14,38.12,43.67,44.91,39.75,67.45,56.61,58.2,55.8,52.3,53.1],
+      lineStyle: { color: '#3b82f6', width: 2 }, symbol: 'circle', symbolSize: 4, itemStyle: { color: '#3b82f6' },
+      markLine: { data: [{ yAxis: 34.96, name: '中位数34.96x', lineStyle: { color: '#f59e0b', type: 'dashed', width: 2 } }], label: { formatter: '中位数 {c}x' } }
+    },
+    { name: '中位数（34.96x）', type: 'line', data: Array(20).fill(34.96), lineStyle: { color: '#f59e0b', width: 1.5, type: 'dashed' }, symbol: 'none', itemStyle: { color: '#f59e0b' } }
+  ]
+});
+
+// Chart 11: 分红历史
+charts['chart-dividend'].setOption({
+  title: { text: '每股分红历史（元）', left: 'center', textStyle: { fontSize: 14, color: '#1a1a2e' } },
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  legend: { bottom: 0, data: ['每股分红（元）'] },
+  grid: { left: '3%', right: '4%', bottom: '10%', top: '12%', containLabel: true },
+  xAxis: { type: 'category', data: ['2021年报','2022年报','2023年报','2024年报','2025Q3（中期）'] },
+  yAxis: { type: 'value', name: '元/股', min: 0, max: 0.25 },
+  series: [
+    { name: '每股分红（元）', type: 'bar', data: [0.128,0.133,0.145,0.157,0.097],
+      itemStyle: { color: function(params) { return params.dataIndex === 4 ? '#93c5fd' : '#3b82f6'; } },
+      label: { show: true, position: 'top', formatter: '{c}元' }
+    }
+  ]
+});
+
+/*__CHART_OPTIONS_END__*/
+</script>
+</body>
+</html>
