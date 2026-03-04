@@ -520,6 +520,37 @@
     }
 
     /* ============================================================
+       多报告类型按钮组
+    ============================================================ */
+    .btn-type-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn-type {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: "Noto Sans SC", sans-serif;
+      letter-spacing: .5px;
+      border: none;
+      cursor: pointer;
+      transition: background .18s, opacity .18s;
+      white-space: nowrap;
+    }
+    .btn-type-navy    { background: var(--navy); color: #fff; }
+    .btn-type-navy:hover { background: var(--navy-light); }
+    .btn-type-gold    { background: var(--gold); color: #fff; }
+    .btn-type-gold:hover { background: #b8852f; }
+    .btn-type-cyan    { background: var(--cyan); color: #fff; }
+    .btn-type-cyan:hover { opacity: .85; }
+    .btn-type-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+    .btn-type-outline:hover { background: var(--gray-50); }
+
+    /* ============================================================
        错误提示
     ============================================================ */
     .error-banner {
@@ -695,9 +726,10 @@
 
   let currentUrl = '';
 
-  function openViewer(url, company, code) {
+  function openViewer(url, company, code, reportType) {
     currentUrl = url;
-    titleEl.textContent = code ? `${company}（${code}）深度研究报告` : company;
+    const typeLabel = reportType ? ` · ${reportType}` : '';
+    titleEl.textContent = code ? `${company}（${code}）${typeLabel}` : `${company}${typeLabel}`;
     iframe.src = url;
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -769,31 +801,62 @@
     return tags.map((t, i) => `<span class="tag ${classes[i % classes.length]}">${t}</span>`).join('');
   }
 
-  function renderCard(r) {
+  /* 报告类型对应按钮样式 */
+  const TYPE_BTN_CLASS = ['btn-type-navy', 'btn-type-gold', 'btn-type-cyan', 'btn-type-outline'];
+
+  function renderTypeBtn(r, company, code, idx) {
     const url = `reports/${encodeURIComponent(r.filename)}`;
-    const kpisHtml = (r.kpis || []).map(renderKpi).join('');
-    const tagsHtml = renderTags(r.tags || []);
+    const cls = TYPE_BTN_CLASS[idx % TYPE_BTN_CLASS.length];
+    const co  = company.replace(/'/g, "\\'");
+    const cd  = (code || '').replace(/'/g, "\\'");
+    const tp  = (r.type || '').replace(/'/g, "\\'");
+    return `<button class="btn-type ${cls}" onclick="window.__openViewer('${url}','${co}','${cd}','${tp}')">${r.type} →</button>`;
+  }
+
+  function renderCard(company) {
+    const primary   = company.reports[0];
+    const isMulti   = company.reports.length > 1;
+    const kpisHtml  = (primary.kpis || []).map(renderKpi).join('');
+    const tagsHtml  = renderTags(primary.tags || []);
+
+    let footerHtml;
+    if (!isMulti) {
+      const url = `reports/${encodeURIComponent(primary.filename)}`;
+      const co  = company.company.replace(/'/g, "\\'");
+      const cd  = (company.code || '').replace(/'/g, "\\'");
+      const tp  = (primary.type || '').replace(/'/g, "\\'");
+      footerHtml = `
+        <button class="btn-view" onclick="window.__openViewer('${url}','${co}','${cd}','${tp}')">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M9.5 9.5L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          查看报告
+        </button>
+        <span class="card-date">${primary.date || ''}</span>`;
+    } else {
+      const typeBtns = company.reports
+        .map((r, i) => renderTypeBtn(r, company.company, company.code, i))
+        .join('');
+      footerHtml = `
+        <div class="btn-type-group">${typeBtns}</div>
+        <span class="card-date">${primary.date || ''}</span>`;
+    }
+
     return `
-      <article class="report-card" data-sector="${r.sector || ''}">
+      <article class="report-card" data-sector="${company.sector || ''}">
         <div class="card-top">
-          <div class="card-sector">${r.sectorLabel || r.sector || ''}</div>
-          <div class="card-rating ${ratingClass(r.ratingType)}">${r.rating || ''}</div>
+          <div class="card-sector">${company.sectorLabel || company.sector || ''}</div>
+          <div class="card-rating ${ratingClass(primary.ratingType)}">${primary.rating || ''}</div>
         </div>
         <div class="card-body">
-          <div class="card-company">${r.company} <small style="font-size:13px;font-weight:400;color:var(--text-light);">(${r.code})</small></div>
-          <div class="card-subtitle">${r.subtitle || ''}</div>
+          <div class="card-company">${company.company} <small style="font-size:13px;font-weight:400;color:var(--text-light);">(${company.code})</small></div>
+          <div class="card-subtitle">${primary.subtitle || ''}</div>
           <div class="card-kpi">${kpisHtml}</div>
           <div class="card-tags">${tagsHtml}</div>
         </div>
         <div class="card-footer">
-          <button class="btn-view" onclick="window.__openViewer('${url.replace(/'/g, "\\'")}','${r.company.replace(/'/g, "\\'")}','${(r.code||'').replace(/'/g, "\\'")}')">
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M9.5 9.5L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            查看报告
-          </button>
-          <span class="card-date">${r.date || ''}</span>
+          ${footerHtml}
         </div>
       </article>`;
   }
@@ -808,20 +871,21 @@
       return res.json();
     })
     .then(data => {
-      const reports = data.reports || [];
+      const companies = data.companies || [];
+      const totalReports = companies.reduce((sum, c) => sum + (c.reports || []).length, 0);
 
       /* 更新统计 */
-      document.getElementById('stat-count').textContent = reports.length;
-      const sectors = [...new Set(reports.map(r => r.sector).filter(Boolean))];
+      document.getElementById('stat-count').textContent = totalReports;
+      const sectors = [...new Set(companies.map(c => c.sector).filter(Boolean))];
       document.getElementById('stat-sectors').textContent = sectors.length;
       document.getElementById('stat-updated').textContent = data.updated || '—';
       const footerUpdated = document.getElementById('footer-updated');
       if (data.updated) footerUpdated.textContent = `更新至 ${data.updated}`;
 
       /* 生成筛选按钮 */
-      const allBtn = `<button class="filter-btn active" data-filter="all">全部 (${reports.length})</button>`;
+      const allBtn = `<button class="filter-btn active" data-filter="all">全部 (${companies.length})</button>`;
       const sectorBtns = sectors.map(s => {
-        const cnt = reports.filter(r => r.sector === s).length;
+        const cnt = companies.filter(c => c.sector === s).length;
         return `<button class="filter-btn" data-filter="${s}">${s} (${cnt})</button>`;
       }).join('');
       filterBar.insertAdjacentHTML('beforeend', allBtn + sectorBtns);
@@ -831,7 +895,7 @@
       });
 
       /* 渲染卡片 */
-      reportsGrid.innerHTML = reports.map(renderCard).join('');
+      reportsGrid.innerHTML = companies.map(renderCard).join('');
 
       /* 切换：隐藏骨架、显示网格 */
       document.getElementById('skeleton').style.display = 'none';
