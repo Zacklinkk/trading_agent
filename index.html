@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>研究报告中心</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       CSS 变量（与各研究报告完全一致）
+    ============================================================ */
+    :root {
+      --navy:       #003366;
+      --navy-light: #1a4d80;
+      --navy-dark:  #001f3f;
+      --gold:       #c4973b;
+      --red:        #c0392b;
+      --green-cicc: #27763d;
+      --blue-accent:#2980b9;
+      --cyan:       #16a085;
+
+      --gray-400: #a0a0b8;
+      --gray-300: #c8c8d8;
+      --gray-200: #e8e8f0;
+      --gray-100: #f4f4f8;
+      --gray-50:  #f9f9fc;
+
+      --bg:              #f7f8fc;
+      --card:            #fff;
+      --text:            #2c2c3a;
+      --text-secondary:  #5a5a7a;
+      --text-light:      #8888a8;
+      --border:          #e0e0ec;
+      --border-light:    #ececf4;
+    }
+
+    /* ============================================================
+       全局重置
+    ============================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================================
+       品牌条
+    ============================================================ */
+    .brand-bar {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      padding: 10px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-name {
+      font-family: "Noto Serif SC", serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 3px;
+    }
+    .brand-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,.55);
+      letter-spacing: 1px;
+    }
+
+    /* ============================================================
+       页头
+    ============================================================ */
+    .page-header {
+      background: var(--card);
+      padding: 52px 40px 44px;
+      border-bottom: 3px solid var(--navy);
+      position: relative;
+    }
+    .page-header::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gold);
+    }
+    .page-header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .page-header h1 {
+      font-family: "Noto Serif SC", serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .page-header h1 span {
+      color: var(--gold);
+    }
+    .page-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+    .stat-row {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .stat-num {
+      font-family: "Noto Serif SC", serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+    .stat-lbl {
+      font-size: 11px;
+      color: var(--text-light);
+      letter-spacing: 1px;
+    }
+
+    /* ============================================================
+       筛选栏
+    ============================================================ */
+    .filter-bar {
+      background: var(--card);
+      padding: 14px 40px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,51,102,.06);
+    }
+    .filter-label {
+      font-size: 12px;
+      color: var(--text-light);
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+    .filter-btn {
+      padding: 6px 18px;
+      font-size: 12px;
+      font-family: "Noto Sans SC", sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      letter-spacing: .5px;
+      transition: all .18s;
+      white-space: nowrap;
+    }
+    .filter-btn:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+    .filter-btn.active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+
+    /* ============================================================
+       报告网格区域
+    ============================================================ */
+    .reports-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 44px 40px 60px;
+    }
+    .reports-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* ============================================================
+       报告卡片
+    ============================================================ */
+    .report-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s ease, box-shadow .2s ease;
+      cursor: pointer;
+    }
+    .report-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 32px rgba(0, 51, 102, .13);
+    }
+
+    /* 卡片顶栏 */
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px 24px 12px;
+    }
+    .card-sector {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--navy);
+      border: 1.5px solid var(--navy);
+      padding: 4px 11px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .card-rating {
+      font-family: "Noto Serif SC", serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .rating-recommend { color: var(--green-cicc); }
+    .rating-neutral    { color: var(--gold); }
+    .rating-watch      { color: var(--blue-accent); }
+    .rating-caution    { color: var(--red); }
+
+    /* 卡片主体 */
+    .card-body {
+      padding: 4px 24px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-company {
+      font-family: "Noto Serif SC", serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .card-subtitle {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    /* KPI 横排 */
+    .card-kpi {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 16px;
+    }
+    .kpi-item {
+      padding: 12px 6px;
+      text-align: center;
+      position: relative;
+    }
+    .kpi-item:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: var(--border-light);
+    }
+    .kpi-val {
+      font-family: "Noto Serif SC", serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .kpi-val .kpi-unit {
+      font-size: 11px;
+      font-weight: 400;
+      font-family: "Noto Sans SC", sans-serif;
+    }
+    .kpi-label {
+      font-size: 10px;
+      color: var(--text-light);
+      margin-top: 3px;
+      letter-spacing: .5px;
+    }
+    .kpi-change {
+      font-size: 10.5px;
+      font-weight: 500;
+      margin-top: 3px;
+    }
+    .kpi-change.up   { color: var(--green-cicc); }
+    .kpi-change.down { color: var(--red); }
+    .kpi-change.flat { color: var(--text-light); }
+
+    /* 标签组 */
+    .card-tags {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .tag {
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .3px;
+    }
+    .tag-navy    { background: var(--navy); color: #fff; }
+    .tag-gold    { background: var(--gold); color: #fff; }
+    .tag-outline { border: 1px solid var(--navy); color: var(--navy); }
+
+    /* 卡片底栏 */
+    .card-footer {
+      padding: 14px 24px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-light);
+      margin-top: 16px;
+    }
+    .btn-view {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--navy);
+      color: #fff;
+      padding: 9px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: "Noto Sans SC", sans-serif;
+      letter-spacing: .5px;
+      border: none;
+      cursor: pointer;
+      transition: background .18s;
+    }
+    .btn-view:hover { background: var(--navy-light); }
+    .btn-view svg { flex-shrink: 0; }
+    .card-date {
+      font-size: 11px;
+      color: var(--text-light);
+      letter-spacing: .5px;
+    }
+
+    /* 空态 */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 40px;
+      color: var(--text-light);
+    }
+    .empty-state p { font-size: 14px; margin-top: 12px; }
+
+    /* ============================================================
+       报告阅读器 Overlay
+    ============================================================ */
+    .viewer-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 31, 63, .72);
+      flex-direction: column;
+      backdrop-filter: blur(3px);
+    }
+    .viewer-overlay.open { display: flex; }
+
+    .viewer-header {
+      background: var(--navy-dark);
+      padding: 0 20px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      border-bottom: 2px solid var(--gold);
+    }
+    .viewer-title {
+      font-family: "Noto Serif SC", serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .viewer-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .viewer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: "Noto Sans SC", sans-serif;
+      cursor: pointer;
+      border: none;
+      letter-spacing: .3px;
+      transition: background .15s;
+    }
+    .viewer-btn-newtab {
+      background: rgba(255,255,255,.12);
+      color: #fff;
+    }
+    .viewer-btn-newtab:hover { background: rgba(255,255,255,.22); }
+    .viewer-btn-close {
+      background: rgba(192, 57, 43, .85);
+      color: #fff;
+    }
+    .viewer-btn-close:hover { background: var(--red); }
+
+    .viewer-iframe {
+      flex: 1;
+      border: none;
+      width: 100%;
+      height: 0; /* flex will expand */
+      background: var(--bg);
+    }
+
+    /* ============================================================
+       加载骨架
+    ============================================================ */
+    .skeleton-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .skeleton-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+      height: 320px;
+    }
+    .skel {
+      background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 50%, var(--gray-100) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 2px;
+      margin-bottom: 12px;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ============================================================
+       页脚
+    ============================================================ */
+    .site-footer {
+      background: var(--card);
+      padding: 28px 40px;
+      border-top: 2px solid var(--navy);
+      position: relative;
+    }
+    .site-footer::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-disclaimer {
+      font-size: 11.5px;
+      color: var(--text-light);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+    .footer-disclaimer strong {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+    .footer-brand {
+      font-size: 11px;
+      color: var(--text-light);
+      text-align: right;
+      line-height: 1.8;
+      white-space: nowrap;
+    }
+    .footer-brand span {
+      display: block;
+    }
+    .footer-brand .fb-logo {
+      font-family: "Noto Serif SC", serif;
+      font-size: 13px;
+      color: var(--navy);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* ============================================================
+       错误提示
+    ============================================================ */
+    .error-banner {
+      background: #fef3f2;
+      border: 1px solid #fca5a5;
+      border-left: 4px solid var(--red);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: #7f1d1d;
+      display: none;
+    }
+
+    /* ============================================================
+       响应式
+    ============================================================ */
+    @media (max-width: 1100px) {
+      .reports-grid,
+      .skeleton-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 767px) {
+      .brand-bar { padding: 10px 20px; }
+      .page-header { padding: 36px 20px 32px; }
+      .page-header h1 { font-size: 26px; }
+      .filter-bar { padding: 12px 20px; }
+      .reports-section { padding: 28px 20px 48px; }
+      .reports-grid,
+      .skeleton-grid { grid-template-columns: 1fr; }
+      .card-kpi { grid-template-columns: repeat(2, 1fr); }
+      .viewer-title { font-size: 13px; }
+      .site-footer { padding: 24px 20px; }
+      .footer-inner { flex-direction: column; }
+      .footer-brand { text-align: left; }
+      .stat-row { gap: 24px; }
+    }
+    @media (max-width: 480px) {
+      .viewer-btn span { display: none; }
+      .filter-bar { gap: 8px; }
+      .filter-btn { padding: 5px 12px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     品牌条
+============================================================ -->
+<div class="brand-bar">
+  <div class="brand-name">深度研究报告</div>
+  <div class="brand-sub">A股 · 交互式图表分析</div>
+</div>
+
+<!-- ============================================================
+     页头
+============================================================ -->
+<header class="page-header">
+  <div class="page-header-inner">
+    <h1>研究报告<span>中心</span></h1>
+    <p class="page-subtitle">基于 AI 驱动的 A 股深度研究报告，覆盖行业生命周期分析、护城河评估与估值模型</p>
+    <div class="stat-row">
+      <div class="stat-item">
+        <span class="stat-num" id="stat-count">—</span>
+        <span class="stat-lbl">份报告</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" id="stat-sectors">—</span>
+        <span class="stat-lbl">个行业</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" id="stat-updated">—</span>
+        <span class="stat-lbl">最新更新</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     筛选栏（动态生成）
+============================================================ -->
+<div class="filter-bar" id="filter-bar">
+  <span class="filter-label">行业筛选：</span>
+  <!-- 由 JS 填充 -->
+</div>
+
+<!-- ============================================================
+     报告列表区域
+============================================================ -->
+<section class="reports-section">
+  <div class="error-banner" id="error-banner">
+    加载报告清单失败，请检查 <code>reports/manifest.json</code> 是否存在。
+  </div>
+  <div id="reports-container">
+    <!-- 骨架屏占位 -->
+    <div class="skeleton-grid" id="skeleton">
+      <div class="skeleton-card">
+        <div class="skel" style="width:60%;height:14px;"></div>
+        <div class="skel" style="width:80%;height:22px;margin-top:8px;"></div>
+        <div class="skel" style="width:90%;height:12px;"></div>
+        <div class="skel" style="width:40%;height:12px;"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skel" style="width:55%;height:14px;"></div>
+        <div class="skel" style="width:75%;height:22px;margin-top:8px;"></div>
+        <div class="skel" style="width:85%;height:12px;"></div>
+        <div class="skel" style="width:35%;height:12px;"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skel" style="width:65%;height:14px;"></div>
+        <div class="skel" style="width:70%;height:22px;margin-top:8px;"></div>
+        <div class="skel" style="width:80%;height:12px;"></div>
+        <div class="skel" style="width:45%;height:12px;"></div>
+      </div>
+    </div>
+    <!-- 报告卡片由 JS 填充 -->
+    <div class="reports-grid" id="reports-grid" style="display:none;"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     报告阅读器 Overlay
+============================================================ -->
+<div class="viewer-overlay" id="viewer-overlay">
+  <div class="viewer-header">
+    <div class="viewer-title" id="viewer-title"></div>
+    <div class="viewer-actions">
+      <button class="viewer-btn viewer-btn-newtab" id="btn-newtab" title="在新标签页中打开">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 2H2C1.45 2 1 2.45 1 3V12C1 12.55 1.45 13 2 13H11C11.55 13 12 12.55 12 12V8M8 1H13V6M13 1L6.5 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>新标签打开</span>
+      </button>
+      <button class="viewer-btn viewer-btn-close" id="btn-close" title="关闭">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>关闭</span>
+      </button>
+    </div>
+  </div>
+  <iframe class="viewer-iframe" id="viewer-iframe" title="研究报告阅读器" allowfullscreen></iframe>
+</div>
+
+<!-- ============================================================
+     页脚
+============================================================ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-disclaimer">
+      <strong>免责声明：</strong>
+      本站所有研究报告仅供学习与研究参考，不构成任何投资建议。报告数据基于公开信息整理，不保证完整性与实时性。投资者据此操作，风险自担。
+    </p>
+    <div class="footer-brand">
+      <span class="fb-logo">深度研究报告</span>
+      <span>AI 驱动 · 交互式图表</span>
+      <span id="footer-updated"></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JavaScript
+============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- 阅读器逻辑 ---------- */
+  const overlay  = document.getElementById('viewer-overlay');
+  const iframe   = document.getElementById('viewer-iframe');
+  const titleEl  = document.getElementById('viewer-title');
+  const btnClose = document.getElementById('btn-close');
+  const btnNew   = document.getElementById('btn-newtab');
+
+  let currentUrl = '';
+
+  function openViewer(url, company, code) {
+    currentUrl = url;
+    titleEl.textContent = code ? `${company}（${code}）深度研究报告` : company;
+    iframe.src = url;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeViewer() {
+    overlay.classList.remove('open');
+    iframe.src = '';
+    currentUrl = '';
+    document.body.style.overflow = '';
+  }
+
+  btnClose.addEventListener('click', closeViewer);
+  btnNew.addEventListener('click', () => { if (currentUrl) window.open(currentUrl, '_blank'); });
+
+  // 点击遮罩层关闭（点击 header 外的区域不关闭，只保留关闭按钮）
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeViewer(); });
+
+  /* ---------- 筛选逻辑 ---------- */
+  const filterBar  = document.getElementById('filter-bar');
+  const reportsGrid = document.getElementById('reports-grid');
+
+  function applyFilter(sector) {
+    const cards = reportsGrid.querySelectorAll('.report-card');
+    cards.forEach(c => {
+      c.style.display = (sector === 'all' || c.dataset.sector === sector) ? '' : 'none';
+    });
+    filterBar.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.filter === sector);
+    });
+    // 无结果时显示空态
+    const visible = [...cards].filter(c => c.style.display !== 'none').length;
+    let empty = reportsGrid.querySelector('.empty-state');
+    if (visible === 0) {
+      if (!empty) {
+        empty = document.createElement('div');
+        empty.className = 'empty-state';
+        empty.innerHTML = '<p>该行业暂无报告</p>';
+        reportsGrid.appendChild(empty);
+      }
+    } else if (empty) {
+      empty.remove();
+    }
+  }
+
+  /* ---------- 渲染函数 ---------- */
+  function ratingClass(type) {
+    const map = { recommend: 'rating-recommend', neutral: 'rating-neutral', watch: 'rating-watch', caution: 'rating-caution' };
+    return map[type] || 'rating-neutral';
+  }
+
+  function trendClass(trend) {
+    if (trend === 'up')   return 'up';
+    if (trend === 'down') return 'down';
+    return 'flat';
+  }
+
+  function renderKpi(kpi) {
+    return `
+      <div class="kpi-item">
+        <div class="kpi-val">${kpi.value}<span class="kpi-unit">${kpi.unit}</span></div>
+        <div class="kpi-label">${kpi.label}</div>
+        <div class="kpi-change ${trendClass(kpi.trend)}">${kpi.change}</div>
+      </div>`;
+  }
+
+  function renderTags(tags) {
+    const classes = ['tag-navy', 'tag-gold', 'tag-outline'];
+    return tags.map((t, i) => `<span class="tag ${classes[i % classes.length]}">${t}</span>`).join('');
+  }
+
+  function renderCard(r) {
+    const url = `reports/${encodeURIComponent(r.filename)}`;
+    const kpisHtml = (r.kpis || []).map(renderKpi).join('');
+    const tagsHtml = renderTags(r.tags || []);
+    return `
+      <article class="report-card" data-sector="${r.sector || ''}">
+        <div class="card-top">
+          <div class="card-sector">${r.sectorLabel || r.sector || ''}</div>
+          <div class="card-rating ${ratingClass(r.ratingType)}">${r.rating || ''}</div>
+        </div>
+        <div class="card-body">
+          <div class="card-company">${r.company} <small style="font-size:13px;font-weight:400;color:var(--text-light);">(${r.code})</small></div>
+          <div class="card-subtitle">${r.subtitle || ''}</div>
+          <div class="card-kpi">${kpisHtml}</div>
+          <div class="card-tags">${tagsHtml}</div>
+        </div>
+        <div class="card-footer">
+          <button class="btn-view" onclick="window.__openViewer('${url.replace(/'/g, "\\'")}','${r.company.replace(/'/g, "\\'")}','${(r.code||'').replace(/'/g, "\\'")}')">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M9.5 9.5L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            查看报告
+          </button>
+          <span class="card-date">${r.date || ''}</span>
+        </div>
+      </article>`;
+  }
+
+  // 暴露给内联 onclick
+  window.__openViewer = openViewer;
+
+  /* ---------- 主流程：加载 manifest ---------- */
+  fetch('reports/manifest.json')
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      const reports = data.reports || [];
+
+      /* 更新统计 */
+      document.getElementById('stat-count').textContent = reports.length;
+      const sectors = [...new Set(reports.map(r => r.sector).filter(Boolean))];
+      document.getElementById('stat-sectors').textContent = sectors.length;
+      document.getElementById('stat-updated').textContent = data.updated || '—';
+      const footerUpdated = document.getElementById('footer-updated');
+      if (data.updated) footerUpdated.textContent = `更新至 ${data.updated}`;
+
+      /* 生成筛选按钮 */
+      const allBtn = `<button class="filter-btn active" data-filter="all">全部 (${reports.length})</button>`;
+      const sectorBtns = sectors.map(s => {
+        const cnt = reports.filter(r => r.sector === s).length;
+        return `<button class="filter-btn" data-filter="${s}">${s} (${cnt})</button>`;
+      }).join('');
+      filterBar.insertAdjacentHTML('beforeend', allBtn + sectorBtns);
+
+      filterBar.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+      });
+
+      /* 渲染卡片 */
+      reportsGrid.innerHTML = reports.map(renderCard).join('');
+
+      /* 切换：隐藏骨架、显示网格 */
+      document.getElementById('skeleton').style.display = 'none';
+      reportsGrid.style.display = 'grid';
+    })
+    .catch(err => {
+      console.error('manifest.json 加载失败：', err);
+      document.getElementById('skeleton').style.display = 'none';
+      document.getElementById('error-banner').style.display = 'block';
+    });
+
+})();
+</script>
+
+</body>
+</html>

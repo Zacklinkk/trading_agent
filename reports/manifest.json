@@ -1,0 +1,59 @@
+{
+  "updated": "2026-03",
+  "reports": [
+    {
+      "filename": "崇达技术_研究报告_图表.html",
+      "company": "崇达技术",
+      "code": "002815.SZ",
+      "exchange": "SZ",
+      "sector": "电子",
+      "sectorLabel": "电子·PCB元件",
+      "rating": "推荐",
+      "ratingType": "recommend",
+      "subtitle": "AI算力东风起，PCB龙头迎拐点",
+      "date": "2026年2月",
+      "tags": ["PCB·成熟期+成长期", "护城河 3.4/5", "申万元件"],
+      "kpis": [
+        { "label": "2024年营收", "value": "62.77", "unit": "亿", "change": "+8.7%",   "trend": "up" },
+        { "label": "2024年净利", "value": "3.03",  "unit": "亿", "change": "-28.2%", "trend": "down" },
+        { "label": "毛利率",     "value": "21.43", "unit": "%",  "change": "触底回升","trend": "up" }
+      ]
+    },
+    {
+      "filename": "神州信息_研究报告_图表.html",
+      "company": "神州信息",
+      "code": "000555.SZ",
+      "exchange": "SZ",
+      "sector": "计算机",
+      "sectorLabel": "计算机·IT服务",
+      "rating": "中性",
+      "ratingType": "neutral",
+      "subtitle": "银行核心系统龙头，盈利困境待破局",
+      "date": "2026年2月",
+      "tags": ["金融科技·信创+AI", "护城河 3.4/5", "谨慎观望"],
+      "kpis": [
+        { "label": "2024年营收",   "value": "100.0", "unit": "亿", "change": "-17.0%",   "trend": "down" },
+        { "label": "2024年净利",   "value": "-5.36", "unit": "亿", "change": "首次转亏", "trend": "down" },
+        { "label": "核心系统市占", "value": "40.72", "unit": "%",  "change": "行业第一", "trend": "up" }
+      ]
+    },
+    {
+      "filename": "国睿科技_研究报告_图表.html",
+      "company": "国睿科技",
+      "code": "600562.SH",
+      "exchange": "SH",
+      "sector": "国防军工",
+      "sectorLabel": "国防军工·雷达电子",
+      "rating": "关注",
+      "ratingType": "watch",
+      "subtitle": "雷达电子龙头，估值历史低位，十五五采购周期在即",
+      "date": "2025年2月",
+      "tags": ["中电科14所平台", "护城河 4.5/5", "成长期中后期"],
+      "kpis": [
+        { "label": "综合毛利率", "value": "40.0", "unit": "%", "change": "持续提升", "trend": "up" },
+        { "label": "动态PE",    "value": "~6.3", "unit": "x", "change": "历史低位", "trend": "up" },
+        { "label": "PEG估值",   "value": "0.42", "unit": "",  "change": "安全边际", "trend": "up" }
+      ]
+    }
+  ]
+}
