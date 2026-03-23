@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>研究报告中心</title>
+  <title>Trading Agent 研究报告中心</title>
+  <meta name="description" content="Trading Agent 的 GitHub Pages 首页，集中展示研究报告与财报分析，支持按行业、报告类型和关键词快速检索。" />
+  <meta name="theme-color" content="#003366" />
+  <link rel="canonical" href="https://zacklinkk.github.io/trading_agent/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -72,6 +75,27 @@
       color: rgba(255,255,255,.55);
       letter-spacing: 1px;
     }
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      color: #fff;
+      background: rgba(255,255,255,.08);
+      font-size: 12px;
+      letter-spacing: .5px;
+      transition: background .18s ease, border-color .18s ease;
+    }
+    .brand-link:hover {
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.28);
+    }
 
     /* ============================================================
        页头
@@ -112,6 +136,94 @@
       margin-bottom: 28px;
       line-height: 1.7;
     }
+    .page-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(0,51,102,.12);
+      background: rgba(196,151,59,.08);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .page-header-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(260px, .85fr);
+      gap: 28px;
+      align-items: start;
+    }
+    .page-header-main {
+      min-width: 0;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 18px;
+      border: 1px solid var(--navy);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .4px;
+      transition: background .18s ease, color .18s ease, border-color .18s ease;
+    }
+    .hero-link:hover {
+      background: var(--navy);
+      color: #fff;
+    }
+    .hero-link-primary {
+      background: var(--navy);
+      color: #fff;
+    }
+    .hero-link-primary:hover {
+      background: var(--navy-light);
+      border-color: var(--navy-light);
+    }
+    .quick-panel {
+      background: linear-gradient(180deg, rgba(0,51,102,.04), rgba(196,151,59,.05));
+      border: 1px solid var(--border);
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+    }
+    .quick-panel h2 {
+      font-family: "Noto Serif SC", serif;
+      font-size: 18px;
+      color: var(--navy-dark);
+    }
+    .quick-panel p {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .quick-item {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.82);
+    }
+    .quick-label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 10.5px;
+      color: var(--text-light);
+      letter-spacing: .9px;
+      text-transform: uppercase;
+    }
+    .quick-value {
+      font-size: 13px;
+      color: var(--navy-dark);
+      word-break: break-word;
+    }
     .stat-row {
       display: flex;
       gap: 40px;
@@ -139,17 +251,66 @@
        筛选栏
     ============================================================ */
     .filter-bar {
-      background: var(--card);
-      padding: 14px 40px;
-      border-bottom: 1px solid var(--border-light);
+      max-width: 1100px;
+      margin: 18px auto 0;
+      background: rgba(255,255,255,.92);
+      padding: 18px 22px;
+      border: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+      position: sticky;
+      top: 12px;
+      z-index: 100;
+      box-shadow: 0 10px 28px rgba(0,51,102,.10);
+      backdrop-filter: blur(12px);
+    }
+    .filter-topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .filter-title {
+      font-family: "Noto Serif SC", serif;
+      font-size: 20px;
+      color: var(--navy-dark);
+    }
+    .filter-hint {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .search-wrap {
+      flex: 1 1 320px;
+      min-width: 240px;
+    }
+    .search-input {
+      width: 100%;
+      min-height: 42px;
+      padding: 0 14px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      font-size: 13px;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 4px rgba(0,51,102,.08);
+    }
+    .filter-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .filter-actions {
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,51,102,.06);
     }
     .filter-label {
       font-size: 12px;
@@ -518,6 +679,35 @@
       font-weight: 700;
       letter-spacing: 1px;
     }
+    .footer-copy {
+      display: grid;
+      gap: 12px;
+      max-width: 680px;
+    }
+    .footer-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+    .footer-links {
+      display: grid;
+      gap: 10px;
+      min-width: 220px;
+    }
+    .footer-link {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      background: var(--gray-50);
+      font-size: 12px;
+      color: var(--navy-dark);
+    }
+    .footer-link span:last-child {
+      color: var(--text-light);
+      text-align: right;
+    }
 
     /* ============================================================
        多报告类型按钮组
@@ -575,7 +765,8 @@
       .brand-bar { padding: 10px 20px; }
       .page-header { padding: 36px 20px 32px; }
       .page-header h1 { font-size: 26px; }
-      .filter-bar { padding: 12px 20px; }
+      .page-header-grid { grid-template-columns: 1fr; }
+      .filter-bar { padding: 16px; top: 8px; }
       .reports-section { padding: 28px 20px 48px; }
       .reports-grid,
       .skeleton-grid { grid-template-columns: 1fr; }
@@ -585,11 +776,17 @@
       .footer-inner { flex-direction: column; }
       .footer-brand { text-align: left; }
       .stat-row { gap: 24px; }
+      .filter-group,
+      .filter-topline { flex-direction: column; align-items: stretch; }
+      .brand-bar { gap: 14px; align-items: flex-start; }
     }
     @media (max-width: 480px) {
       .viewer-btn span { display: none; }
       .filter-bar { gap: 8px; }
       .filter-btn { padding: 5px 12px; font-size: 11px; }
+      .hero-actions { flex-direction: column; }
+      .hero-link,
+      .brand-link { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -599,8 +796,11 @@
      品牌条
 ============================================================ -->
 <div class="brand-bar">
-  <div class="brand-name">深度研究报告</div>
-  <div class="brand-sub">A股 · 交互式图表分析</div>
+  <div class="brand-meta">
+    <div class="brand-name">TRADING AGENT</div>
+    <div class="brand-sub">GitHub Pages · main / index.html</div>
+  </div>
+  <a class="brand-link" href="https://github.com/Zacklinkk/trading_agent" target="_blank" rel="noreferrer">查看仓库</a>
 </div>
 
 <!-- ============================================================
@@ -608,12 +808,46 @@
 ============================================================ -->
 <header class="page-header">
   <div class="page-header-inner">
-    <h1>研究报告<span>中心</span></h1>
-    <p class="page-subtitle">基于 AI 驱动的 A 股深度研究报告，覆盖行业生命周期分析、护城河评估与估值模型</p>
+    <div class="page-kicker">GitHub Pages · 在线研究入口</div>
+    <div class="page-header-grid">
+      <div class="page-header-main">
+        <h1>Trading Agent<span>研究报告中心</span></h1>
+        <p class="page-subtitle">这里是仓库的 GitHub Pages 首页。它直接从 <code>main</code> 分支根目录发布，用于汇总研究报告、财报分析与在线阅读入口，所以在仓库网页里看不到一个单独叫 “Pages” 的目录。</p>
+        <div class="hero-actions">
+          <a class="hero-link hero-link-primary" href="#reports-anchor">浏览报告</a>
+          <a class="hero-link" href="https://zacklinkk.github.io/trading_agent/" target="_blank" rel="noreferrer">打开线上页</a>
+          <a class="hero-link" href="reports/manifest.json" target="_blank" rel="noreferrer">查看 manifest</a>
+        </div>
+      </div>
+      <aside class="quick-panel">
+        <h2>Pages 在哪</h2>
+        <p>当前 Pages 已构建完成，入口地址和源码位置都可以直接从这里跳转。</p>
+        <div class="quick-item">
+          <span class="quick-label">在线地址</span>
+          <div class="quick-value">https://zacklinkk.github.io/trading_agent/</div>
+        </div>
+        <div class="quick-item">
+          <span class="quick-label">发布来源</span>
+          <div class="quick-value">main 分支根目录 / index.html</div>
+        </div>
+        <div class="quick-item">
+          <span class="quick-label">数据入口</span>
+          <div class="quick-value">reports/manifest.json 驱动卡片生成</div>
+        </div>
+      </aside>
+    </div>
     <div class="stat-row">
       <div class="stat-item">
         <span class="stat-num" id="stat-count">—</span>
         <span class="stat-lbl">份报告</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" id="stat-companies">—</span>
+        <span class="stat-lbl">家公司</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" id="stat-types">—</span>
+        <span class="stat-lbl">种报告类型</span>
       </div>
       <div class="stat-item">
         <span class="stat-num" id="stat-sectors">—</span>
@@ -630,15 +864,30 @@
 <!-- ============================================================
      筛选栏（动态生成）
 ============================================================ -->
-<div class="filter-bar" id="filter-bar">
-  <span class="filter-label">行业筛选：</span>
-  <!-- 由 JS 填充 -->
+<div class="filter-bar" id="filter-panel">
+  <div class="filter-topline">
+    <div>
+      <div class="filter-title">快速筛选</div>
+      <div class="filter-hint" id="results-summary">正在加载报告清单...</div>
+    </div>
+    <label class="search-wrap" for="search-input">
+      <input id="search-input" class="search-input" type="search" placeholder="搜索公司 / 代码 / 标题 / 标签 / 报告类型" />
+    </label>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">报告类型：</span>
+    <div class="filter-actions" id="type-filter-bar"></div>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">行业筛选：</span>
+    <div class="filter-actions" id="sector-filter-bar"></div>
+  </div>
 </div>
 
 <!-- ============================================================
      报告列表区域
 ============================================================ -->
-<section class="reports-section">
+<section class="reports-section" id="reports-anchor">
   <div class="error-banner" id="error-banner">
     加载报告清单失败，请检查 <code>reports/manifest.json</code> 是否存在。
   </div>
@@ -698,13 +947,32 @@
 ============================================================ -->
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="footer-disclaimer">
-      <strong>免责声明：</strong>
-      本站所有研究报告仅供学习与研究参考，不构成任何投资建议。报告数据基于公开信息整理，不保证完整性与实时性。投资者据此操作，风险自担。
-    </p>
+    <div class="footer-copy">
+      <p class="footer-disclaimer">
+        <strong>免责声明：</strong>
+        本站所有研究报告仅供学习与研究参考，不构成任何投资建议。报告数据基于公开信息整理，不保证完整性与实时性。投资者据此操作，风险自担。
+      </p>
+      <div class="footer-meta">
+        Pages 由 GitHub Pages 从 <code>main</code> 分支根目录发布，首页文件为 <code>index.html</code>，报告列表来自 <code>reports/manifest.json</code>。
+      </div>
+    </div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://zacklinkk.github.io/trading_agent/" target="_blank" rel="noreferrer">
+        <span>线上入口</span>
+        <span>GitHub Pages</span>
+      </a>
+      <a class="footer-link" href="https://github.com/Zacklinkk/trading_agent" target="_blank" rel="noreferrer">
+        <span>仓库源码</span>
+        <span>Zacklinkk/trading_agent</span>
+      </a>
+      <a class="footer-link" href="reports/manifest.json" target="_blank" rel="noreferrer">
+        <span>报告清单</span>
+        <span>reports/manifest.json</span>
+      </a>
+    </div>
     <div class="footer-brand">
-      <span class="fb-logo">深度研究报告</span>
-      <span>AI 驱动 · 交互式图表</span>
+      <span class="fb-logo">Trading Agent</span>
+      <span>Research Reports · GitHub Pages</span>
       <span id="footer-updated"></span>
     </div>
   </div>
@@ -717,14 +985,42 @@
 (function () {
   'use strict';
 
-  /* ---------- 阅读器逻辑 ---------- */
-  const overlay  = document.getElementById('viewer-overlay');
-  const iframe   = document.getElementById('viewer-iframe');
-  const titleEl  = document.getElementById('viewer-title');
+  const overlay = document.getElementById('viewer-overlay');
+  const iframe = document.getElementById('viewer-iframe');
+  const titleEl = document.getElementById('viewer-title');
   const btnClose = document.getElementById('btn-close');
-  const btnNew   = document.getElementById('btn-newtab');
+  const btnNew = document.getElementById('btn-newtab');
+  const reportsGrid = document.getElementById('reports-grid');
+  const sectorFilterBar = document.getElementById('sector-filter-bar');
+  const typeFilterBar = document.getElementById('type-filter-bar');
+  const searchInput = document.getElementById('search-input');
+  const resultsSummary = document.getElementById('results-summary');
+  const skeleton = document.getElementById('skeleton');
+  const errorBanner = document.getElementById('error-banner');
+
+  const state = {
+    companies: [],
+    activeSector: 'all',
+    activeType: 'all',
+    query: '',
+    updated: ''
+  };
 
   let currentUrl = '';
+
+  function parseDateValue(text) {
+    const matched = String(text || '').match(/(\d{4})年(\d{1,2})月/);
+    return matched ? Number(matched[1]) * 100 + Number(matched[2]) : 0;
+  }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
 
   function openViewer(url, company, code, reportType) {
     currentUrl = url;
@@ -744,45 +1040,15 @@
 
   btnClose.addEventListener('click', closeViewer);
   btnNew.addEventListener('click', () => { if (currentUrl) window.open(currentUrl, '_blank'); });
-
-  // 点击遮罩层关闭（点击 header 外的区域不关闭，只保留关闭按钮）
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeViewer(); });
 
-  /* ---------- 筛选逻辑 ---------- */
-  const filterBar  = document.getElementById('filter-bar');
-  const reportsGrid = document.getElementById('reports-grid');
-
-  function applyFilter(sector) {
-    const cards = reportsGrid.querySelectorAll('.report-card');
-    cards.forEach(c => {
-      c.style.display = (sector === 'all' || c.dataset.sector === sector) ? '' : 'none';
-    });
-    filterBar.querySelectorAll('.filter-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.filter === sector);
-    });
-    // 无结果时显示空态
-    const visible = [...cards].filter(c => c.style.display !== 'none').length;
-    let empty = reportsGrid.querySelector('.empty-state');
-    if (visible === 0) {
-      if (!empty) {
-        empty = document.createElement('div');
-        empty.className = 'empty-state';
-        empty.innerHTML = '<p>该行业暂无报告</p>';
-        reportsGrid.appendChild(empty);
-      }
-    } else if (empty) {
-      empty.remove();
-    }
-  }
-
-  /* ---------- 渲染函数 ---------- */
   function ratingClass(type) {
     const map = { recommend: 'rating-recommend', neutral: 'rating-neutral', watch: 'rating-watch', caution: 'rating-caution' };
     return map[type] || 'rating-neutral';
   }
 
   function trendClass(trend) {
-    if (trend === 'up')   return 'up';
+    if (trend === 'up') return 'up';
     if (trend === 'down') return 'down';
     return 'flat';
   }
@@ -790,41 +1056,56 @@
   function renderKpi(kpi) {
     return `
       <div class="kpi-item">
-        <div class="kpi-val">${kpi.value}<span class="kpi-unit">${kpi.unit}</span></div>
-        <div class="kpi-label">${kpi.label}</div>
-        <div class="kpi-change ${trendClass(kpi.trend)}">${kpi.change}</div>
+        <div class="kpi-val">${escapeHtml(kpi.value)}<span class="kpi-unit">${escapeHtml(kpi.unit)}</span></div>
+        <div class="kpi-label">${escapeHtml(kpi.label)}</div>
+        <div class="kpi-change ${trendClass(kpi.trend)}">${escapeHtml(kpi.change)}</div>
       </div>`;
   }
 
   function renderTags(tags) {
     const classes = ['tag-navy', 'tag-gold', 'tag-outline'];
-    return tags.map((t, i) => `<span class="tag ${classes[i % classes.length]}">${t}</span>`).join('');
+    return (tags || []).map((t, i) => `<span class="tag ${classes[i % classes.length]}">${escapeHtml(t)}</span>`).join('');
   }
 
-  /* 报告类型对应按钮样式 */
   const TYPE_BTN_CLASS = ['btn-type-navy', 'btn-type-gold', 'btn-type-cyan', 'btn-type-outline'];
 
-  function renderTypeBtn(r, company, code, idx) {
-    const url = `reports/${encodeURIComponent(r.filename)}`;
+  function renderTypeBtn(report, company, code, idx) {
+    const url = `reports/${encodeURIComponent(report.filename)}`;
     const cls = TYPE_BTN_CLASS[idx % TYPE_BTN_CLASS.length];
-    const co  = company.replace(/'/g, "\\'");
-    const cd  = (code || '').replace(/'/g, "\\'");
-    const tp  = (r.type || '').replace(/'/g, "\\'");
-    return `<button class="btn-type ${cls}" onclick="window.__openViewer('${url}','${co}','${cd}','${tp}')">${r.type} →</button>`;
+    const co = company.replace(/'/g, "\\'");
+    const cd = (code || '').replace(/'/g, "\\'");
+    const tp = (report.type || '').replace(/'/g, "\\'");
+    const dateLabel = report.date ? ` · ${report.date}` : '';
+    return `<button class="btn-type ${cls}" onclick="window.__openViewer('${url}','${co}','${cd}','${tp}')">${escapeHtml(report.type || '报告')}${escapeHtml(dateLabel)} →</button>`;
+  }
+
+  function normalizeCompany(company) {
+    const reports = [...(company.reports || [])].sort((a, b) => parseDateValue(b.date) - parseDateValue(a.date));
+    return { ...company, reports };
+  }
+
+  function buildSearchText(company) {
+    const pieces = [company.company, company.code, company.sector, company.sectorLabel];
+    company.reports.forEach(report => {
+      pieces.push(report.type, report.subtitle, report.date);
+      (report.tags || []).forEach(tag => pieces.push(tag));
+      (report.kpis || []).forEach(kpi => pieces.push(kpi.label, kpi.value, kpi.change));
+    });
+    return pieces.filter(Boolean).join(' ').toLowerCase();
   }
 
   function renderCard(company) {
-    const primary   = company.reports[0];
-    const isMulti   = company.reports.length > 1;
-    const kpisHtml  = (primary.kpis || []).map(renderKpi).join('');
-    const tagsHtml  = renderTags(primary.tags || []);
+    const primary = company.reports[0];
+    const isMulti = company.reports.length > 1;
+    const kpisHtml = (primary.kpis || []).map(renderKpi).join('');
+    const tagsHtml = renderTags(primary.tags || []);
 
     let footerHtml;
     if (!isMulti) {
       const url = `reports/${encodeURIComponent(primary.filename)}`;
-      const co  = company.company.replace(/'/g, "\\'");
-      const cd  = (company.code || '').replace(/'/g, "\\'");
-      const tp  = (primary.type || '').replace(/'/g, "\\'");
+      const co = company.company.replace(/'/g, "\\'");
+      const cd = (company.code || '').replace(/'/g, "\\'");
+      const tp = (primary.type || '').replace(/'/g, "\\'");
       footerHtml = `
         <button class="btn-view" onclick="window.__openViewer('${url}','${co}','${cd}','${tp}')">
           <svg width="13" height="13" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -833,25 +1114,22 @@
           </svg>
           查看报告
         </button>
-        <span class="card-date">${primary.date || ''}</span>`;
+        <span class="card-date">${escapeHtml(primary.date || '')}</span>`;
     } else {
-      const typeBtns = company.reports
-        .map((r, i) => renderTypeBtn(r, company.company, company.code, i))
-        .join('');
       footerHtml = `
-        <div class="btn-type-group">${typeBtns}</div>
-        <span class="card-date">${primary.date || ''}</span>`;
+        <div class="btn-type-group">${company.reports.map((report, idx) => renderTypeBtn(report, company.company, company.code, idx)).join('')}</div>
+        <span class="card-date">${escapeHtml(primary.date || '')}</span>`;
     }
 
     return `
-      <article class="report-card" data-sector="${company.sector || ''}">
+      <article class="report-card" data-sector="${escapeHtml(company.sector || '')}">
         <div class="card-top">
-          <div class="card-sector">${company.sectorLabel || company.sector || ''}</div>
-          <div class="card-rating ${ratingClass(primary.ratingType)}">${primary.rating || ''}</div>
+          <div class="card-sector">${escapeHtml(company.sectorLabel || company.sector || '')}</div>
+          <div class="card-rating ${ratingClass(primary.ratingType)}">${escapeHtml(primary.rating || '')}</div>
         </div>
         <div class="card-body">
-          <div class="card-company">${company.company} <small style="font-size:13px;font-weight:400;color:var(--text-light);">(${company.code})</small></div>
-          <div class="card-subtitle">${primary.subtitle || ''}</div>
+          <div class="card-company">${escapeHtml(company.company)} <small style="font-size:13px;font-weight:400;color:var(--text-light);">(${escapeHtml(company.code)})</small></div>
+          <div class="card-subtitle">${escapeHtml(primary.subtitle || '')}</div>
           <div class="card-kpi">${kpisHtml}</div>
           <div class="card-tags">${tagsHtml}</div>
         </div>
@@ -861,50 +1139,120 @@
       </article>`;
   }
 
-  // 暴露给内联 onclick
+  function renderFilterButtons(container, items, activeValue, kind) {
+    const baseLabel = kind === 'type'
+      ? `全部类型 (${state.companies.reduce((sum, company) => sum + company.reports.length, 0)})`
+      : `全部 (${state.companies.length})`;
+    const buttons = [`<button class="filter-btn ${activeValue === 'all' ? 'active' : ''}" data-kind="${kind}" data-filter="all">${baseLabel}</button>`];
+    items.forEach(item => {
+      buttons.push(`<button class="filter-btn ${activeValue === item.value ? 'active' : ''}" data-kind="${kind}" data-filter="${escapeHtml(item.value)}">${escapeHtml(item.label)}</button>`);
+    });
+    container.innerHTML = buttons.join('');
+  }
+
+  function updateStats() {
+    const totalReports = state.companies.reduce((sum, company) => sum + company.reports.length, 0);
+    const sectors = [...new Set(state.companies.map(company => company.sector).filter(Boolean))];
+    const types = [...new Set(state.companies.flatMap(company => company.reports.map(report => report.type).filter(Boolean)))];
+
+    document.getElementById('stat-count').textContent = totalReports;
+    document.getElementById('stat-companies').textContent = state.companies.length;
+    document.getElementById('stat-types').textContent = types.length;
+    document.getElementById('stat-sectors').textContent = sectors.length;
+    document.getElementById('stat-updated').textContent = state.updated || '—';
+    document.getElementById('footer-updated').textContent = state.updated ? `更新至 ${state.updated}` : '';
+
+    renderFilterButtons(
+      typeFilterBar,
+      types.map(type => ({ value: type, label: type })),
+      state.activeType,
+      'type'
+    );
+    renderFilterButtons(
+      sectorFilterBar,
+      sectors.map(sector => ({ value: sector, label: `${sector} (${state.companies.filter(company => company.sector === sector).length})` })),
+      state.activeSector,
+      'sector'
+    );
+  }
+
+  function getVisibleCompanies() {
+    const query = state.query.trim().toLowerCase();
+    return state.companies.filter(company => {
+      const matchesSector = state.activeSector === 'all' || company.sector === state.activeSector;
+      const matchesType = state.activeType === 'all' || company.reports.some(report => report.type === state.activeType);
+      const matchesQuery = !query || buildSearchText(company).includes(query);
+      return matchesSector && matchesType && matchesQuery;
+    });
+  }
+
+  function renderVisibleCompanies() {
+    const visibleCompanies = getVisibleCompanies();
+    const visibleReports = visibleCompanies.reduce((sum, company) => {
+      if (state.activeType === 'all') return sum + company.reports.length;
+      return sum + company.reports.filter(report => report.type === state.activeType).length;
+    }, 0);
+
+    resultsSummary.textContent = `当前筛选结果：${visibleCompanies.length} 家公司 / ${visibleReports} 份报告`;
+
+    if (!visibleCompanies.length) {
+      reportsGrid.innerHTML = `
+        <div class="empty-state">
+          <strong>没有匹配到结果</strong>
+          <p>可以尝试清空关键词，或切换报告类型与行业筛选。</p>
+        </div>`;
+      return;
+    }
+
+    reportsGrid.innerHTML = visibleCompanies.map(renderCard).join('');
+  }
+
+  function rerender() {
+    updateStats();
+    renderVisibleCompanies();
+  }
+
   window.__openViewer = openViewer;
 
-  /* ---------- 主流程：加载 manifest ---------- */
+  sectorFilterBar.addEventListener('click', event => {
+    const button = event.target.closest('[data-filter]');
+    if (!button) return;
+    state.activeSector = button.dataset.filter || 'all';
+    rerender();
+  });
+
+  typeFilterBar.addEventListener('click', event => {
+    const button = event.target.closest('[data-filter]');
+    if (!button) return;
+    state.activeType = button.dataset.filter || 'all';
+    rerender();
+  });
+
+  searchInput.addEventListener('input', event => {
+    state.query = event.target.value || '';
+    renderVisibleCompanies();
+  });
+
   fetch('reports/manifest.json')
     .then(res => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res.json();
     })
     .then(data => {
-      const companies = data.companies || [];
-      const totalReports = companies.reduce((sum, c) => sum + (c.reports || []).length, 0);
+      state.updated = data.updated || '';
+      state.companies = (data.companies || [])
+        .map(normalizeCompany)
+        .sort((a, b) => parseDateValue(b.reports[0] && b.reports[0].date) - parseDateValue(a.reports[0] && a.reports[0].date));
 
-      /* 更新统计 */
-      document.getElementById('stat-count').textContent = totalReports;
-      const sectors = [...new Set(companies.map(c => c.sector).filter(Boolean))];
-      document.getElementById('stat-sectors').textContent = sectors.length;
-      document.getElementById('stat-updated').textContent = data.updated || '—';
-      const footerUpdated = document.getElementById('footer-updated');
-      if (data.updated) footerUpdated.textContent = `更新至 ${data.updated}`;
-
-      /* 生成筛选按钮 */
-      const allBtn = `<button class="filter-btn active" data-filter="all">全部 (${companies.length})</button>`;
-      const sectorBtns = sectors.map(s => {
-        const cnt = companies.filter(c => c.sector === s).length;
-        return `<button class="filter-btn" data-filter="${s}">${s} (${cnt})</button>`;
-      }).join('');
-      filterBar.insertAdjacentHTML('beforeend', allBtn + sectorBtns);
-
-      filterBar.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
-      });
-
-      /* 渲染卡片 */
-      reportsGrid.innerHTML = companies.map(renderCard).join('');
-
-      /* 切换：隐藏骨架、显示网格 */
-      document.getElementById('skeleton').style.display = 'none';
+      rerender();
+      skeleton.style.display = 'none';
       reportsGrid.style.display = 'grid';
     })
     .catch(err => {
       console.error('manifest.json 加载失败：', err);
-      document.getElementById('skeleton').style.display = 'none';
-      document.getElementById('error-banner').style.display = 'block';
+      skeleton.style.display = 'none';
+      errorBanner.style.display = 'block';
+      resultsSummary.textContent = '加载失败，请检查 manifest 配置';
     });
 
 })();
