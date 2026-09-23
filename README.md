@@ -1,6 +1,18 @@
 # Trading Agent
 
-AI 驱动的行业研究与投资分析工具，当前通过 GitHub Pages 对外展示研究报告与财报分析入口。
+AI 驱动的行业研究与投资分析展示站。  
+仓库中的 HTML 研报由编排插件 [invest-agent](https://github.com/Zacklinkk/invest-agent) 做全维度分析后生成；本仓库负责沉淀与公开阅读。
+
+## 二者关系
+
+| 仓库 | 角色 |
+|------|------|
+| [invest-agent](https://github.com/Zacklinkk/invest-agent) | 分析编排（L1 / L2 / L3）、多分析师协作，生成交互式 HTML 研报 |
+| 本仓库 `trading_agent` | GitHub Pages 门户与已发布研报归档 |
+
+典型流程：在 `invest-agent` 中跑 L3 全量分析 → 产出 `report.html` → 整理进本仓库的 `reports/`，并由 `reports/manifest.json` 登记后在首页展示。
+
+> 说明：`invest-agent` 负责编排；具体分析 skill（估值、缠论、价格行为、宏观周期等）需在本地另行安装。本站展示的是已生成的报告成品，单独克隆本仓库无法完整复现整条分析流水线。
 
 ## 在线 Pages
 
@@ -21,11 +33,11 @@ GitHub Pages 是 GitHub 的发布能力，不会在仓库文件树里额外出�
 
 ## 目录结构
 
-- `index.html`
+- `index.html`  
   Pages 首页，负责展示报告入口、筛选和在线阅读入口。
-- `reports/manifest.json`
+- `reports/manifest.json`  
   报告索引清单，首页会读取它来生成卡片和统计信息。
-- `reports/*.html`
+- `reports/*.html`  
   具体研究报告或财报分析页面。
 
 ## 当前收录报告
@@ -53,6 +65,7 @@ http://localhost:8000/
 
 ## 报告特点
 
+- 由多维度分析师协作生成（基本面、估值、行业、技术、价格行为、风险、宏观等），再汇总为交互式 HTML。
 - 生命周期驱动分析：结合行业阶段动态调整分析重点。
 - 结构化框架：覆盖行业概览、护城河评估、竞争格局、PEST 与估值。
 - 交互式图表：支持 tooltip、缩放等交互操作。
